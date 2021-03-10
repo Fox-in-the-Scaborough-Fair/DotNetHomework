@@ -1,0 +1,9 @@
+D:\DotNetHomework\Homework1\Homework1_2\bin\Debug\Homework1_2.exe.config
+D:\DotNetHomework\Homework1\Homework1_2\bin\Debug\Homework1_2.exe
+D:\DotNetHomework\Homework1\Homework1_2\bin\Debug\Homework1_2.pdb
+D:\DotNetHomework\Homework1\Homework1_2\obj\Debug\Homework1_2.csprojAssemblyReference.cache
+D:\DotNetHomework\Homework1\Homework1_2\obj\Debug\Homework1_2.Properties.Resources.resources
+D:\DotNetHomework\Homework1\Homework1_2\obj\Debug\Homework1_2.csproj.GenerateResource.cache
+D:\DotNetHomework\Homework1\Homework1_2\obj\Debug\Homework1_2.csproj.CoreCompileInputs.cache
+D:\DotNetHomework\Homework1\Homework1_2\obj\Debug\Homework1_2.exe
+D:\DotNetHomework\Homework1\Homework1_2\obj\Debug\Homework1_2.pdb
