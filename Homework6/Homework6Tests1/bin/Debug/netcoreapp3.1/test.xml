@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
+    <orderDetailsList>
+      <OrderDetails />
+      <OrderDetails />
+      <OrderDetails />
+    </orderDetailsList>
+    <client>小刘</client>
+    <orderNo>2019302110066</orderNo>
+    <totalPrice>72.5</totalPrice>
+  </Order>
+  <Order>
+    <orderDetailsList>
+      <OrderDetails />
+      <OrderDetails />
+      <OrderDetails />
+    </orderDetailsList>
+    <client>小詹</client>
+    <orderNo>2019302110067</orderNo>
+    <totalPrice>72.5</totalPrice>
+  </Order>
+  <Order>
+    <orderDetailsList>
+      <OrderDetails />
+      <OrderDetails />
+      <OrderDetails />
+    </orderDetailsList>
+    <client>小龙</client>
+    <orderNo>2019302110063</orderNo>
+    <totalPrice>72.5</totalPrice>
+  </Order>
+</ArrayOfOrder>
