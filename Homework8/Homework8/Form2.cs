@@ -13,7 +13,7 @@ namespace Homework8
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        public Form2(OrderService myOrderService,bool createOrModify,int postNo)
         {
             InitializeComponent();
             if (createOrModify)
@@ -24,13 +24,44 @@ namespace Homework8
             else 
             {
                 this.Text = "修改订单";
+                tempOrder = myOrderService.orderList[postNo];
+                textBox1.Text = tempOrder.client;
+                textBox2.Text = tempOrder.orderNo;
             }
 
-            dataGridView2.DataSource = temp.orderDetailsList;
+            OrderDetailsBindingSource.DataSource = tempOrder.orderDetailsList;
         }
 
 
-    public int No;
+        public class myEventArgs : EventArgs
+        {
+            Order myNewOrder;
+            public Order MyNewOrder
+            {
+                get
+                {
+                    return myNewOrder;
+                }
+                set
+                {
+                    if (value != null)
+                        myNewOrder = value;
+                    else
+                        myNewOrder = null;
+                }
+            }
+            public myEventArgs(Order s)
+            {
+                this.MyNewOrder = s;
+            }
+
+        }
+
+        public delegate void myEventHandler(object sender, myEventArgs e);
+
+        public event myEventHandler myClick;
+
+        public int No;
 
         public bool createOrModify;
 
@@ -47,18 +78,28 @@ namespace Homework8
 
         }
 
-        public Form1 fatherForm;
+
 
         private void button4_Click(object sender, EventArgs e)
         {
             tempOrder.orderNo = textBox1.Text;
             tempOrder.client = textBox2.Text;
-            if (createOrModify == true)
+            foreach (OrderDetails anOrderDetail in tempOrder.orderDetailsList)
             {
-                
+                tempOrder.totalPrice += anOrderDetail.orderPrice * anOrderDetail.orderNum;
             }
+            if (this.myClick != null)
+            {
+                this.myClick(this, new myEventArgs(tempOrder));
+            }
+            else
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+            MessageBox.Show("保存成功");
            
         }
+
 
         //输入订单号
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -85,8 +126,9 @@ namespace Homework8
                 
             }
 
-            dataGridView2.DataSource = temp.orderDetailsList;
-            dataGridView2.DataSource = tempOrder.orderDetailsList;
+            //OrderDetailsBindingSource.DataSource = tempOrder.orderDetailsList;
+            OrderDetailsBindingSource.ResetBindings(false); 
+
 
         }
 
@@ -137,8 +179,8 @@ namespace Homework8
                 tempOrder.orderDetailsList[No].orderName = textBox3.Text;
                 tempOrder.orderDetailsList[No].orderPrice = Convert.ToDouble(textBox4.Text);
                 tempOrder.orderDetailsList[No].orderNum = int.Parse(textBox5.Text);
-                dataGridView2.DataSource = temp.orderDetailsList;
-                dataGridView2.DataSource = tempOrder.orderDetailsList;
+                //OrderDetailsBindingSource.DataSource = tempOrder.orderDetailsList;
+                OrderDetailsBindingSource.ResetBindings(false);
             }
             catch (System.FormatException)
             {
@@ -156,8 +198,8 @@ namespace Homework8
             try
             {
                 tempOrder.orderDetailsList.RemoveAt(No);
-                dataGridView2.DataSource = temp.orderDetailsList;
-                dataGridView2.DataSource = tempOrder.orderDetailsList;
+                //OrderDetailsBindingSource.DataSource = tempOrder.orderDetailsList;
+                OrderDetailsBindingSource.ResetBindings(false);
             }
             catch (System.FormatException)
             {
@@ -169,6 +211,9 @@ namespace Homework8
             }
         }
 
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
     }
 }

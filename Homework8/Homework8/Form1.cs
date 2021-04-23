@@ -16,20 +16,24 @@ namespace Homework8
 
     public partial class Form1 : Form
     {
-        public Action<string> SendMsg { get; set; }
 
         public Form1()
         {
             InitializeComponent();
 
-            dataGridView1.DataSource = myOrderService.orderList;
+            orderBindingSource.DataSource = myOrderService.orderList;
 
             dataGridView1.TopLeftHeaderCell.Value = "序号";
             dataGridView3.TopLeftHeaderCell.Value = "序号";
 
         }
+        Order form2Order = new Order();
 
-        //OrderService myOrderService = new OrderService();
+        void f2_myClick(object sender, Form2.myEventArgs e)
+        {
+            form2Order = e.MyNewOrder;
+        }
+
 
         static OrderDetails[] myOrderDetails1 = new OrderDetails[4]
             {
@@ -65,11 +69,9 @@ namespace Homework8
 
         public OrderService myOrderService = new OrderService(myOrder);
 
-        Form2 createAndModify = new Form2();
+        //Form2 createAndModify = new Form2();
 
         public int No;
-
-        public event EventHandler SendMsgEvent;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -79,33 +81,36 @@ namespace Homework8
         private void button1_Click(object sender, EventArgs e)
         {
             label1.Text = "新建订单";
-            Form2 createAndModify = new Form2();
+            Form2 createAndModify = new Form2(myOrderService, true, No);
+            createAndModify.myClick += new Form2.myEventHandler(f2_myClick);
             createAndModify.Text = "新建订单";
             createAndModify.ShowDialog(this);
-            createAndModify.createOrModify = true;
+            myOrderService.AddOrder(form2Order);
+            orderBindingSource.ResetBindings(false);
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             label1.Text = "删除成功！";
             myOrderService.DeleteByNum(No);
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = myOrderService.orderList;
+            orderBindingSource.ResetBindings(false);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             label1.Text = "修改订单";
-            Form2 createAndModify = new Form2();
-            createAndModify.fatherForm = this;
+            Form2 createAndModify = new Form2(myOrderService, false, No);
+            createAndModify.myClick += new Form2.myEventHandler(f2_myClick);
             createAndModify.Text = "修改订单";
             createAndModify.Show(this);
-            createAndModify.createOrModify = true;
+            myOrderService.orderList[No] = form2Order;
+            orderBindingSource.ResetBindings(false);
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -114,14 +119,14 @@ namespace Homework8
             List<Order> ordersFound;
             if (textBox1.Text == "")
             {
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = myOrderService.orderList;
+                orderBindingSource.DataSource = myOrderService.orderList;
+                orderBindingSource.ResetBindings(false);
             }
             else
             {
                 ordersFound = myOrderService.FindOrderNo(textBox1.Text);
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = ordersFound;
+                orderBindingSource.DataSource = ordersFound;
+                orderBindingSource.ResetBindings(false);
             }
         }
 
@@ -155,8 +160,7 @@ namespace Homework8
             {
                 MessageBox.Show("导入失败", "导入提示");
             }
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = myOrderService.orderList;
+            orderBindingSource.ResetBindings(false);
         }
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
@@ -196,7 +200,8 @@ namespace Homework8
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dataGridView3.DataSource = myOrderService.orderList[e.RowIndex].orderDetailsList;
+            orderDetailsBindingSource.DataSource = myOrderService.orderList[e.RowIndex].orderDetailsList;
+            orderDetailsBindingSource.ResetBindings(false);
             No = e.RowIndex;
         }
 
