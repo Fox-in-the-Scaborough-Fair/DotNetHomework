@@ -1,7 +1,0 @@
-D:\DotNetHomework\Order\Order\obj\Debug\Order.csproj.CoreCompileInputs.cache
-D:\DotNetHomework\Order\Order\bin\Debug\Order.exe.config
-D:\DotNetHomework\Order\Order\bin\Debug\Order.exe
-D:\DotNetHomework\Order\Order\bin\Debug\Order.pdb
-D:\DotNetHomework\Order\Order\obj\Debug\Order.exe
-D:\DotNetHomework\Order\Order\obj\Debug\Order.pdb
-D:\DotNetHomework\Order\Order\obj\Debug\Order.csprojAssemblyReference.cache
