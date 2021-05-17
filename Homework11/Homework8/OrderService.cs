@@ -1,128 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
-using System.Data.Entity;
+using System.IO;
 
-namespace Homework6
+namespace Homework8
 {
-    //订单明细类
-    public class OrderDetails
-    {
-        public int OrderDetailsId { get; set; }    //商品序号
-        public string orderName { get; set; }       //商品名称
-        public double orderPrice { get; set; }      //商品价格
-
-        public int orderNum { get; set; }        //商品购买数量
-
-        public int OrdersId { get; set; }      //外键
-        public Orders Orders { get; set; }
-
-        public OrderDetails(string orderName, double orderPrice, int orderNum)
-        {
-            this.orderName = orderName;
-            this.orderPrice = orderPrice;
-            this.orderNum = orderNum;
-        }
-        public OrderDetails()
-        {
-            this.orderName = "";
-            this.orderPrice = 0;
-            this.orderNum = 0;
-        }
-
-        public override string ToString()
-        {
-            return "商品名称:" + orderName + "  商品价格:" + orderPrice + "  商品数量:" + orderNum + "\n";
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is OrderDetails details &&
-                   OrderDetailsId == details.OrderDetailsId &&
-                   orderName == details.orderName &&
-                   orderPrice == details.orderPrice &&
-                   orderNum == details.orderNum &&
-                   OrdersId == details.OrdersId &&
-                   EqualityComparer<Orders>.Default.Equals(Orders, details.Orders);
-        }
-
-        public override int GetHashCode()
-        {
-            int hashCode = 438194288;
-            hashCode = hashCode * -1521134295 + OrderDetailsId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(orderName);
-            hashCode = hashCode * -1521134295 + orderPrice.GetHashCode();
-            hashCode = hashCode * -1521134295 + orderNum.GetHashCode();
-            hashCode = hashCode * -1521134295 + OrdersId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<Orders>.Default.GetHashCode(Orders);
-            return hashCode;
-        }
-    }
-
-    [Serializable]
-    public class Orders
-    {
-        public int OrdersId { get; set; }         //订单号
-        public string client { get; set; }       //订单客户
-        public double totalPrice { get; set; }       //总金额
-        public List<OrderDetails> orderDetailsList { get; set; }        //订单明细
-
-
-        public Orders(string client, int OrdersId, OrderDetails[] allOrderDetails)
-        {
-            this.client = client;
-            this.OrdersId = OrdersId;
-            this.orderDetailsList = new List<OrderDetails>();
-            foreach (OrderDetails anOrderDetail in allOrderDetails)
-            {
-                this.totalPrice += anOrderDetail.orderPrice * anOrderDetail.orderNum;
-                this.orderDetailsList.Add(anOrderDetail);
-            }
-
-        }
-
-        public Orders()
-        {
-            this.client = "";
-            this.OrdersId = 0;
-            this.orderDetailsList = new List<OrderDetails>();
-        }
-
-
-        public override string ToString()
-        {
-            string temp = "";
-            foreach (OrderDetails anOrderDetail in orderDetailsList)
-            {
-                temp += anOrderDetail.ToString();
-            }
-            return "订单客户:" + client + "  订单号:" + OrdersId + "  总金额:" + totalPrice + "\n" + temp;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is Orders orders &&
-                   OrdersId == orders.OrdersId &&
-                   client == orders.client &&
-                   totalPrice == orders.totalPrice &&
-                   EqualityComparer<List<OrderDetails>>.Default.Equals(orderDetailsList, orders.orderDetailsList);
-        }
-
-        public override int GetHashCode()
-        {
-            int hashCode = -679373293;
-            hashCode = hashCode * -1521134295 + OrdersId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(client);
-            hashCode = hashCode * -1521134295 + totalPrice.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<OrderDetails>>.Default.GetHashCode(orderDetailsList);
-            return hashCode;
-        }
-    }
-
-    [Serializable]
     public class OrderService
     {
         public List<Orders> orderList { get; set; }
@@ -141,12 +26,35 @@ namespace Homework6
             this.orderList = new List<Orders>();
         }
 
+        /*
         //添加订单
         public void AddOrder(Orders myOrder)
         {
             try
             {
                 this.orderList.Add(myOrder);
+            }
+            catch (System.NullReferenceException)
+            {
+                Console.WriteLine("订单无效!");
+            }
+        }
+        */
+
+        public void AddOrder(Orders myOrder)
+        {
+            try
+            {
+                using (var db = new OrderDBContext())
+                {
+                    var orders = new Orders
+                    {
+                        client = myOrder.client,
+                        orderDetailsList = myOrder.orderDetailsList
+                    };
+                    db.Orders.Add(orders);
+                    db.SaveChanges();
+                }
             }
             catch (System.NullReferenceException)
             {
@@ -178,12 +86,20 @@ namespace Homework6
         }
         */
 
-        public void DeleteOrder(int OrdersId)
+        public void DeleteOrder(int OrdersIdIn)
         {
-            int i = 0;
-            //using (var db = new orderdb)
+            using (var db = new OrderDBContext())
+            {
+                var order = db.Orders.Include("orderDetailsList").FirstOrDefault(p => p.OrdersId == OrdersIdIn);
+                if (order != null)
+                {
+                    db.Orders.Remove(order);
+                    db.SaveChanges();
+                }
+            }
         }
 
+        /*
         public void DeleteByNum(int num)
         {
             try
@@ -195,6 +111,7 @@ namespace Homework6
                 Console.WriteLine("订单号无效");
             }
         }
+        */
 
         //根据旧订单号修改订单信息
         public void ModifyOrder(int oldOrdersId, string client, int OrdersId, OrderDetails[] allOrderDetails)
@@ -225,6 +142,7 @@ namespace Homework6
             }
         }
 
+        /*
         //通过订单号查询订单
         public List<Orders> FindOrderNo(int OrdersId)
         {
@@ -238,9 +156,26 @@ namespace Homework6
             else
                 return null;
         }
+        */
 
-        //通过商品名称查询订单
-        public List<Orders> FindOrderName(string orderName)
+        //通过订单号查询订单
+        public List<Orders> FindOrderNo(int OrdersId)
+        {
+            using (var db = new OrderDBContext())
+            {
+                var query = db.Orders.Where(b => b.OrdersId == OrdersId);
+                if (query != null)
+                {
+                    return query.ToList();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+            //通过商品名称查询订单
+            public List<Orders> FindOrderName(string orderName)
         {
             var query = from oneOrder in orderList
                         from oneOrderDetails in oneOrder.orderDetailsList
@@ -290,6 +225,7 @@ namespace Homework6
             this.orderList.Sort((p1, p2) => p1.OrdersId - p2.OrdersId);
         }
 
+
         //订单序列化
         public bool Export(string exportName)
         {
@@ -297,10 +233,13 @@ namespace Homework6
 
             try
             {
-                using (FileStream fs = new FileStream(exportName, FileMode.Create))
+                using (var db = new OrderDBContext())
                 {
-                    xmlSerializer.Serialize(fs, orderList);
-                    return true;
+                    using (FileStream fs = new FileStream(exportName, FileMode.Create))
+                    {
+                        xmlSerializer.Serialize(fs, db.Orders.ToList()) ;
+                        return true;
+                    }
                 }
             }
             catch (System.ArgumentException)
@@ -308,6 +247,8 @@ namespace Homework6
                 Console.WriteLine("未选择文件！");
                 return false;
             }
+            
+            
         }
 
         //载入订单
@@ -319,6 +260,14 @@ namespace Homework6
                 {
                     XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Orders>));
                     orderList = ((List<Orders>)xmlSerializer.Deserialize(fs));
+                    using (var db = new OrderDBContext())
+                    {
+                        foreach (Orders anOrder in orderList)
+                        {
+                                db.Orders.Add(anOrder); 
+                        }
+                        db.SaveChanges();
+                    }
                     return true;
                 }
             }
@@ -367,28 +316,4 @@ namespace Homework6
 
 
     }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-
-            OrderDetails[] myOrderDetails = new OrderDetails[3]
-            {
-                new OrderDetails("笔记本", 4.0, 10),
-                new OrderDetails("签字笔", 5.0 , 5),
-                new OrderDetails("计算器", 7.5, 1),
-            };
-            Orders[] myOrder =
-            {
-                new Orders("小刘", 0, myOrderDetails),
-                new Orders("小詹", 1, myOrderDetails),
-                new Orders("小龙", 2, myOrderDetails),
-                new Orders("小徐", 3, myOrderDetails)
-            };
-
-            OrderService myOrderService = new OrderService(myOrder);
-        }
-    }
 }
-

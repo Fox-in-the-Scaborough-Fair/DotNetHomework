@@ -117,6 +117,9 @@
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
     <Compile Include="OrderDBContext.cs" />
+    <Compile Include="OrderDetails.cs" />
+    <Compile Include="Orders.cs" />
+    <Compile Include="OrderService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -135,9 +138,19 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Form1.datasource" />
+    <None Include="Properties\DataSources\Form2.datasource" />
+    <None Include="Properties\DataSources\Form2.myEventArgs.datasource" />
+    <None Include="Properties\DataSources\Form2.myEventHandler.datasource" />
     <None Include="Properties\DataSources\Homework6.Order.datasource" />
     <None Include="Properties\DataSources\Homework6.OrderDetails.datasource" />
     <None Include="Properties\DataSources\Homework6.Orders.datasource" />
+    <None Include="Properties\DataSources\Homework8.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\Homework8.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\OrderDBContext.datasource" />
+    <None Include="Properties\DataSources\OrderDetails.datasource" />
+    <None Include="Properties\DataSources\Orders.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -150,12 +163,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Order\Order\Order.csproj">
-      <Project>{633e2109-a792-49d3-9e41-361c5ba2b6ad}</Project>
-      <Name>Order</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

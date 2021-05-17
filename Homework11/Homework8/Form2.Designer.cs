@@ -49,10 +49,12 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.orderNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.orderDetailsIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordersIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -262,9 +264,11 @@
             this.dataGridView2.AutoGenerateColumns = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.orderNameDataGridViewTextBoxColumn,
-            this.orderPriceDataGridViewTextBoxColumn,
-            this.orderNumDataGridViewTextBoxColumn});
+            this.orderDetailsIdDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.ordersIdDataGridViewTextBoxColumn});
             this.dataGridView2.DataSource = this.OrderDetailsBindingSource;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView2.Location = new System.Drawing.Point(3, 47);
@@ -278,34 +282,50 @@
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.dataGridView2.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView2_RowPostPaint_1);
             // 
-            // orderNameDataGridViewTextBoxColumn
-            // 
-            this.orderNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.orderNameDataGridViewTextBoxColumn.DataPropertyName = "orderName";
-            this.orderNameDataGridViewTextBoxColumn.HeaderText = "商品名称";
-            this.orderNameDataGridViewTextBoxColumn.Name = "orderNameDataGridViewTextBoxColumn";
-            this.orderNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // orderPriceDataGridViewTextBoxColumn
-            // 
-            this.orderPriceDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.orderPriceDataGridViewTextBoxColumn.DataPropertyName = "orderPrice";
-            this.orderPriceDataGridViewTextBoxColumn.HeaderText = "商品价格";
-            this.orderPriceDataGridViewTextBoxColumn.Name = "orderPriceDataGridViewTextBoxColumn";
-            this.orderPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // orderNumDataGridViewTextBoxColumn
-            // 
-            this.orderNumDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.orderNumDataGridViewTextBoxColumn.DataPropertyName = "orderNum";
-            this.orderNumDataGridViewTextBoxColumn.HeaderText = "商品数量";
-            this.orderNumDataGridViewTextBoxColumn.Name = "orderNumDataGridViewTextBoxColumn";
-            this.orderNumDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // OrderDetailsBindingSource
             // 
-            this.OrderDetailsBindingSource.DataSource = typeof(Homework6.OrderDetails);
+            this.OrderDetailsBindingSource.DataSource = typeof(Homework8.OrderDetails);
             this.OrderDetailsBindingSource.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
+            // 
+            // orderDetailsIdDataGridViewTextBoxColumn
+            // 
+            this.orderDetailsIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.orderDetailsIdDataGridViewTextBoxColumn.DataPropertyName = "OrderDetailsId";
+            this.orderDetailsIdDataGridViewTextBoxColumn.HeaderText = "订单明细号";
+            this.orderDetailsIdDataGridViewTextBoxColumn.Name = "orderDetailsIdDataGridViewTextBoxColumn";
+            this.orderDetailsIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "orderName";
+            this.dataGridViewTextBoxColumn1.HeaderText = "商品名称";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "orderPrice";
+            this.dataGridViewTextBoxColumn2.HeaderText = "商品价格";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "orderNum";
+            this.dataGridViewTextBoxColumn3.HeaderText = "商品数量";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // ordersIdDataGridViewTextBoxColumn
+            // 
+            this.ordersIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ordersIdDataGridViewTextBoxColumn.DataPropertyName = "OrdersId";
+            this.ordersIdDataGridViewTextBoxColumn.HeaderText = "所属订单号";
+            this.ordersIdDataGridViewTextBoxColumn.Name = "ordersIdDataGridViewTextBoxColumn";
+            this.ordersIdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Form2
             // 
@@ -354,5 +374,10 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderDetailsIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ordersIdDataGridViewTextBoxColumn;
     }
 }

@@ -1,15 +1,19 @@
-﻿using Homework6;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Linq;
+using System.Data.Entity;
 
 namespace Homework8
 {
     public partial class Form2 : Form
     {
-        public Form2(OrderService myOrderService, bool createOrModify, int postNo)
+        public Form2(OrderService myOrderService, bool createOrModifyIn, int postNo)
         {
             InitializeComponent();
+            tempOrderService = myOrderService;
+            createOrModify = createOrModifyIn;
             if (createOrModify)
             {
                 this.Text = "新建订单";
@@ -18,15 +22,26 @@ namespace Homework8
             else
             {
                 this.Text = "修改订单";
-                tempOrder = myOrderService.orderList[postNo];
-                textBox1.Text = tempOrder.client;
-                textBox2.Text = $"{tempOrder.OrdersId}";
+                using (var db = new OrderDBContext())
+                {
+                    var order = db.Orders.SingleOrDefault(b => b.OrdersId == postNo);
+                    var orderDetail = db.OrderDetails.Where(b => b.OrdersId == postNo).OrderBy(b => b.OrderDetailsId);
+                    if (order != null)
+                    {
+                        tempOrder = order;
+                        tempOrder.orderDetailsList = orderDetail.ToList();
+                        textBox1.Text = $"{order.OrdersId}";
+                        textBox2.Text = order.client;
+                    }
+                }
             }
-
+            outNo = postNo;
             OrderDetailsBindingSource.DataSource = tempOrder.orderDetailsList;
         }
 
+        OrderService tempOrderService = new OrderService();
 
+        /*
         public class myEventArgs : EventArgs
         {
             Orders myNewOrder;
@@ -54,9 +69,10 @@ namespace Homework8
         public delegate void myEventHandler(object sender, myEventArgs e);
 
         public event myEventHandler myClick;
+        */
 
         public int No;
-
+        public int outNo;
         public bool createOrModify;
 
         Orders temp = new Orders();
@@ -76,13 +92,10 @@ namespace Homework8
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
-            tempOrder.OrdersId = int.Parse(textBox1.Text);
+
             tempOrder.client = textBox2.Text;
-            foreach (OrderDetails anOrderDetail in tempOrder.orderDetailsList)
-            {
-                tempOrder.totalPrice += anOrderDetail.orderPrice * anOrderDetail.orderNum;
-            }
+
+            /*
             if (this.myClick != null)
             {
                 this.myClick(this, new myEventArgs(tempOrder));
@@ -91,6 +104,31 @@ namespace Homework8
             {
                 this.DialogResult = DialogResult.OK;
             }
+            */
+
+            if (createOrModify)
+            {
+                tempOrderService.AddOrder(tempOrder);
+            }
+            else
+            {
+                using (var db = new OrderDBContext())
+                {
+                    var order = db.Orders.FirstOrDefault(p => p.OrdersId == outNo);
+                    if (order != null)
+                    {
+                        order.client = tempOrder.client;
+                        foreach (OrderDetails anOrder in tempOrder.orderDetailsList)
+                        {
+                            order.totalPrice += anOrder.orderPrice * anOrder.orderNum;
+                        }
+                        order.orderDetailsList = tempOrder.orderDetailsList;
+                        db.SaveChanges();
+                    }
+                }
+            }
+
+
             MessageBox.Show("保存成功");
 
         }
@@ -171,11 +209,13 @@ namespace Homework8
         {
             try
             {
+                
                 tempOrder.orderDetailsList[No].orderName = textBox3.Text;
                 tempOrder.orderDetailsList[No].orderPrice = Convert.ToDouble(textBox4.Text);
                 tempOrder.orderDetailsList[No].orderNum = int.Parse(textBox5.Text);
                 //OrderDetailsBindingSource.DataSource = tempOrder.orderDetailsList;
                 OrderDetailsBindingSource.ResetBindings(false);
+                
             }
             catch (System.FormatException)
             {

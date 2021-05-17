@@ -1,12 +1,10 @@
 ﻿namespace Homework8
 {
-    using Homework6;
     using System.Data.Entity;
     using System.Linq;
     using MySql.Data.EntityFramework;
-    using System.Data.Entity;
-    [DbConfigurationType(typeof(MySqlEFConfiguration))]
 
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class OrderDBContext : DbContext
     {
 
