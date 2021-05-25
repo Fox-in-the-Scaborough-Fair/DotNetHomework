@@ -1,0 +1,14 @@
+D:\DotNetHomework\SimpleCrawler\SimpleCrawler\bin\Debug\SimpleCrawler.exe.config
+D:\DotNetHomework\SimpleCrawler\SimpleCrawler\bin\Debug\SimpleCrawler.exe
+D:\DotNetHomework\SimpleCrawler\SimpleCrawler\bin\Debug\SimpleCrawler.pdb
+D:\DotNetHomework\SimpleCrawler\SimpleCrawler\obj\Debug\SimpleCrawler.csprojAssemblyReference.cache
+D:\DotNetHomework\SimpleCrawler\SimpleCrawler\obj\Debug\SimpleCrawler.csproj.CoreCompileInputs.cache
+D:\DotNetHomework\SimpleCrawler\SimpleCrawler\obj\Debug\SimpleCrawler.exe
+D:\DotNetHomework\SimpleCrawler\SimpleCrawler\obj\Debug\SimpleCrawler.pdb
+D:\DotNetHomework\Homework9\SimpleCrawler\SimpleCrawler\bin\Debug\SimpleCrawler.exe.config
+D:\DotNetHomework\Homework9\SimpleCrawler\SimpleCrawler\bin\Debug\SimpleCrawler.exe
+D:\DotNetHomework\Homework9\SimpleCrawler\SimpleCrawler\bin\Debug\SimpleCrawler.pdb
+D:\DotNetHomework\Homework9\SimpleCrawler\SimpleCrawler\obj\Debug\SimpleCrawler.csprojAssemblyReference.cache
+D:\DotNetHomework\Homework9\SimpleCrawler\SimpleCrawler\obj\Debug\SimpleCrawler.csproj.CoreCompileInputs.cache
+D:\DotNetHomework\Homework9\SimpleCrawler\SimpleCrawler\obj\Debug\SimpleCrawler.exe
+D:\DotNetHomework\Homework9\SimpleCrawler\SimpleCrawler\obj\Debug\SimpleCrawler.pdb

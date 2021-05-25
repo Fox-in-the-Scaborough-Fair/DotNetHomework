@@ -1,0 +1,26 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>360问答服务升级</title>
+<style>body{background:#f7f7f7;font-family:'Microsoft Yahei',arial,sans-serif}#doc{background:#fff;margin:0 auto;border:1px solid #e1e1e1;max-width:980px;text-align:center;font-size:18px;color:#313131;padding:10px 0 30px 0}#doc img{width:100%;max-width:340px;max-height:202px;_width:340px;_height:202px}#ft{*margin-top:10px;color:#888;font-size:12px;text-align:center;display:none}#ft .nav{display:inline-block;padding:3px 0;*display:inline;zoom:1}#ft .nav .first{border:0}#ft .nav li{border-left:1px #eaeaea solid;display:inline;float:left;height:13px;line-height:1.0;padding:0 10px}#ft a{text-decoration:none;color:#888}#ft .copyright{margin-top:2px}</style>
+</head>
+<body>
+	<div id="doc"><img src="http://p2.qhimg.com/t0121c1b62ec3bf6e5c.png"><p>360问答服务正在升级，  请耐心喝杯茶吧~</p></div>   
+    <div id="ft">
+
+        <ul class="nav">
+        	<li class="first"><a target="_blank" href="http://wenda.so.com/other/help">帮助</a></li>
+			<li><a target="_blank" href="http://wenda.so.com/sundry/tortindex">侵权投诉</a></li>
+			<li><a target="_blank" href="http://bbs.360safe.com/forum-231-1.html">论坛</a></li>
+			<li><a target="_blank" href="http://e.weibo.com/qihooask">官方微博</a></li>
+		</ul>
+		<p class="copyright">
+			Copyright © 360.CN 奇虎360旗下搜索服务&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://www.miibeian.gov.cn/">京ICP备08010314号-19   京公网安备110000000006号</a>	
+		</p>
+        
+    </div>
+    <script>window.external.GetMid||(document.getElementById("ft").style.display="block")</script>     
+</body>
+</html>
