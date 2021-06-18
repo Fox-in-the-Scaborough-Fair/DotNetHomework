@@ -1,0 +1,1363 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-crossorigin" />
+    
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>华为云开发者社区 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    <link id="MainCss" rel="stylesheet" href="/skins/simpleblue/bundle-simpleblue.min.css?v=2hjghzSZyhYA1HxvSxKnXih3JbC120DBjeO9V9T_nSs" />
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/simpleblue/bundle-simpleblue-mobile.min.css?v=3tvwgOOqUo3RpS6gGzEdK0LbptOPv4Bx7M85_UAnFGs" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/huaweiyun/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/huaweiyun/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/huaweiyun/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 602073;
+        var currentBlogApp = 'huaweiyun';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'SimpleBlue';
+        var visitorUserId = '';
+    </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    
+    
+    
+</head>
+<body class="has-navbar has-bannerbar">
+    <a name="top"></a>
+            <a target="_blank" href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:pc|pp:bokeyuan-huodong-21nianzhongdacu-neiyePCtonglanbanner|pu:21nianzhongdacu-neiyePCtonglanbanner|ci:21nzdc|kw:10224545" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-pc')">
+                <div class="bannerbar aliyun forpc" style="background-size: contain; filter: brightness(0.95); background-image: url(https://img2020.cnblogs.com/blog/35695/202106/35695-20210610183724605-1725070929.jpg)">
+                </div>
+            </a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <div id="home">
+    <div id="header">
+        <div id="blogTitle">
+            <div class="title"><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/huaweiyun/">华为云开发者社区</a>
+</div>
+<div class="subtitle"></div>
+
+        </div>
+        <div id="navigator">
+            
+<ul id="navList">
+    <li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+    <li id="nav_myhome">
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/huaweiyun/">
+首页</a>
+</li>
+    <li id="nav_newpost">
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+    <li id="nav_contact">
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E5%8D%8E%E4%B8%BA%E4%BA%91%E5%BC%80%E5%8F%91%E8%80%85%E7%A4%BE%E5%8C%BA">
+联系</a></li>
+    <li id="nav_rss">
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/huaweiyun/rss/">
+订阅</a></li>
+    <li id="nav_admin">
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+            <div class="blogStats">
+                <div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="mainContent">
+            <div class="forFlow">
+                
+
+
+
+
+
+
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/huaweiyun/archive/2021/06/18.html">2021年6月18日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14899766.html">
+    <span>
+            <span>[置顶]</span>
+        618技术特辑（四）疯狂剁手的同时，电商隐私安全你注意到了吗？
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：&#160;云时代，网络基础设施更加复杂，其上运行的业务及数据更加重要。无论是电商、互联网、医疗或是金融、教育等行业，均离不开安全服务的保驾护航，只有安全工作有了前提保障，其他的基础活动的开展才有了保障。 本文分享自华为云社区《618技术特辑（四）疯狂剁手的同时，电商隐私安全你注意到了吗？》，原文作者：        <a href="https://www.cnblogs.com/huaweiyun/p/14899766.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-18 15:32
+华为云开发者社区
+<span data-post-id="14899766" class="post-view-count">阅读(6)</span> 
+<span data-post-id="14899766" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14899766" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14899766" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14899475.html">
+    <span>
+            <span>[置顶]</span>
+        618技术特辑（三）直播带货王，“OMG买它”的背后，为什么是一连串技术挑战？
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：【本期推荐】为什么一到大促，我们的钱包总是被掏空？是大家自制力不够，还是电商平台太会读懂人心，从技术维度，抽丝剥茧一探究竟。 摘要：动辄几十上百万人同时在线的直播间，让所有人能同时公平的去抢购，并且还要确保系统运行的稳定，这是一个非常大的考验。背后到底是什么样的技术加持，过程中又遇到了哪些挑战？让我        <a href="https://www.cnblogs.com/huaweiyun/p/14899475.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-18 14:44
+华为云开发者社区
+<span data-post-id="14899475" class="post-view-count">阅读(198)</span> 
+<span data-post-id="14899475" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14899475" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14899475" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14898947.html">
+    <span>
+            <span>[置顶]</span>
+        标准物模型：设备无缝对接，IOT界的福音
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：信息模型是解决IoT产业发展一系列挑战的关键，在信息模型的基础上可以推进行业标准/架构的统一，进而实现产业链生态的协同。 本文分享自华为云社区《【云驻共创】标准物模型，物联网的福音》，原文作者：G-washington 。 物联网产业发展趋势：物联网产业将向垂直行业发展 物联网概念最早出现于比        <a href="https://www.cnblogs.com/huaweiyun/p/14898947.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-18 11:52
+华为云开发者社区
+<span data-post-id="14898947" class="post-view-count">阅读(16)</span> 
+<span data-post-id="14898947" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14898947" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14898947" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14898894.html">
+    <span>
+            <span>[置顶]</span>
+        云图说｜数据仓库服务 GaussDB(DWS) 的“千里眼、顺风耳”—数据库智能运维
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：数据库智能运维（DMS）是GaussDB(DWS) 为客户数据库快速、稳定运行提供保驾护航的能力，对业务数据库所使用磁盘、网络、OS指标数据，集群运行关键性能指标进行收集、监控、分析。通过综合收集到的多种类型数据对数据库主机、实例、业务SQL进行诊断，及时暴露数据库中关键故障及性能问题，指导客        <a href="https://www.cnblogs.com/huaweiyun/p/14898894.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-18 11:43
+华为云开发者社区
+<span data-post-id="14898894" class="post-view-count">阅读(7)</span> 
+<span data-post-id="14898894" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14898894" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14898894" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/huaweiyun/archive/2021/06/17.html">2021年6月17日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14892756.html">
+    <span>
+            <span>[置顶]</span>
+        一文讲全了Python 类和对象内容
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：这是一个关于&#160;Python&#160;类和对象的全部内容。 本文分享自华为云社区《从零开始学python | Python&#160;类和对象—面向对象编程》，原文作者：Yuchuan 。 Python&#160;在活跃开发人员方面将超过其他语言之后,Python&#160;开发人员的需求只会增长。&#160;Python&#160;遵循面向对象的编程        <a href="https://www.cnblogs.com/huaweiyun/p/14892756.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-17 11:39
+华为云开发者社区
+<span data-post-id="14892756" class="post-view-count">阅读(230)</span> 
+<span data-post-id="14892756" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14892756" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14892756" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14892426.html">
+    <span>
+            <span>[置顶]</span>
+        一文介绍备机重建各种方法的实现机制
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：本文将介绍备机重建各种方法的实现机制，并结合应用场景分析，以及对新增参数的使用建议，以期获得最佳应用效果。 本文分享自华为云社区《先码再看，一文介绍备机重建各种方法的实现机制》，原文作者：Victor_NK&#160;。 1&#160;需求介绍 GaussDB(DWS)的实例在运行过程中难免发生故障，引起实例错误        <a href="https://www.cnblogs.com/huaweiyun/p/14892426.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-17 10:36
+华为云开发者社区
+<span data-post-id="14892426" class="post-view-count">阅读(11)</span> 
+<span data-post-id="14892426" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14892426" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14892426" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14892285.html">
+    <span>
+            <span>[置顶]</span>
+        盘点用jQuery框架实现“for循环”的四种方式！
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：分享在jQuery高级开发中对元素标签体的遍历常用的几种方法。 本文分享自华为云社区《盘点用jQuery框架实现“for循环”的四种方式！》，原文作者：灰小猿&#160;。 今天继续来和大家分享在jQuery高级开发中对元素标签体的遍历常用的几种方法。 我们以一个案例的形式进行讲解，假如我们需要遍历的是        <a href="https://www.cnblogs.com/huaweiyun/p/14892285.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-17 10:09
+华为云开发者社区
+<span data-post-id="14892285" class="post-view-count">阅读(99)</span> 
+<span data-post-id="14892285" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14892285" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14892285" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14892147.html">
+    <span>
+            <span>[置顶]</span>
+        云图说｜初识华为云数据库GaussDB(for openGauss)
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：本文带你了解华为云华为云数据库GaussDB(for openGauss)，将AI 技术融入分布式数据库的全生命周期，实现自运维、自管理、自调优、故障自诊断和自愈。 本文分享自华为云社区《云图说 | 第204期 初识华为云数据库GaussDB(for openGauss)，新一代企业级分布式数        <a href="https://www.cnblogs.com/huaweiyun/p/14892147.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-17 09:44
+华为云开发者社区
+<span data-post-id="14892147" class="post-view-count">阅读(8)</span> 
+<span data-post-id="14892147" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14892147" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14892147" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/huaweiyun/archive/2021/06/16.html">2021年6月16日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14889451.html">
+    <span>
+            <span>[置顶]</span>
+        数据膨胀了？你的数仓又没有空间了？
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：为了解决数据膨胀，GaussDB(DWS)通过vacuum和FSM来清理和重用物理空间。本文简单介绍FSM的设计和原理，并通过一个例子对FSM功能进行简单的测试和验证。 本文分享自华为云社区《数据膨胀了？又没有空间了？一招教你解决》，原文作者：QWERT886 。 数据膨胀，指的是物理数据文件        <a href="https://www.cnblogs.com/huaweiyun/p/14889451.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-16 15:05
+华为云开发者社区
+<span data-post-id="14889451" class="post-view-count">阅读(21)</span> 
+<span data-post-id="14889451" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14889451" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14889451" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14889172.html">
+    <span>
+            <span>[置顶]</span>
+        618 技术特辑（二）几百万人同时下单的秒杀，为什么越来越容易抢到了？
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：几百万人同时下单，你抢到的概率为何越来越大？电商企业又是如何掌握大促期间上亿的销售数据？ 本文分享自华为云社区《618&#160;技术特辑（二）几百万人同时下单的秒杀，为什么越来越容易抢到了？》，原文作者：技术火炬手。 把心仪的商品加入购物车，点击结算，付款，商品页面的销量+1，库存量-1，如果只有几十        <a href="https://www.cnblogs.com/huaweiyun/p/14889172.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-16 14:09
+华为云开发者社区
+<span data-post-id="14889172" class="post-view-count">阅读(759)</span> 
+<span data-post-id="14889172" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14889172" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14889172" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14888724.html">
+    <span>
+            <span>[置顶]</span>
+        618 技术特辑（一）不知不觉超预算3倍，你为何买买买停不下来？
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：&#160;这背后到底是我们自制力不够，还是电商平台太会读懂人心，我们不妨从技术维度，抽丝剥茧一探究竟。 本文分享自华为云社区《618&#160;技术特辑（一）不知不觉超预算3倍，你为何买买买停不下来？》，原文作者：技术火炬手。 又是一年618，大家控制不住买买买的同时，会不会有这样一种感觉：好像有一股神奇的力量        <a href="https://www.cnblogs.com/huaweiyun/p/14888724.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-16 11:32
+华为云开发者社区
+<span data-post-id="14888724" class="post-view-count">阅读(31)</span> 
+<span data-post-id="14888724" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14888724" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14888724" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14888410.html">
+    <span>
+            <span>[置顶]</span>
+        快来，这里有23种设计模式的Go语言实现
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：设计模式（Design Pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结，使用设计模式是为了可重用代码、让代码更容易被他人理解并且保证代码可靠性。 本文分享自华为云社区《快来，这里有23种设计模式的Go语言实现》，原文作者：元闰子&#160;。 前言 从1995年GoF        <a href="https://www.cnblogs.com/huaweiyun/p/14888410.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-16 10:39
+华为云开发者社区
+<span data-post-id="14888410" class="post-view-count">阅读(11)</span> 
+<span data-post-id="14888410" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14888410" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14888410" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/huaweiyun/archive/2021/06/15.html">2021年6月15日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14885400.html">
+    <span>
+            <span>[置顶]</span>
+        什么是Python中的套接字编程？
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：本文涵盖了有关使用Python进行套接字编程的所有领域。套接字可以帮助您建立这些连接，而Python无疑可以简化连接。 本文分享自华为云社区《从零开始学python |&#160;什么是Python中的套接字编程以及如何掌握它？》，原文作者：Yuchuan&#160;。 不可否认，互联网已成为“存在之魂”，其活动        <a href="https://www.cnblogs.com/huaweiyun/p/14885400.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-15 14:39
+华为云开发者社区
+<span data-post-id="14885400" class="post-view-count">阅读(10)</span> 
+<span data-post-id="14885400" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14885400" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14885400" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14884824.html">
+    <span>
+            <span>[置顶]</span>
+        详解Vue八大生命周期钩子函数
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：Vue为生命周期中的每个状态都设置了钩子函数(监听函数) 。每当Vue实例处于不同的生命周期时，对应的函数就会被触发调用。 本文分享自华为云社区《一文带你弄懂Vue八大生命周期钩子函数》，原文作者：北极光之夜。。 一.速识概念： 我们把一个对象从生成（new）到被销毁（destory）的过程，        <a href="https://www.cnblogs.com/huaweiyun/p/14884824.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-15 11:34
+华为云开发者社区
+<span data-post-id="14884824" class="post-view-count">阅读(9)</span> 
+<span data-post-id="14884824" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14884824" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14884824" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14884536.html">
+    <span>
+            <span>[置顶]</span>
+        你应该知道的数仓安全
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：防止数据泄露可以有两种技术路径。一是权限管理，采用最小化授权原则对使用数据的用户和应用程序授权。另一种是数据加密，包括使用SQL函数加密和透明加密。 本文分享自华为云社区《【安全无小事】你应该知道的数仓安全——加密函数》，原文作者：zhangkunhn。 前言 最近遇到一个客户场景，涉及共享s        <a href="https://www.cnblogs.com/huaweiyun/p/14884536.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-15 10:42
+华为云开发者社区
+<span data-post-id="14884536" class="post-view-count">阅读(13)</span> 
+<span data-post-id="14884536" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14884536" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14884536" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14884286.html">
+    <span>
+            <span>[置顶]</span>
+        云图说｜华为云自研云数据库GaussDB NoSQL，兼容多款NoSQL接口的数据库服务
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：云数据库GaussDB NoSQL是一款基于计算存储分离架构的分布式多模NoSQL数据库服务，兼容多款nosql接口，在灵活弹性、快速扩展方面做到了极致。 本文分享自华为云社区《云图说｜华为云自研云数据库GaussDB NoSQL，兼容多款NoSQL接口的数据库服务》，原文作者：阅识风云。 华        <a href="https://www.cnblogs.com/huaweiyun/p/14884286.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-15 09:55
+华为云开发者社区
+<span data-post-id="14884286" class="post-view-count">阅读(7)</span> 
+<span data-post-id="14884286" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14884286" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14884286" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/huaweiyun/archive/2021/06/11.html">2021年6月11日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14875872.html">
+    <span>
+            <span>[置顶]</span>
+        又到一年“粽子节”，快来测测你包的粽子颜值几分
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：华为云ModelArts粽子颜值测评神器来了，那到底你包的粽子颜值有几分呢？ 本文分享自华为云社区《端午节华为云ModelArts粽子颜值测评来了！看看你包的粽子能打几分！》，原文作者：终结者0&#160;。 一片粽叶，粘连故乡，包裹端午的思念与安康，裹紧满满暖暖的祝福 又到了“端午节”吃粽子的好日子了        <a href="https://www.cnblogs.com/huaweiyun/p/14875872.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-11 17:11
+华为云开发者社区
+<span data-post-id="14875872" class="post-view-count">阅读(16)</span> 
+<span data-post-id="14875872" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14875872" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14875872" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14874957.html">
+    <span>
+            <span>[置顶]</span>
+        云小课 | 华为云KYON之私网NAT网关
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：本文介绍KYON独创的私网NAT网关服务，支持云上重叠组网，支持云上重叠组网，助您的业务敏捷上云。 本文分享自华为云社区《云小课 | 华为云KYON之私网NAT网关》，原文作者：云小萌。 华为云KYON（Keep Your Own Network）企业级云网络解决方案，打造极简敏捷的上云之路，        <a href="https://www.cnblogs.com/huaweiyun/p/14874957.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-11 14:27
+华为云开发者社区
+<span data-post-id="14874957" class="post-view-count">阅读(17)</span> 
+<span data-post-id="14874957" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14874957" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14874957" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14874550.html">
+    <span>
+            <span>[置顶]</span>
+        机器学习入门：多变量线性回归
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：给大家简单介绍了多变量线性回归，还附赠在处理梯度下降过程中通用的两个小技巧。 本文分享自华为云社区《【跟着小Mi一起机器学习吧！】多变量线性回归（一）》，原文作者：Skytier。 1&#160;多维特征 既然是多变量线性回归，那么肯定是存在多个变量或者多个特征的情况啦。就拿之前研究的线性回归来说，只有        <a href="https://www.cnblogs.com/huaweiyun/p/14874550.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-11 11:51
+华为云开发者社区
+<span data-post-id="14874550" class="post-view-count">阅读(11)</span> 
+<span data-post-id="14874550" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14874550" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14874550" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14874246.html">
+    <span>
+            <span>[置顶]</span>
+        技术实践丨体验量子神经网络在自然语言处理中的应用
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：本文从零带你体验量子神经网络在自然语言处理中的应用 本文分享自华为云社区《体验量子神经网络在自然语言处理中的应用》，原文作者：JeffDing。 本文从零带你体验量子神经网络在自然语言处理中的应用。 一、运行环境 CPU：Intel(R) Core(TM) i7-4712MQ CPU @ 2.        <a href="https://www.cnblogs.com/huaweiyun/p/14874246.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-11 10:54
+华为云开发者社区
+<span data-post-id="14874246" class="post-view-count">阅读(11)</span> 
+<span data-post-id="14874246" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14874246" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14874246" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/huaweiyun/archive/2021/06/18.html">2021年6月18日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14899766.html">
+    <span>
+        618技术特辑（四）疯狂剁手的同时，电商隐私安全你注意到了吗？
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：&#160;云时代，网络基础设施更加复杂，其上运行的业务及数据更加重要。无论是电商、互联网、医疗或是金融、教育等行业，均离不开安全服务的保驾护航，只有安全工作有了前提保障，其他的基础活动的开展才有了保障。 本文分享自华为云社区《618技术特辑（四）疯狂剁手的同时，电商隐私安全你注意到了吗？》，原文作者：        <a href="https://www.cnblogs.com/huaweiyun/p/14899766.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-18 15:32
+华为云开发者社区
+<span data-post-id="14899766" class="post-view-count">阅读(6)</span> 
+<span data-post-id="14899766" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14899766" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14899766" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14899475.html">
+    <span>
+        618技术特辑（三）直播带货王，“OMG买它”的背后，为什么是一连串技术挑战？
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：【本期推荐】为什么一到大促，我们的钱包总是被掏空？是大家自制力不够，还是电商平台太会读懂人心，从技术维度，抽丝剥茧一探究竟。 摘要：动辄几十上百万人同时在线的直播间，让所有人能同时公平的去抢购，并且还要确保系统运行的稳定，这是一个非常大的考验。背后到底是什么样的技术加持，过程中又遇到了哪些挑战？让我        <a href="https://www.cnblogs.com/huaweiyun/p/14899475.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-18 14:44
+华为云开发者社区
+<span data-post-id="14899475" class="post-view-count">阅读(198)</span> 
+<span data-post-id="14899475" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14899475" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14899475" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14898947.html">
+    <span>
+        标准物模型：设备无缝对接，IOT界的福音
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：信息模型是解决IoT产业发展一系列挑战的关键，在信息模型的基础上可以推进行业标准/架构的统一，进而实现产业链生态的协同。 本文分享自华为云社区《【云驻共创】标准物模型，物联网的福音》，原文作者：G-washington 。 物联网产业发展趋势：物联网产业将向垂直行业发展 物联网概念最早出现于比        <a href="https://www.cnblogs.com/huaweiyun/p/14898947.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-18 11:52
+华为云开发者社区
+<span data-post-id="14898947" class="post-view-count">阅读(16)</span> 
+<span data-post-id="14898947" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14898947" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14898947" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14898894.html">
+    <span>
+        云图说｜数据仓库服务 GaussDB(DWS) 的“千里眼、顺风耳”—数据库智能运维
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：数据库智能运维（DMS）是GaussDB(DWS) 为客户数据库快速、稳定运行提供保驾护航的能力，对业务数据库所使用磁盘、网络、OS指标数据，集群运行关键性能指标进行收集、监控、分析。通过综合收集到的多种类型数据对数据库主机、实例、业务SQL进行诊断，及时暴露数据库中关键故障及性能问题，指导客        <a href="https://www.cnblogs.com/huaweiyun/p/14898894.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-18 11:43
+华为云开发者社区
+<span data-post-id="14898894" class="post-view-count">阅读(7)</span> 
+<span data-post-id="14898894" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14898894" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14898894" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/huaweiyun/archive/2021/06/17.html">2021年6月17日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14892756.html">
+    <span>
+        一文讲全了Python 类和对象内容
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：这是一个关于&#160;Python&#160;类和对象的全部内容。 本文分享自华为云社区《从零开始学python | Python&#160;类和对象—面向对象编程》，原文作者：Yuchuan 。 Python&#160;在活跃开发人员方面将超过其他语言之后,Python&#160;开发人员的需求只会增长。&#160;Python&#160;遵循面向对象的编程        <a href="https://www.cnblogs.com/huaweiyun/p/14892756.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-17 11:39
+华为云开发者社区
+<span data-post-id="14892756" class="post-view-count">阅读(230)</span> 
+<span data-post-id="14892756" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14892756" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14892756" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14892426.html">
+    <span>
+        一文介绍备机重建各种方法的实现机制
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：本文将介绍备机重建各种方法的实现机制，并结合应用场景分析，以及对新增参数的使用建议，以期获得最佳应用效果。 本文分享自华为云社区《先码再看，一文介绍备机重建各种方法的实现机制》，原文作者：Victor_NK&#160;。 1&#160;需求介绍 GaussDB(DWS)的实例在运行过程中难免发生故障，引起实例错误        <a href="https://www.cnblogs.com/huaweiyun/p/14892426.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-17 10:36
+华为云开发者社区
+<span data-post-id="14892426" class="post-view-count">阅读(11)</span> 
+<span data-post-id="14892426" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14892426" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14892426" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14892285.html">
+    <span>
+        盘点用jQuery框架实现“for循环”的四种方式！
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：分享在jQuery高级开发中对元素标签体的遍历常用的几种方法。 本文分享自华为云社区《盘点用jQuery框架实现“for循环”的四种方式！》，原文作者：灰小猿&#160;。 今天继续来和大家分享在jQuery高级开发中对元素标签体的遍历常用的几种方法。 我们以一个案例的形式进行讲解，假如我们需要遍历的是        <a href="https://www.cnblogs.com/huaweiyun/p/14892285.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-17 10:09
+华为云开发者社区
+<span data-post-id="14892285" class="post-view-count">阅读(99)</span> 
+<span data-post-id="14892285" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14892285" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14892285" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14892147.html">
+    <span>
+        云图说｜初识华为云数据库GaussDB(for openGauss)
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：本文带你了解华为云华为云数据库GaussDB(for openGauss)，将AI 技术融入分布式数据库的全生命周期，实现自运维、自管理、自调优、故障自诊断和自愈。 本文分享自华为云社区《云图说 | 第204期 初识华为云数据库GaussDB(for openGauss)，新一代企业级分布式数        <a href="https://www.cnblogs.com/huaweiyun/p/14892147.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-17 09:44
+华为云开发者社区
+<span data-post-id="14892147" class="post-view-count">阅读(8)</span> 
+<span data-post-id="14892147" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14892147" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14892147" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/huaweiyun/archive/2021/06/16.html">2021年6月16日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14889451.html">
+    <span>
+        数据膨胀了？你的数仓又没有空间了？
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：为了解决数据膨胀，GaussDB(DWS)通过vacuum和FSM来清理和重用物理空间。本文简单介绍FSM的设计和原理，并通过一个例子对FSM功能进行简单的测试和验证。 本文分享自华为云社区《数据膨胀了？又没有空间了？一招教你解决》，原文作者：QWERT886 。 数据膨胀，指的是物理数据文件        <a href="https://www.cnblogs.com/huaweiyun/p/14889451.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-16 15:05
+华为云开发者社区
+<span data-post-id="14889451" class="post-view-count">阅读(21)</span> 
+<span data-post-id="14889451" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14889451" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14889451" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14889172.html">
+    <span>
+        618 技术特辑（二）几百万人同时下单的秒杀，为什么越来越容易抢到了？
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：摘要：几百万人同时下单，你抢到的概率为何越来越大？电商企业又是如何掌握大促期间上亿的销售数据？ 本文分享自华为云社区《618&#160;技术特辑（二）几百万人同时下单的秒杀，为什么越来越容易抢到了？》，原文作者：技术火炬手。 把心仪的商品加入购物车，点击结算，付款，商品页面的销量+1，库存量-1，如果只有几十        <a href="https://www.cnblogs.com/huaweiyun/p/14889172.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-16 14:09
+华为云开发者社区
+<span data-post-id="14889172" class="post-view-count">阅读(759)</span> 
+<span data-post-id="14889172" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14889172" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14889172" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+
+<div class="topicListFooter">
+    <div id="nav_next_page">
+        
+    <a href="https://www.cnblogs.com/huaweiyun/default.html?page=2">
+        下一页
+    </a>
+
+    </div>    
+</div>
+
+
+
+
+<script>
+    updatePostStats(
+        $(".post-view-count").map(function () { return this.dataset.postId }).get(),
+        function(id, count) { $(".post-view-count[data-post-id=" + id + "]").text("阅读(" + count + ")") },
+        function(id, count) { $(".post-comment-count[data-post-id=" + id + "]").text("评论(" + count + ")") },
+        function(id, count) { $(".post-digg-count[data-post-id=" + id + "]").text("推荐(" + count + ")") });
+</script>
+            </div>
+        </div>
+
+        <div id="sideBar">
+            <div id="sideBarMain">
+                <div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+                <div id="calendar"><div id="blog-calendar" style="display:none"></div></div>                
+                <script>loadBlogDefaultCalendar();</script>
+                <div id="leftcontentcontainer">
+                    <!-- begin:SingleColumn -->
+                    <div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+                    <!-- end:  SingleColumn -->
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--done-->
+Copyright &copy; 2021 华为云开发者社区
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+    </div>
+</div>
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjvqMFORxUawC3M2CGONtjEnsquvgGUOCETKdiYMV7AGDeZ_Wc-6ae9XB1i4tp-zCP-0ToZokW76EhlB44IRS2XWcHpNxE-F8QDxPC76f1hFZaVqWU3Z6DAuYtk0pqmGjbM" />
+</body>
+</html>

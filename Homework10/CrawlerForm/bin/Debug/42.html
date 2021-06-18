@@ -1,0 +1,605 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-crossorigin" />
+    <meta name="description" content="目录 传统同步方案的缺点 folly/Synchronized.h 简单使用 Synchronized的模板参数 withLock()/withRLock()/withWLock() —— 更易用的加" />
+    <meta property="og:description" content="目录 传统同步方案的缺点 folly/Synchronized.h 简单使用 Synchronized的模板参数 withLock()/withRLock()/withWLock() —— 更易用的加" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>C++ folly库解读（三）Synchronized —— 比std::lock_guard/std::unique_lock更易用、功能更强大的同步机制 - 张雅宸 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    <link id="MainCss" rel="stylesheet" href="/skins/darkgreentrip/bundle-darkgreentrip.min.css?v=eoZATbPKwJCL5eWVDTQIYC6CIxJPcFz191dkzN2tSyQ" />
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/darkgreentrip/bundle-darkgreentrip-mobile.min.css?v=lU86o8mZVn3FOSdFt7nHKYTD8gzeKaiQIIZ6lSjEFyo" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/zhangyachen/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/zhangyachen/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/zhangyachen/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 401093;
+        var currentBlogApp = 'zhangyachen';
+        var cb_enable_mathjax = true;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'darkgreentrip';
+        var visitorUserId = '';
+    </script>
+        <script>
+            var currentPostDateAdded = '2021-06-18 07:17';
+        </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: {
+        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+        extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+        Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
+    <script src="https://mathjax.cnblogs.com/2_7_5/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;v=20200504"></script>
+    
+</head>
+<body class="has-navbar has-bannerbar">
+    <a name="top"></a>
+            <a target="_blank" href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:pc|pp:bokeyuan-huodong-21nianzhongdacu-neiyePCtonglanbanner|pu:21nianzhongdacu-neiyePCtonglanbanner|ci:21nzdc|kw:10224545" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-pc')">
+                <div class="bannerbar aliyun forpc" style="background-size: contain; filter: brightness(0.95); background-image: url(https://img2020.cnblogs.com/blog/35695/202106/35695-20210610183724605-1725070929.jpg)">
+                </div>
+            </a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/zhangyachen/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/zhangyachen/">张雅宸</a>
+</h1>
+<h2></h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/zhangyachen/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E5%BC%A0%E9%9B%85%E5%AE%B8">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/zhangyachen/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			<div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class = "postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/zhangyachen/p/14900963.html">
+    <span>C++ folly库解读（三）Synchronized —— 比std::lock_guard/std::unique_lock更易用、功能更强大的同步机制</span>
+    
+
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                <div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+<h2 id="目录">目录</h2>
+<ul>
+<li>传统同步方案的缺点</li>
+<li>folly/Synchronized.h 简单使用</li>
+<li>Synchronized<t>的模板参数</t></li>
+<li>withLock()/withRLock()/withWLock() —— 更易用的加锁方式</li>
+<li>升级锁</li>
+<li>ulock()和 withULockPtr()</li>
+<li>Timed Locking</li>
+<li>Synchronized 与 std::condition_variable</li>
+<li>acquireLocked() —— 同时锁多个数据</li>
+<li>使用一把锁，锁多个数据</li>
+<li>struct</li>
+<li>std::tuple</li>
+<li>Benchmark</li>
+</ul>
+<p>folly/Synchronized.h 提供了一种更简单、更不容易出错的同步机制，可以用来替代传统 C++标准库中使用较复杂、较容易出错的同步机制。</p>
+<h2 id="传统同步方案的缺点">传统同步方案的缺点</h2>
+<p>一般是将需要同步的数据和锁一一配对，即 —— associate mutexes with data, not code :</p>
+<pre><code class="language-c++">class RequestHandler {
+  ...
+  std::mutex requestMutex_;
+  RequestQueue requestQueue_;
+
+  processRequest(const Request&amp; request);
+};
+
+void RequestHandler::processRequest(const Request&amp; request) {
+  std::lock_guard&lt;std::mutex&gt; lg(requestMutex_);
+  requestQueue_.push_back(request);
+}
+</code></pre>
+<p>然而，操作这些数据成员，开发人员必须注意，正确的获取锁、获取正确的锁。</p>
+<p>一些常见的错误包括：</p>
+<ul>
+<li>操作数据之前没有获取锁。</li>
+<li>获取了不配对的锁，这个锁不是用来锁这个数据的。</li>
+<li>获取了读锁，但是试图去修改数据。</li>
+<li>获取了写锁，但是对数据只有 const access.</li>
+</ul>
+<p>一般在使用时，需要提醒开发人员：“别忘了 xxxx”，那一般都会出错，比如 new 的对象别忘了 delete : )</p>
+<h2 id="follysynchronizedh-简单使用">folly/Synchronized.h 简单使用</h2>
+<p>上面的代码可以用 folly/Synchronized.h 重写为：</p>
+<pre><code class="language-c++">class RequestHandler {
+  folly::Synchronized&lt;RequestQueue&gt; requestQueue_;
+
+  processRequest(const Request&amp; request);
+};
+
+void RequestHandler::processRequest(const Request&amp; request) {
+  requestQueue_.wlock()-&gt;push_back(request);
+}
+</code></pre>
+<p>为什么 folly/Synchronized.h 更加有效呢？</p>
+<ul>
+<li>与传统使用方式不同，这里锁和数据是结合成了一个对象 —— requestQueue_。传统方案中，需要寻找锁和数据的配对关系。</li>
+<li>几乎不可能在不获取锁的情况下，去操作数据，还是因为它们被封装成了一个对象。传统方案加不加锁全靠自觉。</li>
+<li>在 push_back 后，锁立即被释放。</li>
+</ul>
+<p>如果在临界区有多个操作，那么可以使用如下方法：</p>
+<pre><code class="language-c++">{
+      auto lockedQueue = requestQueue_.wlock();
+      lockedQueue-&gt;push_back(request1);
+      lockedQueue-&gt;push_back(request2);
+}
+</code></pre>
+<p>wlock 返回一个 LockedPtr 对象，这个对象可以被理解为指向数据成员的指针。只有这个对象存在，那么锁就会被锁住，所以最好为这个对象显示定义一个 scope.</p>
+<p>更好的方式，是使用 lambdas :</p>
+<pre><code class="language-c++">void RequestHandler::processRequest(const Request&amp; request) {
+      requestQueue_.withWLock([&amp;](auto&amp; queue "&amp;") {
+        // withWLock() automatically holds the lock for the
+        // duration of this lambda function
+        queue.push_back(request);
+      });
+}
+</code></pre>
+<p>使用 withWLock 配合 lambdas 强制定义了一个 scope，更清晰。</p>
+<h2 id="synchronized的模板参数">Synchronized<t>的模板参数</t></h2>
+<p>Synchronized 有两个模板参数，数据类型和锁类型：</p>
+<pre><code class="language-c++">template &lt;class T, class Mutex = SharedMutex&gt;
+</code></pre>
+<p>如果不指定第二个模板参数，默认是 folly::SharedMutex。只要被 folly::LockTraits 支持的都可以使用，比如 std::mutex、std::recursive_mutex、std::timed_mutex,。std::recursive_timed_mutex、folly::SharedMutex、folly::RWSpinLock、folly::SpinLock.</p>
+<p>根据锁类型的不同，Synchronized 会提供不同的 API：</p>
+<ul>
+<li>共享锁和升级锁：如果存在 lock_shared()成员函数，Synchronized 会提供 wlock()，rlock()，ulock()三个方法来获取不同的锁类型。其中，rlock()只提供对数据成员 const access.</li>
+<li>排他锁：lock()</li>
+</ul>
+<h2 id="withlockwithrlockwithwlock--更易用的加锁方式">withLock()/withRLock()/withWLock() —— 更易用的加锁方式</h2>
+<p>withLock()在上面提到过了，可以用来替代 lock()。在持有锁的期间，执行一个 lambda 或者 function. withRLock()/withWLock()同理可以替代 rlock()/wlock().</p>
+<p>我们再详细说一下这种方式的好处。下面的函数将 vector 里的所有元素都 double：</p>
+<pre><code class="language-c++">auto locked = vec.lock();
+for (int&amp; n : *locked) {
+    n *= 2;
+}
+</code></pre>
+<p>使用 lock()/wlock()/rlock()的一个重要注意事项：一个指向数据的指针或者引用，它的生命周期一定不要比 LockedPtr 对象长（lock()/wlock()/rlock()的返回值类型）。 如果我们将上面的例子这样写就会出问题：</p>
+<pre><code class="language-c++">// No. NO. NO!
+for (int&amp; n : *vec.wlock()) {
+      n *= 2;
+}
+</code></pre>
+<p>vec.wlock()返回的 LockPtr 对象在 range iterators 建立后就销毁了（详细解释见 Range-based for loop Temporary range expression 小节），range iterators 指向了 vector data，但此时锁已经被释放。想想如果要 debug 这种问题，会用多少时间 😃</p>
+<p>这时 withLock()/withRLock()/withWLock()的好处就体现出来了，锁会在 for loop 期间一直持有：</p>
+<pre><code class="language-c++">vec.withLock([](auto&amp; data "") {
+    for (int&amp; n : data) {
+        n *= 2;
+    }
+});
+</code></pre>
+<p>withLock 定义为(withRLock/withWLock 类似)：</p>
+<pre><code class="language-c++">  /**
+   * Invoke a function while holding the lock.
+   *
+   * A reference to the datum will be passed into the function as its only
+   * argument.
+   *
+   * This can be used with a lambda argument for easily defining small critical
+   * sections in the code.  For example:
+   *
+   *   auto value = obj.withLock([](auto&amp; data "") {
+   *     data.doStuff();
+   *     return data.getValue();
+   *   });
+   */
+  template &lt;class Function&gt;
+  auto withLock(Function&amp;&amp; function) {
+    return function(*lock());
+  }
+
+  template &lt;class Function&gt;
+  auto withLock(Function&amp;&amp; function) const {
+    return function(*lock());
+  }
+</code></pre>
+<h2 id="升级锁">升级锁</h2>
+<h3 id="ulock和-withulockptr">ulock()和 withULockPtr()</h3>
+<p>Synchronized 还支持升级锁。升级锁与共享锁可以共存，但是与排它锁互斥。</p>
+<pre><code class="language-c++">/**
+ * An enum to describe the "level" of a mutex.  The supported levels are
+ *  Unique - a normal mutex that supports only exclusive locking
+ *  Shared - a shared mutex which has shared locking and unlocking functions;
+ *  Upgrade - a mutex that has all the methods of the two above along with
+ *            support for upgradable locking
+ */
+enum class MutexLevel { UNIQUE, SHARED, UPGRADE };
+</code></pre>
+<p>升级锁解决的问题是：先对数据进行读操作，然后根据一定的条件会进行写操作。</p>
+<p>升级锁可以通过 uclock()或者 withULockPtr()获得:</p>
+<pre><code class="language-c++">{
+    // only const access allowed to the underlying object when an upgrade lock
+    // is acquired
+    auto ulock = vec.ulock();
+    auto newSize = ulock-&gt;size();
+}
+
+auto newSize = vec.withULockPtr([](auto ulock "") {
+    // only const access allowed to the underlying object when an upgrade lock
+    // is acquired
+    return ulock-&gt;size();
+});
+</code></pre>
+<p>通过下面的函数可以进行升级或者降级:</p>
+<ul>
+<li>moveFromUpgradeToWrite()</li>
+<li>moveFromWriteToUpgrade()</li>
+<li>moveFromWriteToRead() // withWLockPtr()获得的 wlock 可以调用此函数降级为 rlock</li>
+<li>moveFromUpgradeToRead()</li>
+</ul>
+<p>调用这些函数的 LockedPtr 会被设置为 invalid null state，并返回另一个锁住特定锁的 LockedPtr。这些操作都是原子性的，中间不会出现 unlocked 状态。</p>
+<p>比如现在有一个 cache，数据结构为 unordered_map，需求是先检查对应的 key 是否在 unordered_map 中，如果在则返回对应的 value，不在则初始化 value 为 0：</p>
+<pre><code class="language-c++">folly::Synchronized&lt;std::unordered_map&lt;int64_t, int64_t&gt;&gt; cache;
+
+int64_t res = cache.withULockPtr([key,value](auto ulock "key,value") {
+    int64_t cache_value;
+    auto iter = ulock-&gt;find(key);
+    if (iter != ulock-&gt;end()) {
+        cache_value = iter-&gt;second;
+    } else {
+        cache_value = 0;
+
+        // ulock is now null
+        auto wlock = ulock.moveFromUpgradeToWrite();
+        (*wlock)[key] = cache_value;
+    }
+
+    return cache_value;
+});
+</code></pre>
+<h2 id="timed-locking">Timed Locking</h2>
+<p>如果初始化 Synchronized 的锁类型支持时间，lock()/wlock()/rlock()可以传入一个类型为 std::chrono::duration 的参数：</p>
+<pre><code class="language-c++">void fun(Synchronized&lt;vector&lt;string&gt;&gt;&amp; vec) {
+      {
+        auto locked = vec.lock(10ms);
+        if (!locked) {
+          throw std::runtime_error("failed to acquire lock");
+        }
+        locked-&gt;push_back("hello");
+        locked-&gt;push_back("world");
+      }
+      LOG(INFO) &lt;&lt; "successfully added greeting";
+}
+</code></pre>
+<h2 id="synchronized-与-stdcondition_variable">Synchronized 与 std::condition_variable</h2>
+<p>如果 Synchronized 的锁类型是 std::mutex，那么可以和 std::condition_variable 配合使用。</p>
+<pre><code class="language-c++">Synchronized&lt;vector&lt;string&gt;, std::mutex&gt; vec;
+std::condition_variable emptySignal;
+
+// Assuming some other thread will put data on vec and signal
+// emptySignal, we can then wait on it as follows:
+auto locked = vec.lock();
+emptySignal.wait(locked.getUniqueLock(),
+                    [&amp;] { return !locked-&gt;empty(); });
+</code></pre>
+<p>getUniqueLock()返回一个 std::unique_lock<a target="_blank">std::mutex</a>的引用。但是不推荐这么使用，因为这绕过了 Synchronized 的 API，可以直接操作对应的锁：</p>
+<pre><code class="language-c++"> /**
+   * Get a reference to the std::unique_lock.
+   *
+   * This is provided so that callers can use Synchronized&lt;T, std::mutex&gt;
+   * with a std::condition_variable.
+   *
+   * While this API could be used to bypass the normal Synchronized APIs and
+   * manually interact with the underlying unique_lock, this is strongly
+   * discouraged.
+   */
+  std::unique_lock&lt;std::mutex&gt;&amp; getUniqueLock() { return lock_; }
+</code></pre>
+<h2 id="acquirelocked--同时锁多个数据">acquireLocked() —— 同时锁多个数据</h2>
+<p>假如需要将一个 vector 的数据拷贝到另一个 vector，wlock()可能会实现需求：</p>
+<pre><code class="language-c++">void fun(Synchronized&lt;vector&lt;int&gt;&gt;&amp; a, Synchronized&lt;vector&lt;int&gt;&gt;&amp; b) {
+    auto lockedA = a.wlock();
+    auto lockedB = b.wlock();
+    ... use lockedA and lockedB ...
+}
+</code></pre>
+<p>但是如果一个线程调用 fun(x,y)，另一个线程调用 func(y,x)，就很有可能出现死锁。经典的解决方式是，所有的线程以同样的顺序获取锁。许多库的实现是通过比较锁地址的大小来决定加锁顺序：</p>
+<pre><code class="language-c++">void fun(Synchronized&lt;vector&lt;int&gt;&gt;&amp; a, Synchronized&lt;vector&lt;int&gt;&gt;&amp; b) {
+    auto ret = folly::acquireLocked(a, b);
+    auto&amp; lockedA = std::get&lt;0&gt;(ret);
+    auto&amp; lockedB = std::get&lt;1&gt;(ret);
+    ... use lockedA and lockedB ...
+}
+
+// 实现：通过比较锁地址的大小
+/**
+ * Acquire locks for multiple Synchronized&lt;T&gt; objects, in a deadlock-safe
+ * manner.
+ *
+ * The locks are acquired in order from lowest address to highest address.
+ * (Note that this is not necessarily the same algorithm used by std::lock().)
+ * For parameters that are const and support shared locks, a read lock is
+ * acquired.  Otherwise an exclusive lock is acquired.
+ *
+ * use lock() with folly::wlock(), folly::rlock() and folly::ulock() for
+ * arbitrary locking without causing a deadlock (as much as possible), with the
+ * same effects as std::lock()
+ */
+template &lt;class Sync1, class Sync2&gt;
+std::tuple&lt;detail::LockedPtrType&lt;Sync1&gt;, detail::LockedPtrType&lt;Sync2&gt;&gt;
+acquireLocked(Sync1&amp; l1, Sync2&amp; l2) {
+  if (static_cast&lt;const void*&gt;(&amp;l1) &lt; static_cast&lt;const void*&gt;(&amp;l2)) {
+    auto p1 = l1.contextualLock();
+    auto p2 = l2.contextualLock();
+    return std::make_tuple(std::move(p1), std::move(p2));
+  } else {
+    auto p2 = l2.contextualLock();
+    auto p1 = l1.contextualLock();
+    return std::make_tuple(std::move(p1), std::move(p2));
+  }
+}
+</code></pre>
+<p>C++17 引入了 structured binding syntax，可以使代码更简单：</p>
+<pre><code class="language-c++">void fun(Synchronized&lt;vector&lt;int&gt;&gt;&amp; a, Synchronized&lt;vector&lt;int&gt;&gt;&amp; b) {
+     auto [lockedA, lockedB] = folly::acquireLocked(a, b);
+     ... use lockedA and lockedB ...
+}
+</code></pre>
+<p>acquireLockedPair()返回 std::pair，在不支持 C++17 的编译器情况下，使用也很方便。</p>
+<h2 id="使用一把锁，锁多个数据">使用一把锁，锁多个数据</h2>
+<p>比如一个 bidirectional map，需要同时操作。一般有两个方案：</p>
+<h3 id="struct">Struct</h3>
+<pre><code class="language-c++">class Server {
+    struct BiMap {
+    map&lt;int, string&gt; direct;
+    map&lt;string, int&gt; inverse;
+    };
+    Synchronized&lt;BiMap&gt; bimap_;
+    ...
+};
+
+...
+bimap_.withLock([](auto&amp; locked "") {
+    locked.direct[0] = "zero";
+    locked.inverse["zero"] = 0;
+});
+</code></pre>
+<h3 id="stdtuple">std::tuple</h3>
+<pre><code class="language-c++">class Server {
+    Synchronized&lt;tuple&lt;map&lt;int, string&gt;, map&lt;string, int&gt;&gt;&gt; bimap_;
+    ...
+};
+
+...
+bimap_.withLock([](auto&amp; locked "") {
+    get&lt;0&gt;(locked)[0] = "zero";
+    get&lt;1&gt;(locked)["zero"] = 0;
+});
+</code></pre>
+<h2 id="benchmark">Benchmark</h2>
+<p><a href="https://link.zhihu.com/?target=https%3A//github.com/facebook/folly/blob/master/folly/test/SynchronizedBenchmark.cpp" title="S]ynchronizedBenchmark.cpp" target="_blank">SynchronizedBenchmark.cpp</a></p>
+<p>下篇文章写一下 Synchronized 的基本实现 ：)</p>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://link.zhihu.com/?target=https%3A//github.com/facebook/folly/blob/master/folly/docs/Synchronized.md" title="Synchronized.md" target="_blank">Synchronized.md</a></li>
+</ul>
+<p>(完)</p>
+<p>朋友们可以关注下我的公众号，获得最及时的更新：</p>
+<p><img src="https://img2020.cnblogs.com/blog/1298604/202102/1298604-20210228173556363-2032792110.png" alt="" loading="lazy"></p>
+
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2021-06-18 19:17</span>&nbsp;
+<a href="https://www.cnblogs.com/zhangyachen/">张雅宸</a>&nbsp;
+阅读(<span id="post_view_count">31</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14900963" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(14900963);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: '', targetType: 'blogPost', targetId: '14900963', targetLink: 'https://www.cnblogs.com/zhangyachen/p/14900963.html', title: 'C&#x2B;&#x2B; folly库解读（三）Synchronized —— 比std::lock_guard/std::unique_lock更易用、功能更强大的同步机制' })">举报</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="https://common.cnblogs.com/highlight/10.3.1/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 401093, cb_blogApp = 'zhangyachen', cb_blogUserGuid = 'ad5d9229-26b2-4504-f63f-08d52f269005';
+    var cb_entryId = 14900963, cb_entryCreatedDate = '2021-06-18 19:17', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+<a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id='div-gpt-ad-1592365906576-0' style='width: 300px; height: 250px;'></div>
+    </div>
+    <div id="under_post_card1"></div>
+    <div id="cnblogs_c2" class="under-post-card">
+        <div id='div-gpt-ad-1592366332455-0' style='width: 468px; height: 60px;'></div>
+    </div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+       deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+       loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+	<div id="sideBar">
+		<div id="sideBarMain">
+			<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright &copy; 2021 张雅宸
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjsRdfH7og35cO9zKmOFb-SSXrr2N7gYJKjacKAQMfmQuAni9FYRqXETxKgAyTL9gLvaBZddj9uThMXLNEGbTIl1PV-N1pLimqOfEhKCkOvn8uX_RGgYrQacGnKjRkrwlp4" />
+</body>
+</html>

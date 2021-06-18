@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="never" />
+    <meta name="description" content="“云原生”到底是什么？它就是容器和 Kubernetes 吗？虚拟机是云原生的吗？……" />
+    <meta property="og:description" content="“云原生”到底是什么？它就是容器和 Kubernetes 吗？虚拟机是云原生的吗？……" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>解读容器的 2020：寻找云原生的下一站 - 阿里巴巴云原生 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    <link id="MainCss" rel="stylesheet" href="/skins/lessismoreright/bundle-lessismoreright.min.css?v=4W7JFeW6yawmSvuAPXAMgmONTEeyjPHEBIN7uU-h2oo" />
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/lessismoreright/bundle-lessismoreright-mobile.min.css?v=cSBXSFXCBG9KdnF2sdUs-Rwu75GHG2_Gs50OCy_ecGg" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/alisystemsoftware/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/alisystemsoftware/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/alisystemsoftware/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 435351;
+        var currentBlogApp = 'alisystemsoftware';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'LessIsMoreRight';
+        var visitorUserId = '';
+    </script>
+        <script>
+            var currentPostDateAdded = '2021-01-15 02:27';
+        </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    
+    
+    
+</head>
+<body class="has-navbar has-bannerbar">
+    <a name="top"></a>
+            <a target="_blank" href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:pc|pp:bokeyuan-huodong-21nianzhongdacu-neiyePCtonglanbanner|pu:21nianzhongdacu-neiyePCtonglanbanner|ci:21nzdc|kw:10224545" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-pc')">
+                <div class="bannerbar aliyun forpc" style="background-size: contain; filter: brightness(0.95); background-image: url(https://img2020.cnblogs.com/blog/35695/202106/35695-20210610183724605-1725070929.jpg)">
+                </div>
+            </a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <div id="home">
+    <div id="header">
+        <div id="blogTitle">
+            <div class="title"><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/alisystemsoftware/">阿里系统软件技术</a>
+</div>
+<div class="subtitle"></div>
+
+        </div>
+        <div id="navigator">
+            
+<ul id="navList">
+    <li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+    <li id="nav_myhome">
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/alisystemsoftware/">
+首页</a>
+</li>
+    <li id="nav_newpost">
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+    <li id="nav_contact">
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E4%BA%91%E5%8E%9F%E7%94%9F">
+联系</a></li>
+    <li id="nav_rss">
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/alisystemsoftware/rss/">
+订阅</a></li>
+    <li id="nav_admin">
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+            <div class="blogStats">
+                <div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="mainContent">
+            <div class="forFlow">
+                <div id="post_detail">
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/alisystemsoftware/p/14281870.html">
+    <span>解读容器的 2020：寻找云原生的下一站</span>
+    
+
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                    <div id="cnblogs_post_description" style="display: none">
+        “云原生”到底是什么？它就是容器和 Kubernetes 吗？虚拟机是云原生的吗？……
+    </div>
+<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/95e2e220445d4496a7002804b858587e.png" alt="头图.png" loading="lazy"></p>
+<p>作者 | 张磊<br>
+来源|<a href="https://mp.weixin.qq.com/s/es_7gB4XbN0-cKlf0yXfrw" target="_blank">阿里巴巴云原生公众号</a></p>
+<p>2020 年注定是不凡的。它在阴霾中开始，在惊叹中结束，也让未来变得更加扑朔迷离。那么，容器与云原生的 2020 年呢？你是否记得它是怎样开始的？它又将走向何方？</p>
+<h1 id="kubernetes：企业基础设施的标准抽象">Kubernetes：企业基础设施的标准抽象</h1>
+<p>在 2020 年，没有人再会去质疑一个平台团队采纳 Kubernetes 作为自己的基础设施的合理性。事实上，2020 年的 Kubernetes 项目已经非常接近于地完成了它最重要的使命，即：<strong>为云计算基础设施带来一层可以让平台团队基于此构造“一切”的平台层抽象</strong>。</p>
+<p>我们已经能够看到，今天的云原生社区已经开始广泛认可 Kubernetes 项目作为“The platform for platform”的定位与价值，越来越多的平台团队正在基于 Kubernetes 构建各种各样的上层平台，比如 PaaS / Serverless / AI Platform &nbsp;/ Database PaaS 等等。面向终态的声明式 API 与其背后“辛勤”工作的控制器，为“构建基础设施层抽象”这个充满了挑战的技术难题，提供了一个能够在复杂度与可用性之间取得平衡的解决方案。正是基于此，Kubernetes 项目才拥有了庞大的集成生态，让这个“企业基础设施的标准抽象”，逐步成为了业界公认的事实。</p>
+<p>而更为重要的是，Kubernetes 真正的成功之处，在于它真正押注的是构建抽象的方法而非这些抽象本身。在绝大多数情况下，企业基于 Kubernetes 构建上层平台，<strong>都会引入各种各样其他的抽象作为补充，甚至取代或者隐藏掉 Kubernetes 的部分内置抽象</strong>：阿里巴巴开源的 <a href="https://openkruise.io/en-us/docs/cloneset.html" target="_blank">CloneSet</a>、腾讯的 <a href="https://www.cnblogs.com/tencent-cloud-native/p/14136918.html" target="_blank">GameStatefulSet</a>&nbsp;实践等扩展型工作负载等都是这个趋势的最好的案例。</p>
+<p>伴随着 Kubernetes 生态从底层到应用层能力的逐步完善，在 2020 年，更多大型互联网终端企业开始加入到了云原生的梯队当中。我们看到原本的 Mesos 生态标杆 Apple 公司成为了 KubeCon 2020 北美上的绝对主角，而金融巨头 MasterCard 则分享了他们基于 OAM、Kubernetes 和 Crossplane 项目构建跨云、跨运行时应用交付平台的内部落地案例。而尤为值得一提的是，这些以往在底层基础技术上给人以”保守“印象的大型非云企业，在 2020 年纷纷祭出了对很多新兴技术比如 <a href="https://github.com/kubernetes-sigs/cluster-api-provider-nested" target="_blank">Virtual Cluster</a>&nbsp;和<a href="https://github.com/oam-dev/spec" target="_blank">标准应用模型技术</a>上的落地与思考。云原生浪潮对整个技术产业带来的深远影响可见一斑。</p>
+<p>此外，我们也不难观察到，<strong>Kubernetes 的极大普及以及基于它兴起的上层生态，正在跟安卓（Android）的发展路径越来越明显的趋同</strong>。安卓能够对下以一套统一的方式抽象与集成不同的手机、电视、甚至汽车等硬件设备，对上则为程序员暴露出统一的一套开发接口，使他们能够以这套统一的抽象去访问或者享受到这些基础设施能力。这种定位与 Kubernetes 非常类似，这里唯一的区别在于，安卓服务的程序员是 APP 开发者，而 Kubernetes 服务的“程序员”，则是平台构建者。在这个背景下，诸如“Kubernetes 抛弃 Docker”之类的新闻会很容易理解：安卓本身就不需要专注于手机的电池是哪个牌子的。</p>
+<p>这个路径，可能也是 Google 比较擅长的一个“打法”：全力地去免费推广一个“操作系统”，真正获取商业价值的方式则是是去“收割”操作系统上层的生态价值，而不是操作系统本身。毕竟用户是不会花钱去购买安卓的。所以 Google Cloud 目前正在 All-in 的，正是通过 <a href="https://cloud.google.com/anthos" target="_blank">Anthos</a> 这样的 Kubernetes 混合云底座，将 Google Cloud 服务交付到在全世界任何一个数据中心上去。</p>
+<h1 id="正在被打破的云计算三层架构">正在被打破的云计算“三层架构”</h1>
+<p>长久以来，业界对云计算的认知，一直围绕着“SaaS + PaaS + IaaS”这样经典的三层架构模型展开。然而，在 2020 年，随着云原生技术的极大普及，我们却发现这个模型似乎正遭受着挑战。</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/7266c5c811884a81a10d0f75aa6301ca.png" alt="1.png" loading="lazy"></p>
+<p>今天的云原生技术，起源于 Docker 以及容器这个创新性的技术革命，又受益于经典 PaaS （比如 Cloud Foundry）持续已久的心智普及，最终在开发者与平台构建者的双重关注下，以 Kubernetes 生态为载体最终落地。</p>
+<p>在 2020 年，伴随着云原生技术逐步成熟，面向用户的应用管理平台的形态也逐渐开始从以 Cloud Foundry/Heroku 为主体的经典 PaaS 形态（即：企业级 PaaS），向轻量级的 App Service 比如 <a href="https://shipa.io/" target="_blank">Shipa</a>&nbsp;和 <a href="https://kalm.dev/" target="_blank">Kalm</a>&nbsp;等方向靠拢。不过，轻量级 App Service 本质上还是 Heroku 体验在 Kubernetes 底座上的复刻，它们在提供出色的开发者使用体验的同时，也继承了经典 PaaS 的“封闭”与“不可扩展”，这在很多大型企业基于云原生技术栈 “DIY” 属于自己的“PaaS”的诉求下，依然会显得力不从心。</p>
+<p>事实上，对于越来越多的平台构建者来说，随着云原生技术的日趋落地，“PaaS”本身的“解释权”不再属于某一家提供商，而更多取决于平台构建者的业务场景和其终端用户的实际需求。此外，对于“SaaS”来说，云原生带来的容器化软件打包与交付体系和 Kubernetes 底座，也已经极大地改变了云端软件的分发与运维方式。所以，无论是 PaaS 也好，还是 SaaS 也好，本质上正在被“云原生”的技术浪潮迅速“压平”，在这种背景下，<strong>传统“水平”划分云计算体系的方法其实已经变得难以自洽</strong>。一个典型的例子就是：今天你既不能把 Kubernetes 称作是 PaaS，也不能把它称作是 IaaS。它是一个独特的基础设施能力接入层与平台层抽象，作为平台构建者，你可以基于它构建你心目中任何上层平台，而至于你把这个上层平台称作是 PaaS / Serverless / FaaS，甚至是 SaaS，只是进一步抽象的程度和依赖的垂直能力不同而已：这里并没有”谁盖在谁头上”这样的划分。</p>
+<h1 id="下一代云原生平台构建体系的崛起">下一代云原生平台构建体系的崛起</h1>
+<p>Kubernetes 的成功，极大使能了“平台构建者”这个以往被人们遗忘在企业成本中心（Cost Center） 里的重要角色。事实上，Kubernetes 之所以能够取代 Docker 生态成为今天云计算平台上的主角，很大程度上是这个群体做出了最终的决定。否则，按照 Docker 所触达到的用户群体规模以及其在开发者生态中的被接纳度， Kubernetes 几乎毫无胜算。这一点经常是被大家所忽视的。实际上，在企业级平台落地的过程中，平台的最终用户（比如业务研发与运维）虽然是“顾客与上帝”，但真正能在这个过程中起到关键作用和具有最终决定权的，往往还是业务背后的平台团队和老板们。</p>
+<p>但与此同时，Kubernetes 之上的平台构建生态，在今天依然是高度集中的。一个典型的观察就是，今天能够基于 Kubernetes 成体系构建出完整上层平台的团队，其实集中在一、二线大型互联网公司当中，并且其实践往往“仅供参考”，鲜有可复制性。进一步的，云原生的极大普及，似乎并没有真正能够让平台构建者轻松地构建 PaaS 或者其他上层平台。这其实也进一步解释了前面我们观察到的“PaaS 生态“在云原生时代的停滞：基于 Kubernetes 构建上层平台（包括 PaaS），在 2020 年依然是大型公司和高技术水位团队们的专利。</p>
+<p>这种平台构建生态的高度集中，与云原生希望构建的“普惠式”未来，显然是不相符的。当然，既然技术发展还没有跟上愿景，那么云原生社区也就不会停下脚步。</p>
+<p>事实上，平台构建者之所以要基于 Kubernetes 进一步构建上层平台，其根本动机无非来自两个诉求：</p>
+<ol>
+<li><strong>更高的抽象维度</strong>：比如，用户希望操作的概念是“应用”和“灰度发布”，而不是“容器”和“Pod”。</li>
+<li><strong>更多的扩展能力</strong>：比如，用户希望的应用灰度发布策略是基于“双 Deployment + Istio” 的金丝雀发布，而不是 Kubernetes 默认的 Pod 线性滚动升级。这些增强或者扩展能力，在 Kubernetes 中一般是以 CRD + Controller 的插件方式来实现的。</li>
+</ol>
+<p>所以说，基于 Kubernetes 构建上层平台在今天看起来似乎杂乱无章、没什么规律，但本质上都不会离开“抽象 + 插件能力管理”这两个核心诉求。再举个例子，今天大家为 Kubernetes 构建的各种 Dashboard，其实就是一种“抽象”的实现方式：这些 Dashboard 本质上是在 Kubernetes API 对象的基础上暴露出了一组允许用户填写的字段，从而实现了“简化用户使用心智、提升用户体验”的目的 —— 这当然也是所有“抽象”的根本目标。</p>
+<p>基于对“抽象 + 插件能力管理”这两个诉求的持续实践与思考，云原生社区在 2020 年诞生了像 <a href="https://github.com/oam-dev/kubevela" target="_blank">KubeVela</a>&nbsp;这样专注于使能平台团队构建上层平台的开源项目。这个项目的定位在整个云原生生态中是非常独特的：它并不是某种垂直能力，更像是一套基于 Kubernetes 构建上层平台的“工具”组合，比如：</p>
+<ol>
+<li>基于模板的抽象机制，以及基于此生成能力使用文档和 OpenAPI Schema 的自动化流程（从而帮助平台团队快速构建 Dashboard 或者 Appfile）。</li>
+<li>基于 OAM 模型的插件式能力注册、管理与发现机制，以此来模块化、自动化的管理插件能力，甚至提前预警插件能力之间的冲突等。</li>
+</ol>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/bc84da3fdfaf48d98a8abba376b95f39.png" alt="2.png" loading="lazy"></p>
+<p>无独有偶，在阿里云开源 KubeVela 项目后不久，<strong>云计算领头羊 AWS 在 Re:Invent 2020 上也高调宣布了 <strong><a href="https://aws.amazon.com/cn/proton/" target="_blank"><strong>AWS Proton 商业产品</strong></a></strong>的正式诞生</strong>，其思想同 KubeVela 项目非常类似，只不过构建平台的底座换成了 AWS 云平台，定义抽象的模板使用了 AWS 自己的 Cloud Formation (KubeVela 目前支持的是 Google 开源的 CUELang 模板语言）。</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/4ecc1bd10918403bb9b7a55d0b1ab0b3.png" alt="3.png" loading="lazy"></p>
+<p>可以预见，在云原生与 Kubernetes 项目极大程度地统一与标准化了基础设施层抽象之后，如何进一步帮助平台团队在此之上快速、轻松、可复制地构建上层平台，正在成为业界开始积极思考的一条关键路径。再一次的，你很难在传统的云计算“三层架构”中找到适合这些产品的位置，无论是 KubeVela 还是 AWS Proton，它们既不是 PaaS，也不是 IaaS，更不是 Kubernetes 的竞争者：它们是云原生背景下新一代平台构建体系逐步崛起的萌芽。</p>
+<h1 id="探索云原生的下一站">探索云原生的下一站</h1>
+<p>2020 年的云原生可以说是整个云计算生态中发展最迅速的一条主线脉络，而也正是伴随着这样的发展劲头，云原生在新的一年里，已经要开始思考它的下一步发展空间。事实上，我们已经能够看到各种各样的厂商和团队在不同的领域积极发力和探索。</p>
+<h2 id="1-本地开发与测试">1. 本地开发与测试</h2>
+<p>使能开发者面向 Kubernetes 进行本地开发和测试正在开始成为一个备受关注的话题，在这个领域中，来自纽约的 <a href="https://tilt.dev/" target="_blank">Tilt</a>&nbsp;项目是其中的佼佼者。阿里云和腾讯云也分别有这个话题下的不同维度的解决方案，比如 <a href="https://github.com/alibaba/kt-connect" target="_blank">KT Connet</a> 和 <a href="https://github.com/nocalhost/nocalhost" target="_blank">Nocalhost</a>。</p>
+<h2 id="2-云原生中间件的技术变革">2. 云原生“中间件”的技术变革</h2>
+<p>Sidecar 模式正在以更加迅猛的势头将中间件领域的能力下沉至 Kubernetes 这个新一代的应用基础设施当中，除了已经如火如荼的 Istio 对流量治理领域的颠覆，微软已经不甘示弱的开源了 <a href="https://openservicemesh.io/" target="_blank">Open Service Mesh</a> 作为回应。而与此同时， OAM 在微软的姊妹项目 <a href="https://dapr.io/" target="_blank">Dapr</a>&nbsp;则直接拉齐了 Kubernetes 与中间件在“服务发现与绑定”侧的距离，老牌项目 Dubbo 亦宣布了下一代云原生中间件的<a href="https://developer.aliyun.com/article/770964" target="_blank">技术蓝图</a>。当然， 所有这一切背后的用户动机是非常清晰的：云原生时代的中间件，要语言无关，要平台无关。</p>
+<h2 id="3-边缘与-kubernetes-发行版">3. “边缘”与 Kubernetes 发行版</h2>
+<p>Kubernetes 的“安卓化”趋势，少不了将 Kubernetes 部署到全世界任何一个数据中心去的“雄心壮志”，这里当然也包括“边缘”设备。除了华为的拳头产品 KubeEdge 之外，阿里云的 OpenYurt 项目在 2020 年也进入了 CNCF 沙箱孵化，而腾讯云则提出了 SuperEdge 紧随其后。与此同时，AWS 在 2020 年重磅开源了其 EKS 服务背后的 Kubernetes 发行版 EKS-D，这里当然隐含了对 Google Cloud 的 Anthos 和微软云的 Arc 布局的强势回应。可以预见，云厂商们对“将 Kubernetes 部署到任何一个角落”的这份执著，会让 Kubernetes “安卓化”比想象中来得更快，也少不了在 ISV 和服务集成商侧的一番“腥风血雨”。</p>
+<h2 id="4-云原生应用管理与-gitops">4. 云原生应用管理与 GitOps</h2>
+<p>云原生应用管理与交付，已然正在成为 Kubernetes 这个“新安卓”之上重要的价值聚焦点。在这个领域，阿里云联合微软的 OAM + OpenKruise 组合已经崭露头角，与此同时，社区上也出现了 KubeVela 这样进一步使能平台构建者的开源框架，开发者工具领域的佼佼者 Hashicorp，更是不失时机的发布了 Waypoint 这样的跨平台开发者界面工具。而伴随着 Kubernetes 之上的应用层技术快速演进的同时，基于 Git 作为应用配置管理中心交付应用的理念（即：GitOps），则正在迅速取代传统 CI/CD 中的 CD 环节，成为 Kubernetes 上应用分发的不二之选。在 2020 年末，CNCF 应用交付领域小组正式宣布了 GitOps Working Group 的组建，很有可能会将 GitOps 逐步推向云原生 CD 的事实标准。在 Kubernetes “安卓化”势不可挡的今天，我们对这个领域在新的一年即将出现的更多颠覆与创新充满期待。</p>
+<h1 id="2020-年：没有确切定义的云原生">2020 年：没有“确切定义”的云原生</h1>
+<p>“云原生”到底是什么？它就是容器和 Kubernetes 吗？虚拟机是云原生的吗？……</p>
+<p>这些“灵魂拷问”，一直是很多初次接触云原生理念的公司和团队常常提出的困惑。实际上，作为一套“以利用云计算技术为用户降本增效”的最佳实践与方法论，云原生这个术语自诞生，到壮大，再到今天的极大普及，都处于一个不断的自我演进与革新的过程当中。这种“永远没有确切定义”的持续生命力，才是“云原生”之所以对云计算生态充满吸引力的源泉。</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/724300ddaf684628b2886d042af4ab26.png" alt="4.png" loading="lazy"></p>
+<p>在 2020 年，整个云原生社区在不同领域的积极探索与尝试，正在取代 Kubernetes、Service Mesh 等已经成熟的实现项目，逐步成为云原生生态独一无二的主旋律。这其实不难理解，云原生发展到今天，正在离它所畅想的“软件天然生在云上、长在云上”越来越近，但也暴露出了现有的云原生技术底盘过分关注于基础设施抽象与管理、忽视了最终用户侧的体验和技术带来的诸多问题。这些问题，需要依靠整个云原生社区不停歇的思考、沉淀与再创新进行补充和修正，才能让云原生的技术价值逐步“上浮”，对最终用户产生直接的价值与体感；也才能让云原生技术逐步“民主化”，让构建简单、易用的云原生平台不再成为大公司们“秀肌肉”的专属。</p>
+<p>相关开源项目传送门：</p>
+<ul>
+<li>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzNzYxNjAzMg==&amp;mid=2247496420&amp;idx=1&amp;sn=3c7f079c40fde0ea915c3960b8939062&amp;chksm=fae6f92bcd91703d8cc7f8584a050efd6cfe9c62d5801d89ce7799bcc595dadf54b7ad2544ea&amp;scene=21#wechat_redirect" target="_blank"><strong>KubeVela</strong></a>：<br>
+<a href="https://github.com/oam-dev/kubevela" target="_blank">https://github.com/oam-dev/kubevela</a></p>
+</li>
+<li>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzNzYxNjAzMg==&amp;mid=2247499530&amp;idx=1&amp;sn=39d9661993b94e43aff0e0af7967ed4a&amp;chksm=fae6f4c5cd917dd353f9464b73df0d9fecc0ed854a630621d46591fcc3f36fe8e4a9bdba30e5&amp;scene=21#wechat_redirect" target="_blank"><strong>OpenKruise</strong></a>：<br>
+<a href="https://github.com/openkruise" target="_blank">https://github.com/openkruise</a></p>
+</li>
+<li>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzNzYxNjAzMg==&amp;mid=2247499784&amp;idx=1&amp;sn=df40f51cc1c4c073cda886247656c4ee&amp;chksm=fae6cbc7cd9142d106f3014915878aa3bfb19b3fdbaef97ea75568668310aabaa31a1a7fa4c1&amp;scene=21#wechat_redirect" target="_blank"><strong>OpenYurt</strong></a>：<br>
+<a href="https://github.com/alibaba/openyurt" target="_blank">https://github.com/alibaba/openyurt</a></p>
+</li>
+</ul>
+<h3 id="作者简介"><strong>作者简介</strong></h3>
+<p>张磊，阿里云高级技术专家，CNCF SIG App Delivery Co-chair，CNCF 官方大使</p>
+
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2021-01-15 14:27</span>&nbsp;
+<a href="https://www.cnblogs.com/alisystemsoftware/">阿里巴巴云原生</a>&nbsp;
+阅读(<span id="post_view_count">2496</span>)&nbsp;
+评论(<span id="post_comment_count">3</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14281870" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(14281870);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: '', targetType: 'blogPost', targetId: '14281870', targetLink: 'https://www.cnblogs.com/alisystemsoftware/p/14281870.html', title: '解读容器的 2020：寻找云原生的下一站' })">举报</a></div>
+        </div>
+        <script src="https://common.cnblogs.com/highlight/10.3.1/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 435351, cb_blogApp = 'alisystemsoftware', cb_blogUserGuid = '0461b870-c6b1-4287-28b6-08d5c3af5c24';
+    var cb_entryId = 14281870, cb_entryCreatedDate = '2021-01-15 14:27', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+        <a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id='div-gpt-ad-1592365906576-0' style='width: 300px; height: 250px;'></div>
+    </div>
+    <div id="under_post_card1"></div>
+    <div id="cnblogs_c2" class="under-post-card">
+        <div id='div-gpt-ad-1592366332455-0' style='width: 468px; height: 60px;'></div>
+    </div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+       deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+       loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+    </div>
+</div>
+            </div>
+        </div>
+
+        <div id="sideBar">
+            <div id="sideBarMain">
+                <div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+                <div id="calendar"><div id="blog-calendar" style="display:none"></div></div>                
+                <script>loadBlogDefaultCalendar();</script>
+                <div id="leftcontentcontainer">
+                    <!-- begin:SingleColumn -->
+                    <div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+                    <!-- end:  SingleColumn -->
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--done-->
+Copyright &copy; 2021 阿里巴巴云原生
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+    </div>
+</div>
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjua2e7RmicMezAhr5kCCX8Mf8b1TZI_coUlXfjwpzQuNg6FV7kmK1Jy0Ql-LCuktdlvTJwkbAR6dMAhZrfFc-RvgcHRQqpzTD4s711k_SRUln9vO2iTgFeCsy3tVFxvw88" />
+</body>
+</html>

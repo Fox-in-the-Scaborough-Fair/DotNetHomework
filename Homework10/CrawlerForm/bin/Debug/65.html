@@ -1,0 +1,616 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-crossorigin" />
+    
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CV技术指南（公众号） - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    <link id="MainCss" rel="stylesheet" href="/skins/simpleblue/bundle-simpleblue.min.css?v=2hjghzSZyhYA1HxvSxKnXih3JbC120DBjeO9V9T_nSs" />
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/simpleblue/bundle-simpleblue-mobile.min.css?v=3tvwgOOqUo3RpS6gGzEdK0LbptOPv4Bx7M85_UAnFGs" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/wxkang/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/wxkang/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/wxkang/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 441578;
+        var currentBlogApp = 'wxkang';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'SimpleBlue';
+        var visitorUserId = '';
+    </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    
+    
+    
+</head>
+<body class="has-navbar has-bannerbar">
+    <a name="top"></a>
+            <a target="_blank" href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:pc|pp:bokeyuan-huodong-21nianzhongdacu-neiyePCtonglanbanner|pu:21nianzhongdacu-neiyePCtonglanbanner|ci:21nzdc|kw:10224545" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-pc')">
+                <div class="bannerbar aliyun forpc" style="background-size: contain; filter: brightness(0.95); background-image: url(https://img2020.cnblogs.com/blog/35695/202106/35695-20210610183724605-1725070929.jpg)">
+                </div>
+            </a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <div id="home">
+    <div id="header">
+        <div id="blogTitle">
+            <div class="title"><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/wxkang/">CV技术指南(微信公众号)</a>
+</div>
+<div class="subtitle"></div>
+
+        </div>
+        <div id="navigator">
+            
+<ul id="navList">
+    <li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+    <li id="nav_myhome">
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/wxkang/">
+首页</a>
+</li>
+    <li id="nav_newpost">
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+    <li id="nav_contact">
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/CV%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%EF%BC%88%E5%85%AC%E4%BC%97%E5%8F%B7%EF%BC%89">
+联系</a></li>
+    <li id="nav_rss">
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/wxkang/rss/">
+订阅</a></li>
+    <li id="nav_admin">
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+            <div class="blogStats">
+                <div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="mainContent">
+            <div class="forFlow">
+                
+
+
+
+
+
+
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/wxkang/archive/2021/06/18.html">2021年6月18日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wxkang/p/14899965.html">
+    <span>
+        计算机视觉专业术语/名词总结(一)构建知识体系
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：​ 前言： 在计算机视觉中存在很多的专业术语，如先验知识，语义信息，embedding，head，neck等。这些术语的解释无法直接在网上搜到，也没有在哪一篇论文中定义它们的概念和意义，因此，对于第一次听到这些术语的读者来说会非常的困惑。 此外，对于还没有建立计算机视觉知识体系的读者来说，也很难理解        <a href="https://www.cnblogs.com/wxkang/p/14899965.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-18 16:10
+CV技术指南（公众号）
+<span data-post-id="14899965" class="post-view-count">阅读(98)</span> 
+<span data-post-id="14899965" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14899965" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14899965" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/wxkang/archive/2021/06/14.html">2021年6月14日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wxkang/p/14883567.html">
+    <span>
+        欠拟合与过拟合技术总结
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：前言： 机器学习的模式是通过大量的数据喂给一个模型，模型会根据数据不断调整自身参数，最终具备判别这些数据的模式或特征的能力。若模型无法从这些数据中训练出一个很好的效果，则认为它是欠拟合。若模型在训练的时候达到很好的效果，而在未参与训练的数据上测试，效果不好，则认为它是过拟合。 在本文，将介绍欠拟合与        <a href="https://www.cnblogs.com/wxkang/p/14883567.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-14 22:16
+CV技术指南（公众号）
+<span data-post-id="14883567" class="post-view-count">阅读(110)</span> 
+<span data-post-id="14883567" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14883567" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14883567" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/wxkang/archive/2021/06/03.html">2021年6月3日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wxkang/p/14847520.html">
+    <span>
+        计算机视觉资源合集
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：把公众号的资源整理了以下，在公众号CV技术指南中回复以下关键字可免费获取。 若链接有失效请留言提醒我更新。 ​ 1.CV技术总结系列的所有文章合集--《CV技术指南》 回复“技术总结” 2.计算机视觉入门资料合集 回复“入门指南” 3.计算机视觉方向电子版书合集 回复“电子版资料” 4.经典网络、轻        <a href="https://www.cnblogs.com/wxkang/p/14847520.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-03 22:51
+CV技术指南（公众号）
+<span data-post-id="14847520" class="post-view-count">阅读(11)</span> 
+<span data-post-id="14847520" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14847520" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14847520" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wxkang/p/14847452.html">
+    <span>
+        EMZ-搭建DL模型的最简便的方式 | 附项目地址
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：前言: 在很多情况下，我们想实现一个模型来跑自己的一个任务，但不得不做很多重复的工作，例如图像预处理，搭建网络，可视化输出，计算推理时间等。 商汤贡献了MMdetection项目， Facebook开源了detectron项目，它们把搭建一个模型所需要的一系列工作进行整合，实现了较为简单的方式去搭建        <a href="https://www.cnblogs.com/wxkang/p/14847452.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-03 22:23
+CV技术指南（公众号）
+<span data-post-id="14847452" class="post-view-count">阅读(23)</span> 
+<span data-post-id="14847452" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14847452" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14847452" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wxkang/p/14847426.html">
+    <span>
+        在边缘设备上拟合大型神经网络的方法总结
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：前言： 对于任何想要创建可扩展服务的人来说，部署大内存的深度学习算法是一项挑战。&#160;从长远来看，云服务是昂贵的。&#160;在边缘设备上离线部署模型更便宜，并且还有其他好处。&#160;唯一的缺点是它们缺乏内存和计算能力。 本文探讨了一些可用于在内存受限设置中拟合神经网络的技术。&#160;不同的技术用于“训练”和“推理”阶段，因        <a href="https://www.cnblogs.com/wxkang/p/14847426.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-06-03 22:15
+CV技术指南（公众号）
+<span data-post-id="14847426" class="post-view-count">阅读(145)</span> 
+<span data-post-id="14847426" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14847426" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14847426" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/wxkang/archive/2021/05/30.html">2021年5月30日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wxkang/p/14829101.html">
+    <span>
+        归一化方法总结 | 又名“BN和它的后浪们“
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：前言： 归一化相关技术已经经过了几年的发展，目前针对不同的应用场合有相应的方法，在本文将这些方法做了一个总结，介绍了它们的思路，方法，应用场景。主要涉及到：LRN，BN，LN, IN, GN, FRN, WN, BRN, CBN, CmBN等。 本文又名“BN和它的后浪们”，是因为几乎在BN后出现的        <a href="https://www.cnblogs.com/wxkang/p/14829101.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-05-30 21:01
+CV技术指南（公众号）
+<span data-post-id="14829101" class="post-view-count">阅读(132)</span> 
+<span data-post-id="14829101" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14829101" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14829101" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/wxkang/archive/2021/05/26.html">2021年5月26日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wxkang/p/14814213.html">
+    <span>
+        名词解释 | 论文中的Ablation study
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：前言： 在计算机视觉的论文中，常常看到一个部分是Ablation&#160;Study（消融研究）。这个部分想表达什么意思呢？有什么作用？ quora上关于消融研究的解释：消融研究通常是指删除模型或算法的某些“功能”，并查看其如何影响性能。 在论文中一般来说会提出多个创新方法，或者新型结构模块，或注意力模块等        <a href="https://www.cnblogs.com/wxkang/p/14814213.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-05-26 17:05
+CV技术指南（公众号）
+<span data-post-id="14814213" class="post-view-count">阅读(24)</span> 
+<span data-post-id="14814213" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14814213" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14814213" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wxkang/p/14814189.html">
+    <span>
+        知识蒸馏的简要概述
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：知识蒸馏是一种在繁琐的模型中提炼知识并将其压缩为单个模型的方法，以便可以将其部署到实际应用中。AI的教父Geoffrey Hinton和他在Google的两个同事Oriol Vinyals和Jeff Dean于2015年引入了知识蒸馏。 ​ 知识蒸馏是指将笨拙的模型（教师）的学习行为转移到较小的模型        <a href="https://www.cnblogs.com/wxkang/p/14814189.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-05-26 17:02
+CV技术指南（公众号）
+<span data-post-id="14814189" class="post-view-count">阅读(42)</span> 
+<span data-post-id="14814189" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14814189" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14814189" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/wxkang/archive/2021/05/17.html">2021年5月17日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wxkang/p/14779180.html">
+    <span>
+        如何看待计算机视觉未来的走向（二）从产品的角度聊一聊
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：前言： 上一篇从社会的角度聊了聊我对计算机视觉未来走向的看法，提出的主要观点是未来计算机视觉需要扩展应用领域，研发新产品，去更好地为社会服务。具体而言，它可以与机器人、嵌入式设备和移动端结合，因此需要做到模型小型化、专一化和轻量化。 如何看待计算机视觉未来的走向 在这篇，接着这个观点从产品的角度聊一        <a href="https://www.cnblogs.com/wxkang/p/14779180.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-05-17 23:51
+CV技术指南（公众号）
+<span data-post-id="14779180" class="post-view-count">阅读(22)</span> 
+<span data-post-id="14779180" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14779180" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14779180" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/wxkang/archive/2021/05/12.html">2021年5月12日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wxkang/p/14762605.html">
+    <span>
+        CVPR2021| TimeSformer-视频理解的时空注意模型
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：前言： transformer在视频理解方向的应用主要有如下几种实现方式：Joint Space-Time Attention，Sparse Local Global Attention 和Axial Attention。这几种方式的共同点是采用ViT中的方式将图像进行分块，而它们之间的区别在于如何        <a href="https://www.cnblogs.com/wxkang/p/14762605.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-05-12 23:42
+CV技术指南（公众号）
+<span data-post-id="14762605" class="post-view-count">阅读(66)</span> 
+<span data-post-id="14762605" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14762605" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14762605" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+
+<div class="topicListFooter">
+    <div id="nav_next_page">
+        
+    <a href="https://www.cnblogs.com/wxkang/default.html?page=2">
+        下一页
+    </a>
+
+    </div>    
+</div>
+
+
+
+
+<script>
+    updatePostStats(
+        $(".post-view-count").map(function () { return this.dataset.postId }).get(),
+        function(id, count) { $(".post-view-count[data-post-id=" + id + "]").text("阅读(" + count + ")") },
+        function(id, count) { $(".post-comment-count[data-post-id=" + id + "]").text("评论(" + count + ")") },
+        function(id, count) { $(".post-digg-count[data-post-id=" + id + "]").text("推荐(" + count + ")") });
+</script>
+            </div>
+        </div>
+
+        <div id="sideBar">
+            <div id="sideBarMain">
+                <div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+                <div id="calendar"><div id="blog-calendar" style="display:none"></div></div>                
+                <script>loadBlogDefaultCalendar();</script>
+                <div id="leftcontentcontainer">
+                    <!-- begin:SingleColumn -->
+                    <div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+                    <!-- end:  SingleColumn -->
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--done-->
+Copyright &copy; 2021 CV技术指南（公众号）
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+    </div>
+</div>
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjuaGdNg0QjWsdLddFnyYw97qTY7AAS8_pr15_j0IvgLlfYHtmQD6CODfOXqg3Ufgddj74l7h2ZSDG-wlmyPqD2cqXsqjirgzmb2ezu331e0IflaeBpx0m4PjfTl3EORx6A" />
+</body>
+</html>

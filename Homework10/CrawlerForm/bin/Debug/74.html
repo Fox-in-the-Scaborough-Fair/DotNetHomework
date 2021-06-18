@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="never" />
+    <meta name="description" content="【本期推荐】为什么一到大促，我们的钱包总是被掏空？是大家自制力不够，还是电商平台太会读懂人心，从技术维度，抽丝剥茧一探究竟。 摘要：动辄几十上百万人同时在线的直播间，让所有人能同时公平的去抢购，并且还" />
+    <meta property="og:description" content="【本期推荐】为什么一到大促，我们的钱包总是被掏空？是大家自制力不够，还是电商平台太会读懂人心，从技术维度，抽丝剥茧一探究竟。 摘要：动辄几十上百万人同时在线的直播间，让所有人能同时公平的去抢购，并且还" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>618技术特辑（三）直播带货王，“OMG买它”的背后，为什么是一连串技术挑战？ - 华为云开发者社区 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    <link id="MainCss" rel="stylesheet" href="/skins/simpleblue/bundle-simpleblue.min.css?v=2hjghzSZyhYA1HxvSxKnXih3JbC120DBjeO9V9T_nSs" />
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/simpleblue/bundle-simpleblue-mobile.min.css?v=3tvwgOOqUo3RpS6gGzEdK0LbptOPv4Bx7M85_UAnFGs" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/huaweiyun/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/huaweiyun/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/huaweiyun/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 602073;
+        var currentBlogApp = 'huaweiyun';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'SimpleBlue';
+        var visitorUserId = '';
+    </script>
+        <script>
+            var currentPostDateAdded = '2021-06-18 02:44';
+        </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    
+    
+    
+</head>
+<body class="has-navbar has-bannerbar">
+    <a name="top"></a>
+            <a target="_blank" href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:pc|pp:bokeyuan-huodong-21nianzhongdacu-neiyePCtonglanbanner|pu:21nianzhongdacu-neiyePCtonglanbanner|ci:21nzdc|kw:10224545" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-pc')">
+                <div class="bannerbar aliyun forpc" style="background-size: contain; filter: brightness(0.95); background-image: url(https://img2020.cnblogs.com/blog/35695/202106/35695-20210610183724605-1725070929.jpg)">
+                </div>
+            </a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <div id="home">
+    <div id="header">
+        <div id="blogTitle">
+            <div class="title"><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/huaweiyun/">华为云开发者社区</a>
+</div>
+<div class="subtitle"></div>
+
+        </div>
+        <div id="navigator">
+            
+<ul id="navList">
+    <li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+    <li id="nav_myhome">
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/huaweiyun/">
+首页</a>
+</li>
+    <li id="nav_newpost">
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+    <li id="nav_contact">
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E5%8D%8E%E4%B8%BA%E4%BA%91%E5%BC%80%E5%8F%91%E8%80%85%E7%A4%BE%E5%8C%BA">
+联系</a></li>
+    <li id="nav_rss">
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/huaweiyun/rss/">
+订阅</a></li>
+    <li id="nav_admin">
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+            <div class="blogStats">
+                <div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="mainContent">
+            <div class="forFlow">
+                <div id="post_detail">
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/huaweiyun/p/14899475.html">
+    <span>618技术特辑（三）直播带货王，“OMG买它”的背后，为什么是一连串技术挑战？</span>
+    
+
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                <div id="cnblogs_post_body" class="blogpost-body blogpost-body-html">
+<p>【本期推荐】<a href="https://bbs.huaweicloud.com/blogs/278907" target="_blank">为什么一到大促，我们的钱包总是被掏空？是大家自制力不够，还是电商平台太会读懂人心，从技术维度，抽丝剥茧一探究竟。</a></p>
+<p><a href="https://bbs.huaweicloud.com/blogs/278907" target="_blank"><img src="https://pic2.zhimg.com/80/v2-6f776aa2a36814ddf9a3ea18c4c9dbd1_720w.jpg" width="740" class="origin_image zh-lightbox-thumb lazy" data-caption="" data-size="normal" data-rawwidth="740" data-rawheight="75" data-original="https://pic2.zhimg.com/v2-6f776aa2a36814ddf9a3ea18c4c9dbd1_r.jpg" data-actualsrc="https://pic2.zhimg.com/v2-6f776aa2a36814ddf9a3ea18c4c9dbd1_b.jpg" data-lazy-status="ok"></a></p>
+<blockquote><strong>摘要：</strong>动辄几十上百万人同时在线的直播间，让所有人能同时公平的去抢购，并且还要确保系统运行的稳定，这是一个非常大的考验。背后到底是什么样的技术加持，过程中又遇到了哪些挑战？让我们来一探究竟。</blockquote>
+<p>本文分享自华为云社区《<a class=" wrap external" href="https://bbs.huaweicloud.com/blogs/279968?utm_source=cnblog&amp;utm_medium=bbs-ex&amp;utm_campaign=other&amp;utm_content=content" target="_blank" data-za-detail-view-id="1043">618技术特辑（三）直播带货王，“OMG买它”的背后，为什么是一连串技术挑战？</a>》，原文作者：技术火炬手 。</p>
+<p>“OMG，买它买它！”某人气主播的直播间内，热闹非凡。上百万人同时在线，右手拇指如同上了弦的箭，就等主播发出口令“3，2，1，上链接！”，火速下单。</p>
+<p>没错，今年的618，直播带货已经成了“剁手党”们喜闻乐见的一种购物形式。截止2020年，在我国9.04亿网民中，就有2.65亿电商直播用户。</p>
+<p>动辄几十上百万人同时在线的直播间，宝贝链接一旦上架，需要秒级到达消费者。让所有人能同时看到链接，公平的去抢购，并且还要确保系统运行的稳定，这是一个非常大的考验。背后到底是什么样的技术加持，过程中又遇到了哪些挑战？让我们来一探究竟。</p>
+<h2>传统直播：卡顿延迟，拼手速总是慢人一步</h2>
+<p>直播的及时性和互动性让它成为信息触达、互动沟通的新媒介，最大化真实还原人与人的线下互动场景。但直播的实时互动效果够好了吗？</p>
+<p>互联网直播全链路可以分为7个步骤：分别是采集、编码、发送、分发、接收、解码和渲染。而在发送和分发的阶段，由于网络抖动等多种不可控因素，导致了直播延时的不可控。</p>
+<ul>
+<li><strong>在线授课，</strong>学生提出问题，由于直播延时，老师都讲到下一个知识点了问题才弹出来，只能返回重新回复；</li>
+<li><strong>电商直播中，</strong>粉丝询问宝贝信息，由于直播延时，明明刚刚听到主播开卖，却就是抢不到；</li>
+<li><strong>赛事直播中，</strong>在别人的呐喊声中才发现进球了…</li>
+</ul>
+<p><img src="https://pic3.zhimg.com/80/v2-cdcf2109339898e7a5edcb8c0a34ffe2_720w.jpg" width="1922" class="origin_image zh-lightbox-thumb lazy" data-caption="" data-size="normal" data-rawwidth="1922" data-rawheight="640" data-original="https://pic3.zhimg.com/v2-cdcf2109339898e7a5edcb8c0a34ffe2_r.jpg" data-actualsrc="https://pic3.zhimg.com/v2-cdcf2109339898e7a5edcb8c0a34ffe2_b.jpg" data-lazy-status="ok"></p>
+<p>很多直播开始跨平台跨地域直播，如何实现异地直播，跨平台直播，就需要一些推流和拉流的技术。推流是把采集阶段封包好的内容传输到服务器的过程；拉流是指服务器已有直播内容，用指定地址进行拉取的过程。</p>
+<p>目前业界直播采用的协议，一般把RTMP作为推流协议，把RTMP/HTTP-FLV作为拉流协议，延迟在3-5秒左右。而在H5上更多采用的是时延超过10秒的HLS系统。也就是说，当主播在直播间举行一个抢购活动，你每次听到主播喊出“三二一，上链接！”的时候，其实在直播现场中已经过了好几秒了。</p>
+<p>除了直播协议本身会带来时延，传统直播由于架构原因也会产生延时。传统直播的技术架构分为3层，分别是单线的CDN边缘节点、多线的CDN中心节点和承载一些增值服务的源站。整个直播从推流到拉流，一般调度系统会将主播切入到最合适的边缘节点，边缘节点进行收流，通过CDN中心节点转推到直播的源站；此时，观众通过调度接入到拉流的边缘节点上，静态化的通过CDN中心节点回源到直播的源站。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-6c56759816b6fdc43142259ea5b62969_720w.jpg" width="212" class="content_image lazy" data-caption="" data-size="normal" data-rawwidth="212" data-rawheight="249" data-actualsrc="https://pic2.zhimg.com/v2-6c56759816b6fdc43142259ea5b62969_b.jpg" data-lazy-status="ok"></p>
+<p>但是，综合体验来看，以下三点并不适用于低时延的场景。首先最大的消耗是在观众侧到CDN拉流边缘的最后一公里上，这里TCP协议并不适用于低时延。第二是基于静态树状分发架构，处于对成本考虑也并不是特别好。第三是在整个直播源站上的转码，目前也有相对较大的时延，一般在500ms左右，这个也是低时延直播解决不了的。</p>
+<h2>“3、2、1上链接”背后的硬核技术：大规模超低时延</h2>
+<p>传统直播技术遭遇高并发与低延时之间的瓶颈，阻碍了直播在一些场景的落地，已经不能满足某些对互动要求更高的直播场景。直播产业的下一个升级：低时延直播技术正在兴起，且有望成为直播技术的新焦点。</p>
+<p>八仙过海，各显神通，不同玩家以不同方式实现低时延直播，华为云音视频研发部门通过CDN传输的协议优化以及内部链路的动态优选、超低时延转码等技术的组合，把传统直播3-5s的时延显著的降低到800ms以内，转码时延控制在150ms以内。同时，超低时延直播对传统直播能做到完全兼容，减少对原有技术架构的冲击，降低架构优化的成本。</p>
+<h2>架构解析</h2>
+<p>除了直播协议的选择能够减少延迟外，我们还可以通过一些架构的细节优化，进一步减少直播延迟，让用户有更好的观看体验。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-9d8165570526a70dbfbb60907aa22d04_720w.jpg" width="488" class="origin_image zh-lightbox-thumb lazy" data-caption="" data-size="normal" data-rawwidth="488" data-rawheight="211" data-original="https://pic1.zhimg.com/v2-9d8165570526a70dbfbb60907aa22d04_r.jpg" data-actualsrc="https://pic1.zhimg.com/v2-9d8165570526a70dbfbb60907aa22d04_b.jpg" data-lazy-status="ok"></p>
+<p>以上架构设计，比较好的做到了对原有传统直播架构的前向兼容性，能够维持原有的主播RTMP协议的推流。在直播的源站上面，对于媒体的转码以及一些功能的消息回调的通知可以无缝兼容。与此同时，在原有直播协议的基础上，对H5端扩展了对标准的RTC协议播放的支持，在iOS和安卓端支持私有的RTC协议的播放。</p>
+<p>华为云超低时延直播技术优化的核心有三点：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-4bee2ad66ab8f26be83f6dcf860e74a1_720w.jpg" width="473" class="origin_image zh-lightbox-thumb lazy" data-caption="" data-size="normal" data-rawwidth="473" data-rawheight="207" data-original="https://pic2.zhimg.com/v2-4bee2ad66ab8f26be83f6dcf860e74a1_r.jpg" data-actualsrc="https://pic2.zhimg.com/v2-4bee2ad66ab8f26be83f6dcf860e74a1_b.jpg" data-lazy-status="ok"></p>
+<p>第一，最后一公里基于TCP对UDP计划的改造，引入华为云算法，把传统直播的时延降低到毫秒的数量级之内，同时能够保证很好的抗损，做到流畅的体验；</p>
+<p>第二，把传统的树状的静态规划调度架构改成智能动态的网状架构，这就带来CDN内部分发回源的路径是动态规划的，而不是之前静态规划的链路；</p>
+<p>第三，引入超低时延转码技术，最终将整个转码的时延由原来的500ms左右降低到稳定控制在150ms以内。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-c9e884f4675a8307a34554f634643e14_720w.jpg" width="486" class="origin_image zh-lightbox-thumb lazy" data-caption="" data-size="normal" data-rawwidth="486" data-rawheight="280" data-original="https://pic1.zhimg.com/v2-c9e884f4675a8307a34554f634643e14_r.jpg" data-actualsrc="https://pic1.zhimg.com/v2-c9e884f4675a8307a34554f634643e14_b.jpg" data-lazy-status="ok"></p>
+<h2>智能动态网状架构</h2>
+<p>为什么叫做智能动态的网状架构？举个例子，我们以三个观众访问的路径来做分析，比如一个主播是深圳电信的用户，以原有的架构，会接入到深圳电信就近的边缘覆盖节点上，再推到中心节点，再到源站，而访问观众会通过一个固有的静态的中心获取这个信息。无论用户和观众的距离有多远，都会走到边缘中心源站，然后再下行，需要经过5层节点的分发。</p>
+<p>而以现在的架构，如果有一个观众是深圳电信的用户1，通过动态的架构会把他实时调度到和主播推流节点相同的节点上来，他的访问路径是主播到B节点，然后再到观众，其实就经过了一条，整个链路的质量和成本都能得到很好的提升。对于广西电信的一个用户2，如果把他直接调度到推流点，整个网络将不可控，那么动态智能网状架构会把他接入到就近的节点上。因为B到C之间的网络相对是可靠性更高一些，调度系统判断这一块的访问质量是可行的，所以用户2的访问路径是2-C-B，经过两点。而如果是北京连通的用户3，主播跟观众是天南海北的，这种情况下做就近的访问可能对质量的损害会比较大，则还是会按照原有的方式去拉流，保证高质量的访问。</p>
+<h2>智能调度流媒体大脑</h2>
+<p>上面的例子是观众对于主播整体链路最终结果的呈现，但这背后还要依赖于一套基于流信息的智能调度系统。这个调度系统的架构基于在源站上搭建的智能调度流媒体大脑，其主要由四大核心模块构成：</p>
+<ol>
+<li><strong>内容管理中心，</strong>可以理解为就是流媒体的眼睛，能够通过边缘实时流信息的汇报，比如某个时刻有主播上线、什么时候下线等消息通知，准确地知道每一个主播的上线、每一个观众的接入，能够清晰的知道这个流被推到哪里，在全网的哪个节点之上。</li>
+<li><strong>质量地图，</strong>用于构建整个CDN网络的节点间，包括用户到节点间网络实时的状态。通过下发一些调度任务到位于边缘探测Agent的节点上，探测Agent发起周期性的探测任务，然后把探测结果上报给大数据中台，最终实时分析出全网的覆盖质量。</li>
+<li><strong>调度控制器，</strong>它掌握的是调度所依赖平台的基础数据，比如节点流量、节定规划、以及用户侧的一些数据。</li>
+<li><strong>调度决策中心。</strong>前面三块的输出会作为调度决策中心的输入。调度决策中心作为最终调度的大脑，会实时生成一个全网的调度策略，包括用户接入的调度策略和节点间内部回源的策略，并下发到调度执行器上。最初华为把调度的执行器部署在云上，后来为了打造端到端的低时延，把这部分下沉到了CDN的边缘节点上，尽最大的能力去降低用户之间调度的时延。</li>
+</ol>
+<h2>超低时延转码技术</h2>
+<p>说到视频低时延，就不得不提视频转码。目前，视频转码已经成为各大直播平台功能的标配。但由于终端用户的网络情况不一，为了达到端到端的低时延，转码的时延也需要进一步降低。华为转码技术能将时延稳定控制在150ms以内，同时低时延的转码也支持高清低码的技术，在同等画质下，把播放端的码率降低30%以上，节省整个平台的带宽成本。基于高质量的画面诉求，低时延的转码也支持画质增强和ROI增强的功能，还能够对画面的细节和纹理做精确的定向优化。</p>
+<p>伴随5G技术的应用推广，“直播+”模式向各垂直领域加速延伸，在线直播应用井喷式增长。传统的直播在今年将转换为超低时延直播，并率先在在线教育、电商直播、赛事直播及秀场类直播四个行业场景进行落地推广。</p>
+<p>2021年将会是传统直播迈向超低时延直播转折的年份，在今年底预计20%的互联网直播将全面的升级成为超低时延直播。未来的2-3年，超低时延直播将全面替换传统直播，最终引领一轮新的商业模式，引领直播行业新一轮的发展。</p>
+<p>商业创新推动了电商直播行业的蓬勃生长，而支撑这些沸点场景和交易奇迹的，必然是技术的巨大能量。相信在新技术的洗礼下，消费者的个人需求、消费环境、消费理念都能得到进一步升级。</p>
+<p class="md-h1"><a href="https://bbs.huaweicloud.com/blogs/278907">618技术特辑（一）不知不觉超预算3倍，你为何买买买停不下来？</a>如果你想了解为什么每当大促的时候，我们的钱包总是被掏空？这背后到底是大家自制力不够，还是电商平台太会读懂人心，我们不妨从技术维度，抽丝剥茧一探究竟。</p>
+<p class="md-h1"><a href="https://bbs.huaweicloud.com/blogs/279700">618技术特辑（二）几百万人同时下单的秒杀，为什么越来越容易抢到了？</a>当消费者被电商的推荐系统虏获后，他们又是如何保证大促期间，你能随时随地买到自己心仪的商品，以及上亿的交易数据是如何有序地流通，保证你既能抢到，也能及时收到货呢？这篇文章为你一一解密。</p>
+<p class="ztext-empty-paragraph">&nbsp;</p>
+<p><strong><a class=" wrap external" href="https://bbs.huaweicloud.com/blogs?utm_source=cnblog&amp;utm_medium=bbs-ex&amp;utm_campaign=other&amp;utm_content=content" target="_blank" data-za-detail-view-id="1043">点击关注，第一时间了解华为云新鲜技术~</a></strong></p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2021-06-18 14:44</span>&nbsp;
+<a href="https://www.cnblogs.com/huaweiyun/">华为云开发者社区</a>&nbsp;
+阅读(<span id="post_view_count">139</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14899475" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(14899475);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: '', targetType: 'blogPost', targetId: '14899475', targetLink: 'https://www.cnblogs.com/huaweiyun/p/14899475.html', title: '618技术特辑（三）直播带货王，“OMG买它”的背后，为什么是一连串技术挑战？' })">举报</a></div>
+        </div>
+        <script src="https://common.cnblogs.com/highlight/10.3.1/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 602073, cb_blogApp = 'huaweiyun', cb_blogUserGuid = 'cd60776e-b8cd-4919-fb14-08d7f1c7f588';
+    var cb_entryId = 14899475, cb_entryCreatedDate = '2021-06-18 14:44', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+        <a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id='div-gpt-ad-1592365906576-0' style='width: 300px; height: 250px;'></div>
+    </div>
+    <div id="under_post_card1"></div>
+    <div id="cnblogs_c2" class="under-post-card">
+        <div id='div-gpt-ad-1592366332455-0' style='width: 468px; height: 60px;'></div>
+    </div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+       deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+       loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+    </div>
+</div>
+            </div>
+        </div>
+
+        <div id="sideBar">
+            <div id="sideBarMain">
+                <div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+                <div id="calendar"><div id="blog-calendar" style="display:none"></div></div>                
+                <script>loadBlogDefaultCalendar();</script>
+                <div id="leftcontentcontainer">
+                    <!-- begin:SingleColumn -->
+                    <div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+                    <!-- end:  SingleColumn -->
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--done-->
+Copyright &copy; 2021 华为云开发者社区
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+    </div>
+</div>
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjuMUgfgGehbYOGBr1GSYAAYqAh0QCR1J6OLmiueQVHV7BTjozLW0XPpDBIzlk59rbSuQsCkMQoqRiSdberVAduC3AuAXdzqfkYY_jv-kU2jyDUGPHdeIAcnvKoC1msTg0g" />
+</body>
+</html>

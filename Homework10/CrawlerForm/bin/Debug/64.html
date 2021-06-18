@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="never" />
+    <meta name="description" content="​ 前言： 在计算机视觉中存在很多的专业术语，如先验知识，语义信息，embedding，head，neck等。这些术语的解释无法直接在网上搜到，也没有在哪一篇论文中定义它们的概念和意义，因此，对于第一" />
+    <meta property="og:description" content="​ 前言： 在计算机视觉中存在很多的专业术语，如先验知识，语义信息，embedding，head，neck等。这些术语的解释无法直接在网上搜到，也没有在哪一篇论文中定义它们的概念和意义，因此，对于第一" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>计算机视觉专业术语/名词总结(一)构建知识体系 - CV技术指南（公众号） - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    <link id="MainCss" rel="stylesheet" href="/skins/simpleblue/bundle-simpleblue.min.css?v=2hjghzSZyhYA1HxvSxKnXih3JbC120DBjeO9V9T_nSs" />
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/simpleblue/bundle-simpleblue-mobile.min.css?v=3tvwgOOqUo3RpS6gGzEdK0LbptOPv4Bx7M85_UAnFGs" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/wxkang/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/wxkang/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/wxkang/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 441578;
+        var currentBlogApp = 'wxkang';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'SimpleBlue';
+        var visitorUserId = '';
+    </script>
+        <script>
+            var currentPostDateAdded = '2021-06-18 04:10';
+        </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    
+    
+    
+</head>
+<body class="has-navbar has-bannerbar">
+    <a name="top"></a>
+            <a target="_blank" href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:pc|pp:bokeyuan-huodong-21nianzhongdacu-neiyePCtonglanbanner|pu:21nianzhongdacu-neiyePCtonglanbanner|ci:21nzdc|kw:10224545" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-pc')">
+                <div class="bannerbar aliyun forpc" style="background-size: contain; filter: brightness(0.95); background-image: url(https://img2020.cnblogs.com/blog/35695/202106/35695-20210610183724605-1725070929.jpg)">
+                </div>
+            </a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <div id="home">
+    <div id="header">
+        <div id="blogTitle">
+            <div class="title"><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/wxkang/">CV技术指南(微信公众号)</a>
+</div>
+<div class="subtitle"></div>
+
+        </div>
+        <div id="navigator">
+            
+<ul id="navList">
+    <li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+    <li id="nav_myhome">
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/wxkang/">
+首页</a>
+</li>
+    <li id="nav_newpost">
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+    <li id="nav_contact">
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/CV%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%EF%BC%88%E5%85%AC%E4%BC%97%E5%8F%B7%EF%BC%89">
+联系</a></li>
+    <li id="nav_rss">
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/wxkang/rss/">
+订阅</a></li>
+    <li id="nav_admin">
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+            <div class="blogStats">
+                <div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="mainContent">
+            <div class="forFlow">
+                <div id="post_detail">
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wxkang/p/14899965.html">
+    <span>计算机视觉专业术语/名词总结(一)构建知识体系</span>
+    
+
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                <div id="cnblogs_post_body" class="blogpost-body blogpost-body-html">
+<p><span data-cke-copybin-start="1"><span data-cke-copybin-start="1">​</span></span></p>
+<p><span id="cke_bm_1786S">&nbsp;前言：</span></p>
+<p>在计算机视觉中存在很多的专业术语，如先验知识，语义信息，embedding，head，neck等。这些术语的解释无法直接在网上搜到，也没有在哪一篇论文中定义它们的概念和意义，因此，对于第一次听到这些术语的读者来说会非常的困惑。</p>
+<p>此外，对于还没有建立计算机视觉知识体系的读者来说，也很难理解特征空间，fine-tuning、预训练、池化等方面的内容。</p>
+<p>本文介绍了很多读者在其它地方不可能了解的内容，通过这些内容相信读者能更深层次地理解计算机视觉，建立起基本的计算机视觉知识体系。</p>
+<p><strong>关注公众号CV技术指南，及时获取更多计算机视觉技术总结文章。</strong></p>
+<p>&nbsp;</p>
+<h2><strong>backbone、head、neck和fine-tune</strong></h2>
+<p>以一个图像分类的卷积神经网络为例，网络分成两部分，前部分是由卷积层、归一化层、激活层、池化层堆叠的，输入图像在经过若干层卷积、归一化层、激活层和池化层的堆叠后进入全连接层，经过几次全连接后输出每个类别的概率值。</p>
+<p>在这里，前面卷积层、归一化层、激活层和池化层的堆叠部分属于backbone。意思是神经网络的躯干部分，这部分也称为特征提取网络。</p>
+<p>后面的全连接层的堆叠属于head。意思是神经网络的头部，实现模型任务的预测，称为predictor head，这部分网络也称为分类网络。</p>
+<p><span class="cke_widget_wrapper cke_widget_inline cke_widget_image cke_image_nocaption cke_widget_selected" data-cke-display-name="图像" data-cke-filter="off" data-cke-widget-id="2" data-cke-widget-wrapper="1"><img src="https://img-blog.csdnimg.cn/img_convert/288660f9c90abec8abc9a0d9e2b09512.png" alt="" width="1080" class="cke_widget_element" data-cke-saved-src="https://img-blog.csdnimg.cn/img_convert/288660f9c90abec8abc9a0d9e2b09512.png" data-cke-widget-data="%7B%22hasCaption%22%3Afalse%2C%22src%22%3A%22https%3A%2F%2Fimg-blog.csdnimg.cn%2Fimg_convert%2F288660f9c90abec8abc9a0d9e2b09512.png%22%2C%22alt%22%3A%22%22%2C%22width%22%3A%221080%22%2C%22height%22%3A%22%22%2C%22lock%22%3Atrue%2C%22align%22%3A%22none%22%2C%22classes%22%3Anull%7D" data-cke-widget-keep-attr="0" data-cke-widget-upcasted="1" data-widget="image"><span class="cke_reset cke_widget_drag_handler_container"><img src="https://img2020.cnblogs.com/blog/1432790/202106/1432790-20210618161023369-861847219.gif" width="15" height="15" class="cke_reset cke_widget_drag_handler" title="点击并拖拽以移动" data-cke-widget-drag-handler="1"><span class="cke_image_resizer" title="点击并拖拽以改变尺寸">​</span></span></span></p>
+<p>&nbsp;</p>
+<p>再以目标检测中的YOLO_V4中的图为例。</p>
+<p>如上图所示，在backbone后，常构建特征金字塔，在特征金字塔部分做一些处理，如多尺度融合，再将特征金字塔的输出进行预测。因此，特征金字塔这部分放在backbone和head之间，称为neck（脖子），这里的Dense Prediction即为head。</p>
+<p>关于backbone即常见的经典网络，如VGG，ResNet，MobileNet，ShuffleNet，DenseNet等，当某个模型提到backbone使用的是VGG，即表示使用的是VGG的backbone部分，而不包括VGG的head。</p>
+<p>这里解释一下为何是这样。神经网络有多种解释，其中一种解释如下，神经网络被认为是在提取特征，计算机视觉的传统方法就是人为地设定某些特征，再进行分类。如HOG特征，LBP特征，在提取完特征后，使用分类器对这些特征进行分类，如SVM分类器。</p>
+<p>这里的backbone部分则认为是一个特征提取网络，而head部分则被认为是分类网络，因此特征提取的部分可以共享，它们的本质都是在提取图片的特征，而分类网络则对应到具体的任务，如分类猫狗，分类网络需要从提取的特征中分成猫狗两类。</p>
+<p>这段话同时也解释了fine-tune的原理，使用一个预训练好的backbone，针对你自己的任务，自己搭建相应的分类网络，在训练时冻结backbone的参数，只训练分类网络的参数。这是因为预训练好的backbone已经具备很好的特征提取能力，因此对于你自己的图像，网络只需要学习如何将提取后的特征按你定义的类别进行分类。</p>
+<p>&nbsp;</p>
+<h2><strong>Preprocess和Postprocess</strong></h2>
+<p>Preprocess为预处理，图像在送入神经网络之前，需要进行一定的处理。</p>
+<p>通常的处理是使用opencv中的resize将所有图像缩放到同一尺寸，并根据数据集的标注设置网络的label。此外，如果有必要的话，还会进行数据增强，如调整图像饱和度，镜像，加噪声，随机掩码等方式。</p>
+<p>预处理的必要性：大部分神经网络在backbone后将数据进行flatten（即将四维的张量变成二维）的操作，再进行全连接，此时全连接层输入的神经元个数即为flatten后的长度，若输入的图像的尺寸不一样，则全连接层输入的神经元个数无法一致，会报错。此外，对于没有全连接层，其它类似的处理部分（除少数外），也会要求backbone后的输出大小一致。Postprocess指的是对网络预测的结果进行后处理，对于普通的分类网络不需要后处理，但对于目标检测、语义分割这样的任务，需要对网络的输出进行处理，将预测的结果通过图像进行可视化。</p>
+<p>例如目标检测中的YOLO，其输出一个7x7x30的张量，输出98个预测框，但实际一张图片没这么的目标，则需要进行NMS这样的处理来去除一些不合理的预测框，且我们无法直接看待这些预测框是否准确，就需要将其在原图像上显示出来，以直观感受预测的效果如何。</p>
+<p>&nbsp;</p>
+<h2><strong>先验知识</strong></h2>
+<p>在《<a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247485238%26idx%3D1%26sn%3D61b69ae9d511651908bb842ba1790dd5%26chksm%3Dc197b828f6e0313eafe201d5090d3bd2aac78cc28ad144b04c7e90fd2c776c176d88b4de40b8%26scene%3D21%23wechat_redirect">论文创新的常见思路总结</a>》中我提到，关于特定的类的检测，我们可以针对这个类别添加很多先验知识，在《<a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247485145%26idx%3D1%26sn%3Dbc838906390d3c7c6b802b96f25245b7%26chksm%3Dc197b9c7f6e030d1b07f6d531366e86c51d25247c2bec8286533c9d1e42661510d7ae567b49c%26scene%3D21%23wechat_redirect">数据增强方法总结</a>》中我提到，数据增强的本质是人为地引入人视觉上的先验知识。在《<a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247484970%26idx%3D1%26sn%3D5031cd5c13bde6d9d67c02039c2afdc8%26chksm%3Dc197b934f6e030220bafa4823e2accca6e5a719e323e0c9050aac2a2466c0cb3872244b32954%26scene%3D21%23wechat_redirect">CNN可视化技术总结(一)特征图可视化</a>》中我提到，所谓改进网络都是人的主观改进，这里人的主观即先验知识。这里的先验知识指的是人对于如何识别一张图像或如何识别一个类而关注的内容，引入先验知识是指设计一些东西让网络也关注这些内容。例如特征金字塔中的多尺度融合，人认为大目标应该在低分辨率检测、小目标在高分辨率检测，由此网络在特征金字塔的不同层预测不同大小的目标。人又认为如果大目标在低分辨率检测，小目标在高分辨率检测，则在低分辨率时，小目标还存在，在这里被当成了背景，同理在高分辨率时大目标被当成了背景，这样不合理，又提出了ASFF处理方式，提升了5-10个百分点。</p>
+<p><a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247485189%26idx%3D1%26sn%3Db97a3eef8e62ea8c9e5463069c07fa1a%26chksm%3Dc197b81bf6e0310d9ad5eec929c533a2e8c5827e80c9f7295f00b06ac753d4eef199b2a736c4%26scene%3D21%23wechat_redirect">《特征金字塔技术总结》</a></p>
+<p>例如人在关注一个事物时，会自动忽略眼睛看到的其它东西，由此提出了注意力机制。例如即便只有上半身，人还是能认出自己熟悉的人，由此提出随机遮挡等数据增强方式，让网络在有遮挡的情况下也能正确识别。</p>
+<p>例如人是如何识别打篮球这一行为的，人根据篮球、投篮手势、身体跳跃、篮球运动等一系列的组合识别，因此如何让网络更好地关注这些特征提出了Non-Local。</p>
+<p><span class="cke_widget_wrapper cke_widget_inline cke_widget_image cke_image_nocaption cke_widget_selected" data-cke-display-name="图像" data-cke-filter="off" data-cke-widget-id="1" data-cke-widget-wrapper="1"><img src="https://img-blog.csdnimg.cn/img_convert/05c3c6922c878f2fd6de52c3af5c8e71.png" alt="" width="827" class="cke_widget_element" data-cke-saved-src="https://img-blog.csdnimg.cn/img_convert/05c3c6922c878f2fd6de52c3af5c8e71.png" data-cke-widget-data="%7B%22hasCaption%22%3Afalse%2C%22src%22%3A%22https%3A%2F%2Fimg-blog.csdnimg.cn%2Fimg_convert%2F05c3c6922c878f2fd6de52c3af5c8e71.png%22%2C%22alt%22%3A%22%22%2C%22width%22%3A%22827%22%2C%22height%22%3A%22%22%2C%22lock%22%3Atrue%2C%22align%22%3A%22none%22%2C%22classes%22%3Anull%7D" data-cke-widget-keep-attr="0" data-cke-widget-upcasted="1" data-widget="image"><span class="cke_reset cke_widget_drag_handler_container"><img src="https://img2020.cnblogs.com/blog/1432790/202106/1432790-20210618161023369-861847219.gif" width="15" height="15" class="cke_reset cke_widget_drag_handler" title="点击并拖拽以移动" data-cke-widget-drag-handler="1"><span class="cke_image_resizer" title="点击并拖拽以改变尺寸">​</span></span></span></p>
+<h2>&nbsp;</h2>
+<h2><strong>embedding</strong></h2>
+<p>在transformer中出现了embedding，在自编码器中也出现了embedding，还有很多地方也有提到，如何理解embedding？</p>
+<p>这里涉及到神经网络的另一种解释。神经网络被认为是将图像从高维的像素空间映射到低维的嵌入空间，即embedding，也可称为特征空间。这里的特征空间用embedding（向量的形式）来表示。</p>
+<p>在编码器中，网络将图像映射成embedding，即高维图像通过非线性函数的多次映射，可以用低维embedding来表示，在解码器中，网络将低维embedding映射回图像。</p>
+<p>因此，embedding可以认为是某些特征的浓缩表示形式。</p>
+<p>以行人重识别为例，论文认为即便是在不同拍摄角度下，只要是同一个人，神经网络输出的embedding在某种距离度量方式下就是相近的，而不同的人在某种距离方式下就是很远的，因此可以通过某种距离度量方式判断两个embedding的距离是否在阈值范围内来判断是否为同一个人。</p>
+<h2>&nbsp;</h2>
+<h2><strong>feature map</strong></h2>
+<p>字面意思：特征图。</p>
+<p>根据前面的解释，神经网络是在将图像从高维像素空间映射到低维的特征空间，这个映射是通过一层一层卷积和激活来进行的，卷积具备提取特征的能力。</p>
+<p>例如在数字图像处理中，我们是通过sobel算子来检测轮廓，而sobel算子可以认为是3x3的卷积的其中一种情况，在这种情况下，它就可以提取图像的轮廓，那在其它情况下就可以提取其它的特征，因此卷积的过程就是在提取特征的过程，经过卷积提取特征和激活函数的映射后的输出称为feature maps。</p>
+<h2>&nbsp;</h2>
+<h2><strong>池化</strong></h2>
+<p>接着上面的解释来介绍一下池化。</p>
+<p>在一张图像中存在很多噪声和冗余信息，噪声是由相机拍摄过程中由于传感器电路、材料等硬件因素或传输过程中产生的，冗余信息是指跟具体任务无关的内容。</p>
+<p>当我们以整张图像输入时，需要将这些噪声、冗余信息去除。我们认为这些冗余信息和噪声不是特征，在神经网络中的卷积和映射过程中，会产生比较低的响应值，因此我们可以通过最大池化选择最大的响应值进入下一层，因为我们认为只有特征才会在卷积过程中产生大的特征值，也称为响应值。</p>
+<p>同样以sobel为例，当对一个像素值基本相同的背景进行卷积时，卷积的输出几乎为0，而对一个轮廓边缘进行sobel卷积，则会输出较大的值。</p>
+<p>因此神经网络通过多次最大池化，去除了噪声和冗余信息。这也就是为什么神经网络的backbone部分基本全是最大池化，而不是平均池化，因为平均池化会将这些冗余信息和噪声继续传到下一层。</p>
+<p>关于池化更详细的技术总结，请阅读《<a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247484944%26idx%3D1%26sn%3Dd6f30af010fd5189ecb8b592ec493478%26chksm%3Dc197b90ef6e03018597160ebc24e69f6ba7de9753a762e07fac8b76763c63ba24c2257ad74b2%26scene%3D21%23wechat_redirect">池化技术总结</a>》文章。</p>
+<p>&nbsp;</p>
+<h2><strong>语义信息</strong></h2>
+<p>数字图像是由像素值组成的，它们本是一堆数字的组合，但就是这样的组合形成了一幅幅图像，如猫、狗、篮球、米老鼠、眼睛、鼻子等。因此，语义信息指的是图像的内容，即鼻子，眼睛这样的图像。</p>
+<p>&nbsp;</p>
+<h2><strong>总结</strong></h2>
+<p>本文介绍了很多读者在其它地方不可能了解的内容，通过这些内容相信读者能更深层次地理解计算机视觉，建立起基本的计算机视觉知识体系。</p>
+<p>后面还会总结一些其它的专业术语，并进行解释。</p>
+<p>&nbsp;</p>
+<h2>其他文章</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/380616674">欠拟合与过拟合技术总结</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/380441506">神经网络归一化方法总结</a></p>
+<p><a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247486538%26idx%3D1%26sn%3Dc5f02b00c04fe4479ef0222736212824%26chksm%3Dc197b354f6e03a42ce9cbf23d6066b87f078e657f592d1f5402fb80584fc18b4b52008bf1b81%26token%3D1019689299%26lang%3Dzh_CN%23rd">优化函数技术总结</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247485330%26idx%3D1%26sn%3Dc4f4b6f94d216e19deb7531bde005222%26chksm%3Dc197b88cf6e0319a621a78e87aa6dc0a40188473990407e9578b5d5f743a8b1a28db7c08dbc8%26token%3D380959749%26lang%3Dzh_CN%23rd">注意力机制总结</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247485189%26idx%3D1%26sn%3Db97a3eef8e62ea8c9e5463069c07fa1a%26chksm%3Dc197b81bf6e0310d9ad5eec929c533a2e8c5827e80c9f7295f00b06ac753d4eef199b2a736c4%26token%3D380959749%26lang%3Dzh_CN%23rd">特征金字塔总结</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247485145%26idx%3D1%26sn%3Dbc838906390d3c7c6b802b96f25245b7%26chksm%3Dc197b9c7f6e030d1b07f6d531366e86c51d25247c2bec8286533c9d1e42661510d7ae567b49c%26token%3D380959749%26lang%3Dzh_CN%23rd">数据增强方法总结</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247484970%26idx%3D1%26sn%3D5031cd5c13bde6d9d67c02039c2afdc8%26chksm%3Dc197b934f6e030220bafa4823e2accca6e5a719e323e0c9050aac2a2466c0cb3872244b32954%26token%3D380959749%26lang%3Dzh_CN%23rd">CNN可视化技术总结</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247485066%26idx%3D1%26sn%3Da7ff1299338c75d77a736a93459ac765%26chksm%3Dc197b994f6e03082331f787357b441e5858f6ec8d6da7f065d15c27f3f8360c510178421ec92%26token%3D380959749%26lang%3Dzh_CN%23rd">CNN结构演变总结—经典模型</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247485093%26idx%3D1%26sn%3Dcca7d51786155ec4416df2c021144586%26chksm%3Dc197b9bbf6e030ad11fb1dd0dfa3ea4df0594db9ac6f25eb043cf962f7d261dd691d895b0f4d%26token%3D380959749%26lang%3Dzh_CN%23rd">CNN结构演变总结—轻量化模型</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247485112%26idx%3D1%26sn%3D0169db45e1b98f384e8ad964ff6cac0c%26chksm%3Dc197b9a6f6e030b0a0828a7dff5ad325be988585275645c0cf071647b7bb781833cb484d1fd6%26token%3D380959749%26lang%3Dzh_CN%23rd">CNN结构演变总结—设计原则</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247484944%26idx%3D1%26sn%3Dd6f30af010fd5189ecb8b592ec493478%26chksm%3Dc197b90ef6e03018597160ebc24e69f6ba7de9753a762e07fac8b76763c63ba24c2257ad74b2%26token%3D380959749%26lang%3Dzh_CN%23rd">池化技术总结</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247484615%26idx%3D1%26sn%3D195658aefb0c73220a506cc96a81745f%26chksm%3Dc197bbd9f6e032cf7fc64f420ccff8bc80311f4647b7f5a40fad17ebd8f802422007f15a21b7%26token%3D380959749%26lang%3Dzh_CN%23rd">非极大值抑制总结</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247485154%26idx%3D1%26sn%3D6a04e40b35cc0ebec98c87c39293eacd%26chksm%3Dc197b9fcf6e030ea1f923cbb5ded3b86ff4511a5eddbdbe056a0aef05982185a9b23ba9bf9bc%26token%3D380959749%26lang%3Dzh_CN%23rd">英文文献阅读方法总结</a></p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzkyMDE2OTA3Mw%3D%3D%26mid%3D2247485238%26idx%3D1%26sn%3D61b69ae9d511651908bb842ba1790dd5%26chksm%3Dc197b828f6e0313eafe201d5090d3bd2aac78cc28ad144b04c7e90fd2c776c176d88b4de40b8%26token%3D380959749%26lang%3Dzh_CN%23rd">论文创新的常见思路总结</a></p>
+<p>本文来源于公众号CV技术指南的技术总结系列。</p>
+<p><span class="cke_widget_wrapper cke_widget_inline cke_widget_image cke_image_nocaption cke_widget_selected" data-cke-display-name="图像" data-cke-filter="off" data-cke-widget-id="0" data-cke-widget-wrapper="1"><img src="https://img-blog.csdnimg.cn/img_convert/6b31b64ab2ecb3b0b6db82ad78fa03ac.png" alt="" width="589" height="469" class="cke_widget_element" data-cke-saved-src="https://img-blog.csdnimg.cn/img_convert/6b31b64ab2ecb3b0b6db82ad78fa03ac.png" data-cke-widget-data="%7B%22hasCaption%22%3Afalse%2C%22src%22%3A%22https%3A%2F%2Fimg-blog.csdnimg.cn%2Fimg_convert%2F6b31b64ab2ecb3b0b6db82ad78fa03ac.png%22%2C%22alt%22%3A%22%22%2C%22width%22%3A%221082%22%2C%22height%22%3A%22%22%2C%22lock%22%3Atrue%2C%22align%22%3A%22none%22%2C%22classes%22%3Anull%7D" data-cke-widget-keep-attr="0" data-cke-widget-upcasted="1" data-widget="image"><span class="cke_reset cke_widget_drag_handler_container"><img src="https://img2020.cnblogs.com/blog/1432790/202106/1432790-20210618161023369-861847219.gif" width="15" height="15" class="cke_reset cke_widget_drag_handler" title="点击并拖拽以移动" data-cke-widget-drag-handler="1"><span class="cke_image_resizer" title="点击并拖拽以改变尺寸">​</span></span></span></p>
+<p><span data-cke-copybin-start="1"><span data-cke-copybin-end="1">​</span></span></p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2021-06-18 16:10</span>&nbsp;
+<a href="https://www.cnblogs.com/wxkang/">CV技术指南（公众号）</a>&nbsp;
+阅读(<span id="post_view_count">71</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14899965" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(14899965);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: '', targetType: 'blogPost', targetId: '14899965', targetLink: 'https://www.cnblogs.com/wxkang/p/14899965.html', title: '计算机视觉专业术语/名词总结(一)构建知识体系' })">举报</a></div>
+        </div>
+        <script src="https://common.cnblogs.com/highlight/10.3.1/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 441578, cb_blogApp = 'wxkang', cb_blogUserGuid = '44e05063-1bbc-4986-1952-08d5dd9535dc';
+    var cb_entryId = 14899965, cb_entryCreatedDate = '2021-06-18 16:10', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+        <a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id='div-gpt-ad-1592365906576-0' style='width: 300px; height: 250px;'></div>
+    </div>
+    <div id="under_post_card1"></div>
+    <div id="cnblogs_c2" class="under-post-card">
+        <div id='div-gpt-ad-1592366332455-0' style='width: 468px; height: 60px;'></div>
+    </div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+       deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+       loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+    </div>
+</div>
+            </div>
+        </div>
+
+        <div id="sideBar">
+            <div id="sideBarMain">
+                <div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+                <div id="calendar"><div id="blog-calendar" style="display:none"></div></div>                
+                <script>loadBlogDefaultCalendar();</script>
+                <div id="leftcontentcontainer">
+                    <!-- begin:SingleColumn -->
+                    <div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+                    <!-- end:  SingleColumn -->
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--done-->
+Copyright &copy; 2021 CV技术指南（公众号）
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+    </div>
+</div>
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjvZzqdIWw-sz1dAASAVluGjnOq-r6opy6S9KIELfNAFNkr3Ur-_BVL2itC9OC02A6IrOrMoX5DAH8j10PnvSD8x-NPr1vDepBA4aEPKG-wutghEvWL3V6KSxz80bhZ88j0" />
+</body>
+</html>

@@ -1,0 +1,740 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="never" />
+    <meta name="description" content="总的来说，设计模式可以分为三大类：创建型模式、结构型模式、行为型模式。&#xA;工厂模式分为简单工厂模式、工厂方法模式和抽象工厂模式。" />
+    <meta property="og:description" content="总的来说，设计模式可以分为三大类：创建型模式、结构型模式、行为型模式。&#xA;工厂模式分为简单工厂模式、工厂方法模式和抽象工厂模式。" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Java设计模式（5：设计模式的分类及工厂模式详解） - 蔡小明 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/caimm/custom.css?v=SHwoZUTjD8DhmdDObkaRJ/AiQpA=" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/custom/bundle-custom-mobile.min.css?v=OayYBbtUbH4FYkn_bTL4VVf4DsEOiTHSWhbl11KyY6Y" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/caimm/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/caimm/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/caimm/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 571601;
+        var currentBlogApp = 'caimm';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'Custom';
+        var visitorUserId = '';
+    </script>
+        <script>
+            var currentPostDateAdded = '2021-06-18 03:27';
+        </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    
+    
+    
+</head>
+<body class="has-navbar">
+    <a name="top"></a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/caimm/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/caimm/">蔡小明</a>
+</h1>
+<h2>清酒独酌了无趣，醉里梦花也梦你</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/caimm/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E8%94%A1%E5%B0%8F%E6%98%8E">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/caimm/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			<div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class = "postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/caimm/p/14899740.html">
+    <span>Java设计模式（5：设计模式的分类及工厂模式详解）</span>
+    
+
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                    <div id="cnblogs_post_description" style="display: none">
+        总的来说，设计模式可以分为三大类：创建型模式、结构型模式、行为型模式。
+工厂模式分为简单工厂模式、工厂方法模式和抽象工厂模式。
+    </div>
+<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+<h3 id="一、设计模式的分类">一、设计模式的分类</h3>
+<p>总的来说，设计模式可以分为三大类：<strong>创建型模式</strong>、<strong>结构型模式</strong>、<strong>行为型模式</strong>，具体如下图：</p>
+<p><img src="https://s2.51cto.com/images/20210618/1624000087620461.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=" alt="设计模式.png" loading="lazy"></p>
+<h3 id="二、工厂模式">二、工厂模式</h3>
+<p>工厂模式分为<strong>简单工厂模式</strong>、<strong>工厂方法模式</strong>和<strong>抽象工厂模式</strong>。其中<strong>简单工厂模式</strong>并不属于23种设计模式，但并不影响它的广泛使用。在<code>JDK</code>的源码当中，就存在着许多这样的例子。</p>
+<h4 id="21--简单工厂模式">2.1  简单工厂模式</h4>
+<p>我们先来看一段代码：</p>
+<pre><code class="language-java">public static void main(String[] args) {
+    // 日历类
+    Calendar calendar = Calendar.getInstance();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    System.out.println("当前时间为：" + simpleDateFormat.format(calendar.getTime()));
+    calendar.add(Calendar.HOUR,2);
+    System.out.println("当前时间加了两个小时后,时间是: " + simpleDateFormat.format(calendar.getTime()));
+}
+</code></pre>
+<p>这段代码，大家应该比较熟悉，通过对<code>Calendar</code>的一系列操作，打印出当前时间和当前时间加两个小时后的时间，这里我们来看看结果：</p>
+<p><img src="https://s2.51cto.com/images/20210618/1624000137366026.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=" alt="image20210618100232505.png" loading="lazy"></p>
+<p>结果正和我们想象的一样，两次打印出来的时间相隔两个小时。但我们今天的重点是<code>Calendar calendar = Calendar.getInstance()</code>这段代码，通过<code>getInstance()</code>方法拿到了<code>Calendar </code>类的实例。来看看具体的源代码：</p>
+<pre><code class="language-java">public static Calendar getInstance(){
+        return createCalendar(TimeZone.getDefault(), Locale.getDefault(Locale.Category.FORMAT));
+  }
+
+//  代码不全，有兴趣的朋友可以去看JDK源码
+ private static Calendar createCalendar(TimeZone zone, Locale aLocale){
+        // 中间的代码省略.....
+        Calendar cal = null;
+        if (aLocale.hasExtensions()) {
+            String caltype = aLocale.getUnicodeLocaleType("ca");
+            if (caltype != null) {
+                switch (caltype) {
+                case "buddhist":
+                cal = new BuddhistCalendar(zone, aLocale);
+                    break;
+                case "japanese":
+                    cal = new JapaneseImperialCalendar(zone, aLocale);
+                    break;
+                case "gregory":
+                    cal = new GregorianCalendar(zone, aLocale);
+                    break;
+                }
+            }
+        }
+        // 中间的代码省略.....
+        return cal;
+ }
+</code></pre>
+<p>可以看出，<code>getInstance()</code>方法里面调用了<code>createCalendar()</code>方法来得到<code>Calendar</code>类的实例，最后返回给调用者。而<code>createCalendar()</code>方法中通过<code>switch(){case}</code>的判断来返回所对应的<code>Calendar</code>类的实例，这其实就是<strong>简单工厂模式</strong>的一种应用。</p>
+<p>看完<strong>简单工厂模式</strong>在<code>JDK</code>中的应用之后，我们来设计一下自己的例子：</p>
+<p>小明家新开了一家小工厂，接了一单生意，帮助海尔（Haier）集团生产冰箱，并需要设计相应的方案。小明本身也是程序员出身，思考一会后就写出了下面的代码：</p>
+<pre><code class="language-java">/**
+ * 冰箱
+ */
+public interface IFridge {
+
+    // 生产冰箱
+    public void createFridge();
+
+}
+</code></pre>
+<pre><code class="language-java">/**
+ * 海尔
+ */
+public class Haier implements IFridge {
+    @Override
+    public void createFridge() {
+        System.out.println("生产海尔冰箱...");
+    }
+}
+</code></pre>
+<p>客户端调用代码：</p>
+<pre><code class="language-java">public static void main(String[] args) {
+    IFridge iFridge = new Haier();
+    iFridge.createFridge();
+}
+</code></pre>
+<p>看上面的代码，父类<code>IFridge</code>类指向子类<code>Haier</code>类的引用，应用层需要依赖于<code>Haier</code>。如果业务扩展，后续增加格力（<code>Gree</code>）甚至更多，那么客户端这里的代码会越来越臃肿。所以，我们要想办法将这种依赖减弱，将创建<code>IFridge</code>对象的细节隐藏掉。我们用<strong>简单工厂模式</strong>优化一下：</p>
+<p>创建<code>Gree</code>格力类</p>
+<pre><code class="language-java">/**
+ * 格力
+ */
+public class Gree implements IFridge {
+    @Override
+    public void createFridge() {
+        System.out.println("生产格力冰箱...");
+    }
+}
+</code></pre>
+<p>创建<code>FridgeFactory</code>工厂类</p>
+<pre><code class="language-java">/**
+ * 冰箱工厂
+ */
+public class FridgeFactory {
+
+    // 创建对应的 IFridge 实例
+    public static IFridge createFridge(String name){
+        if ("haier".equals(name)){
+            return new Haier();
+        } else if ("gree".equals(name)){
+            return new Gree();
+        }
+        return null;
+    }
+}
+</code></pre>
+<p>修改客户端调用的代码：</p>
+<pre><code class="language-java">public static void main(String[] args) {
+    // 海尔
+    IFridge haier = FridgeFactory.createFridge("haier");
+    haier.createFridge();
+
+    // 格力
+    IFridge gree = FridgeFactory.createFridge("gree");
+    gree.createFridge();
+}
+</code></pre>
+<p>这样来看，虽然代码多了，但维护起来以及扩展起来就方便很多，来看一看类图：</p>
+<p><img src="https://s2.51cto.com/images/20210618/1624000212962087.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=" alt="image20210618104712505.png" loading="lazy"></p>
+<p>当然，上面的<code>FridgeFactory</code>代码中依旧有些问题，如果我们需要增加生产美的（<code>Midea</code>）冰箱，那么我们就需要去修改<code>createFridge()</code>方法的代码，显然违背了<strong>开闭原则</strong>，我们来改造一下：</p>
+<p>修改<code>FridgeFactory</code>工厂类</p>
+<pre><code class="language-java">/**
+ * 冰箱工厂
+ */
+public class FridgeFactory {
+
+    // 创建对应的 IFridge 实例
+    public static IFridge createFridge(String className){
+        try {
+            if (null != className &amp;&amp; !"".equals(className)){
+                // 反射
+                return (IFridge)Class.forName(className).newInstance();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+</code></pre>
+<p>修改客户端调用的代码</p>
+<pre><code class="language-java">public static void main(String[] args) {
+    // com.xxx.Haier  换成  自己 项目中 Haier 所在的位置  海尔
+    IFridge haier = FridgeFactory.createFridge("com.xxx.Haier");
+    haier.createFridge();
+
+    // com.xxx.Gree  换成  自己 项目中 Gree 所在的位置  格力
+    IFridge gree = FridgeFactory.createFridge("com.xxx.Gree");
+    gree.createFridge();
+}
+</code></pre>
+<p>优化之后，我们再也不需要随着业务的提升而去修改<code>FridgeFactory</code>类中的代码了。但是依旧有一个问题，<code>createFridge()</code>方法中的参数是字符串，如果有人乱填怎么办，那不就报错了，所以再来优化一下：</p>
+<p>修改<code>FridgeFactory</code>工厂类</p>
+<pre><code class="language-java">/**
+ * 冰箱工厂
+ */
+public class FridgeFactory {
+
+    // 创建对应的 IFridge 实例
+    public static IFridge createFridge(Class&lt;? extends IFridge&gt; clazz){
+        try {
+            if (clazz != null){
+                return clazz.newInstance();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+</code></pre>
+<p>修改客户端调用的代码</p>
+<pre><code class="language-java">public static void main(String[] args) {
+    // 海尔
+    FridgeFactory.createFridge(Haier.class).createFridge();
+
+    // 格力
+    FridgeFactory.createFridge(Gree.class).createFridge();
+}
+</code></pre>
+<p>再来看一下类图：</p>
+<p><img src="https://s2.51cto.com/images/20210618/1624000247317991.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=" alt="image20210618110204756.png" loading="lazy"></p>
+<p><strong>简单工厂模式</strong>虽然好用，但也有它的局限性：工厂类的职责过重，不利于扩展更为复杂产品结构。</p>
+<h4 id="22--工厂方法模式">2.2  工厂方法模式</h4>
+<blockquote>
+<p>定义一个创建对象的接口，但让实现这个接口的类来决定实例化哪个类，工厂方法让类的实例化推迟到子类中进行。</p>
+<p>在工厂方法模式中用户只需要关心所需产品对应的工厂，无须关心创建细节，而且加入新的产品符合<strong>开闭原则</strong>。</p>
+</blockquote>
+<p>随着小明家新工厂的生意火爆，各类的订单都纷涌而至，各个牌子的厂家都想让小明家的工厂生产冰箱，小明无奈只能开了分工厂，并根据客户的品牌名给工厂取了对应的名字，其中海尔工厂生产海尔的冰箱，格力工厂生产格力的冰箱，美的工厂生产美的的冰箱。用代码演化就是下面这般：</p>
+<p><code>IFridgeFactory</code>类接口</p>
+<pre><code class="language-java">public interface IFridgeFactory {
+    public IFridge createIFridge();
+}
+</code></pre>
+<p>海尔</p>
+<pre><code class="language-java">// 海尔  工厂
+public class HaierFactory implements IFridgeFactory {
+    @Override
+    public IFridge createIFridge() {
+        return new Haier();
+    }
+}
+</code></pre>
+<p>格力</p>
+<pre><code class="language-java">// 格力  工厂
+public class GreeFactory implements IFridgeFactory {
+    @Override
+    public IFridge createIFridge() {
+        return new Gree();
+    }
+}
+</code></pre>
+<p>美的</p>
+<pre><code class="language-java">/**
+ * 美的
+ */
+public class Midea implements IFridge {
+    @Override
+    public void createFridge() {
+        System.out.println("生产美的冰箱...");
+    }
+}
+</code></pre>
+<pre><code>// 美的
+public class MideaFactory implements IFridgeFactory {
+    @Override
+    public IFridge createIFridge() {
+        return new Midea();
+    }
+}
+</code></pre>
+<p>客户端调用：</p>
+<pre><code class="language-java">public static void main(String[] args) {
+    // 格力
+    new GreeFactory().createIFridge().createFridge();
+
+    // 海尔
+    new HaierFactory().createIFridge().createFridge();
+
+    // 美的
+    new MideaFactory().createIFridge().createFridge();
+}
+</code></pre>
+<p>这里其实就是细化了工厂，将业务拆分，利用了设计模式原则中的<strong>单一职责原则</strong>，让每个品牌对应工厂只干一件事，不去掺和其他品牌的事情。来看一看类图：</p>
+<p><img src="https://s2.51cto.com/images/20210618/1624000334911030.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=" alt="image20210618113203319.png" loading="lazy"></p>
+<p>工厂方法模式适用于一下场景：</p>
+<ul>
+<li>创建对象需要大量重复的代码</li>
+<li>客户端（应用层）不依赖于产品类实例如何被创建、实现等细节</li>
+<li>一个类通过其子类来指定创建哪个对象</li>
+</ul>
+<p>工厂方法模式也有缺点：</p>
+<ul>
+<li>类的个数容易过多，增加复杂度</li>
+<li>增加了系统的抽象性和理解难度</li>
+</ul>
+<h4 id="23--抽象工厂模式">2.3  抽象工厂模式</h4>
+<blockquote>
+<p>定义：提供一个创建一系列相关或者相互依赖对象的接口，无需指定他们具体的类。</p>
+</blockquote>
+<p>这个定义读起来相当的拗口，很抽象，不好理解。还是和上面的例子结合来说明：</p>
+<p>在生产完一批冰箱并上市售卖之后，美的、格力、海尔等公司非常满意，慢慢的将自己家的空调、热水器也交给小明家的工厂去生产了。小明为此在对应的品牌工厂有开辟了对应的生产设备的空间（<span style="color: rgba(255, 0, 0, 1)">这里为了大家看的方便，我将所有的代码都放上去</span>）：</p>
+<p><strong>冰箱、空调、热水器接口</strong></p>
+<pre><code class="language-java">// 冰箱
+public interface IFridge {
+    // 生产冰箱
+    public void createFridge();
+}
+
+// 空调
+public interface IAirConditioner {
+    // 生产空调
+    public void createAirConditioner();
+}
+
+// 热水器
+public interface IWaterHeater {
+    // 生产热水器
+    public void createWaterHeater();
+}
+</code></pre>
+<p><strong>海尔</strong></p>
+<pre><code class="language-java">/**
+ * 海尔 冰箱
+ */
+public class HaierFridge implements IFridge{
+    @Override
+    public void createFridge() {
+        System.out.println("生产海尔冰箱...");
+    }
+}
+
+// 海尔 空调
+public class HaierAirConditioner implements IAirConditioner {
+    @Override
+    public void createAirConditioner() {
+        System.out.println("生产海尔空调...");
+    }
+}
+
+// 海尔热水器
+public class HaierWaterHeater implements IWaterHeater {
+
+    @Override
+    public void createWaterHeater() {
+        System.out.println("生产海尔热水器...");
+    }
+}
+</code></pre>
+<p><strong>格力</strong></p>
+<pre><code class="language-java">/**
+ * 格力 冰箱
+ */
+public class GreeFridge implements IFridge {
+    @Override
+    public void createFridge() {
+        System.out.println("生产格力冰箱...");
+    }
+}
+
+// 格力 空调
+public class GreeAirConditioner implements IAirConditioner {
+    @Override
+    public void createAirConditioner() {
+        System.out.println("生产格力空调...");
+    }
+}
+
+// 格力热水器
+public class GreeWaterHeater implements IWaterHeater {
+    @Override
+    public void createWaterHeater() {
+        System.out.println("生产格力热水器...");
+    }
+}
+</code></pre>
+<p><strong>美的</strong></p>
+<pre><code class="language-java">/**
+ * 美的 冰箱
+ */
+public class MideaFridge implements IFridge{
+    @Override
+    public void createFridge() {
+        System.out.println("生产美的冰箱...");
+    }
+}
+
+// 美的 空调
+public class MideaAirConditioner implements IAirConditioner {
+    @Override
+    public void createAirConditioner() {
+        System.out.println("生产美的空调...");
+    }
+}
+
+// 美的热水器
+public class MideaWaterHeater implements IWaterHeater {
+    @Override
+    public void createWaterHeater() {
+        System.out.println("生产美的热水器...");
+    }
+}
+</code></pre>
+<p><strong>工厂接口</strong></p>
+<pre><code class="language-java">public interface IFactory {
+	// 冰箱
+    public IFridge createIFridge();
+	// 空调
+    public IAirConditioner createIConditioner();
+	// 热水器
+    public IWaterHeater createIWaterHeater();
+}
+</code></pre>
+<p><strong>海尔工厂</strong></p>
+<pre><code class="language-java">// 海尔  工厂
+public class HaierFactory implements IFactory {
+    // 冰箱
+    @Override
+    public IFridge createIFridge() {
+        return new HaierFridge();
+    }
+
+    // 空调
+    @Override
+    public IAirConditioner createIConditioner() {
+        return new HaierAirConditioner();
+    }
+
+    // 热水器
+    @Override
+    public IWaterHeater createIWaterHeater() {
+        return new HaierWaterHeater();
+    }
+}
+</code></pre>
+<p><strong>格力工厂</strong></p>
+<pre><code class="language-java">// 格力
+public class GreeFactory implements IFactory {
+    // 冰箱
+    @Override
+    public IFridge createIFridge() {
+        return new GreeFridge();
+    }
+	// 空调
+    @Override
+    public IAirConditioner createIConditioner() {
+        return new GreeAirConditioner();
+    }
+	// 热水器
+    @Override
+    public IWaterHeater createIWaterHeater() {
+        return new GreeWaterHeater();
+    }
+}
+</code></pre>
+<p><strong>美的工厂</strong></p>
+<pre><code class="language-java">// 美的
+public class MideaFactory implements IFactory {
+    // 冰箱
+    @Override
+    public IFridge createIFridge() {
+        return new MideaFridge();
+    }
+	// 空调
+    @Override
+    public IAirConditioner createIConditioner() {
+        return new MideaAirConditioner();
+    }
+    // 热水器
+    @Override
+    public IWaterHeater createIWaterHeater() {
+        return new MideaWaterHeater();
+    }
+}
+</code></pre>
+<p><strong>客户端调用</strong></p>
+<pre><code class="language-java">public static void main(String[] args) {
+	// 海尔工厂
+    HaierFactory haierFactory = new HaierFactory();
+    haierFactory.createIFridge().createFridge();
+    haierFactory.createIConditioner().createAirConditioner();
+    haierFactory.createIWaterHeater().createWaterHeater();
+
+	// 格力工厂
+    GreeFactory greeFactory = new GreeFactory();
+    greeFactory.createIFridge().createFridge();
+    greeFactory.createIConditioner().createAirConditioner();
+    greeFactory.createIWaterHeater().createWaterHeater();
+
+    // 美的工厂
+    MideaFactory mideaFactory = new MideaFactory();
+    mideaFactory.createIFridge().createFridge();
+    mideaFactory.createIConditioner().createAirConditioner();
+    mideaFactory.createIWaterHeater().createWaterHeater();
+}
+</code></pre>
+<p><strong>类图</strong></p>
+<p><img src="https://s2.51cto.com/images/20210618/1624000396221858.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=" alt="image20210618145044765.png" loading="lazy"></p>
+<p>从上面一大堆的代码，尤其是<strong>类图</strong>，我们可以很明显的感觉到，<strong>抽象工厂</strong>可以完美清晰的描述海尔、格力、美的三个品牌的冰箱、空调、热水器的庞大体系。但也正因为如此，<strong>抽象工厂</strong>给我们的视觉冲击有些大，能很明显的感觉到系统的<strong>复杂性</strong>、<strong>抽象性</strong>以及系统的<strong>极难扩展性</strong>；并且这里还隐藏着一个违背<strong>开闭原则</strong>的问题：</p>
+<blockquote>
+<p>在工厂接口<code>IFactory</code>类中，如果在日后的产品升级当中，需要增加生产洗衣机的业务，那这里修改之后，所有实现<code>IFactory</code>接口的类都需要变动，很大程度增加了系统的不稳定性。</p>
+</blockquote>
+<p>也正因为如此，在实际的业务开发中，我们不应该有着强烈的强迫症和洁癖，认为一个系统的结构设计必须要完美的符合各种原则。要结合实际的业务去思考，如果系统结构的等级更新不频繁的话，不遵守某些原则也是有必要性的，毕竟<strong>所有的技术都是为业务而服务的</strong>。</p>
+
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2021-06-18 15:27</span>&nbsp;
+<a href="https://www.cnblogs.com/caimm/">蔡小明</a>&nbsp;
+阅读(<span id="post_view_count">96</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14899740" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(14899740);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: '', targetType: 'blogPost', targetId: '14899740', targetLink: 'https://www.cnblogs.com/caimm/p/14899740.html', title: 'Java设计模式（5：设计模式的分类及工厂模式详解）' })">举报</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="https://common.cnblogs.com/highlight/10.3.1/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 571601, cb_blogApp = 'caimm', cb_blogUserGuid = 'f5ebd0f5-bc4d-4c81-3493-08d78fefbe94';
+    var cb_entryId = 14899740, cb_entryCreatedDate = '2021-06-18 15:27', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+<a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id='div-gpt-ad-1592365906576-0' style='width: 300px; height: 250px;'></div>
+    </div>
+    <div id="under_post_card1"></div>
+    <div id="cnblogs_c2" class="under-post-card">
+        <div id='div-gpt-ad-1592366332455-0' style='width: 468px; height: 60px;'></div>
+    </div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+       deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+       loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+	<div id="sideBar">
+		<div id="sideBarMain">
+			<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright &copy; 2021 蔡小明
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjumApKUJsQ2op3ulNdKX9Y3ycGsebCaIahwokPbfGHMWS_kH2Z4w29PNjHDbj8iMne13twT6V9mTiCcf1vDfSZRAUAJSp-1j1UPU6UQ8BC05glfFuvTcXzqTkO91eWiiJU" />
+</body>
+</html>

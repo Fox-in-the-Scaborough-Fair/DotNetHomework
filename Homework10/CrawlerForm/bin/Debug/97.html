@@ -1,0 +1,1424 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-crossorigin" />
+    
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>「圣杰」 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    <link id="MainCss" rel="stylesheet" href="/skins/simplememory/bundle-simplememory.min.css?v=uknaX_hejnSu-njQgx4Hj1R0JiPLwUhFPUlwWNmWyB4" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/sheng-jie/custom.css?v=dI3&#x2B;bzKcn&#x2B;Xd3q1cAN6CrqbwRww=" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/SimpleMemory/bundle-SimpleMemory-mobile.min.css" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/sheng-jie/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/sheng-jie/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/sheng-jie/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 326932;
+        var currentBlogApp = 'sheng-jie';
+        var cb_enable_mathjax = true;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'SimpleMemory';
+        var visitorUserId = '';
+    </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: {
+        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+        extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+        Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
+    <script src="https://mathjax.cnblogs.com/2_7_5/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;v=20200504"></script>
+    
+</head>
+<body class="no-navbar">
+    <a name="top"></a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc navbar-custom">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="page_begin_html">
+        <a href="https://github.com/sheng-jie"  target="_blank" class="github-corner" aria-label="View source on GitHub"><svg width="100" height="100" viewBox="0 0 250 250" style="fill:#FD6C6C; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b0ea31a9aa64a27f329823a0796c132e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<style>
+#home{
+width:85%
+}
+#back-top {
+     position: fixed;
+     bottom: 10px;
+     right: 5px;
+     z-index: 99;
+}
+#back-top span {
+     width: 50px;
+     height: 64px;
+     display: block;
+     background:url(http://images.cnblogs.com/cnblogs_com/seanshao/855033/o_rocket.png) no-repeat center center;
+}
+#back-top a{outline:none}
+</style>
+    </div>
+    <!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/sheng-jie/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/sheng-jie/">『___知多少』</a>
+</h1>
+<h2>一名立志成为架构师并为之努力奋斗的程序员！</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/sheng-jie/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E3%80%8C%E5%9C%A3%E6%9D%B0%E3%80%8D">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/sheng-jie/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			<div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+
+
+
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2021/02/20.html">2021年2月20日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-dapr.html">
+    <span>
+            <span>[置顶]</span>
+        Dapr 知多少 | 分布式应用运行时
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：Dapr 是一个可移植的、事件驱动的运行时，它使任何开发人员能够轻松构建出弹性的、无状态和有状态的应用程序，并可运行在云平台或边缘计算中，它同时也支持多种开发语言和开发框架。        <a href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-dapr.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-02-20 12:23
+「圣杰」
+<span data-post-id="14420239" class="post-view-count">阅读(9666)</span> 
+<span data-post-id="14420239" class="post-comment-count">评论(27)</span> 
+<span data-post-id="14420239" class="post-digg-count">推荐(52)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14420239" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/04/14.html">2020年4月14日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-io-models.html">
+    <span>
+            <span>[置顶]</span>
+        IO 模型知多少 | 理论篇
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：同步异步I/O，阻塞非阻塞I/O是程序员老生常谈的话题了，也是自己一直以来懵懵懂懂的一个话题。比如：何为同步异步？何为阻塞与非阻塞？二者的区别在哪里？阻塞在何处？为什么会有多种IO模型，分别用来解决问题？常用的框架采用的是何种I/O模型？各种IO模型的优劣势在哪里，适用于何种应用场景？
+
+简而言之，对于I/O的认知，不能仅仅停留在字面上认识，了解内部玄机，才能深刻理解I/O，才能看清I/O相关问题的本质。        <a href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-io-models.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-04-14 08:06
+「圣杰」
+<span data-post-id="12695563" class="post-view-count">阅读(5344)</span> 
+<span data-post-id="12695563" class="post-comment-count">评论(16)</span> 
+<span data-post-id="12695563" class="post-digg-count">推荐(33)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=12695563" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2019/07/10.html">2019年7月10日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/11163264.html">
+    <span>
+            <span>[置顶]</span>
+        Orleans 知多少 | 1. .NET Core 分布式框架
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：Orleans 是一个支持有状态云生应用/服务水平伸缩的基于Virtual Actor 模型的.NET分布式框架。
+
+可以很好的结合.NET Core进行物联网云生应用的开发！        <a href="https://www.cnblogs.com/sheng-jie/p/11163264.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2019-07-10 13:10
+「圣杰」
+<span data-post-id="11163264" class="post-view-count">阅读(15460)</span> 
+<span data-post-id="11163264" class="post-comment-count">评论(43)</span> 
+<span data-post-id="11163264" class="post-digg-count">推荐(46)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=11163264" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2018/08/20.html">2018年8月20日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/9503650.html">
+    <span>
+            <span>[置顶]</span>
+        Windbg分析高内存占用问题
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：1. 问题简介 最近产品发布大版本补丁更新，一商超客户升级后，反馈系统经常奔溃，导致超市的收银系统无法正常收银，现场排队付款的顾客更是抱怨声声。为了缓解现场的情况， 客户都是手动回收IIS应用程序池才能解决。 这样的后果是很严重的，接到反馈，第一时间想到的是加内存吧，这样最快。但是客户从8G--&gt;1        <a href="https://www.cnblogs.com/sheng-jie/p/9503650.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2018-08-20 08:50
+「圣杰」
+<span data-post-id="9503650" class="post-view-count">阅读(16559)</span> 
+<span data-post-id="9503650" class="post-comment-count">评论(57)</span> 
+<span data-post-id="9503650" class="post-digg-count">推荐(123)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=9503650" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2017/07/03.html">2017年7月3日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/7109385.html">
+    <span>
+            <span>[置顶]</span>
+        性能优化知多少
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：1. 引言 最近一段时间，系统新版本要发布，在beta客户测试期间，暴露了很多问题，除了一些业务和异常问题外，其他都集中在性能上。有幸接触到这些性能调优的机会，当然要学习总结了。 性能优化是一个老生常谈的问题了，典型的性能问题如页面响应慢、接口超时，服务器负载高、并发数低，数据库频繁死锁等。而造成性        <a href="https://www.cnblogs.com/sheng-jie/p/7109385.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2017-07-03 08:15
+「圣杰」
+<span data-post-id="7109385" class="post-view-count">阅读(18487)</span> 
+<span data-post-id="7109385" class="post-comment-count">评论(46)</span> 
+<span data-post-id="7109385" class="post-digg-count">推荐(113)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=7109385" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2017/06/02.html">2017年6月2日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/6931646.html">
+    <span>
+            <span>[置顶]</span>
+        DDD理论学习系列——案例及目录
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：目录 &quot;DDD理论学习系列（1） 通用语言&quot; &quot;DDD理论学习系列（2） 领域&quot; &quot;DDD理论学习系列（3） 限界上下文&quot; &quot;DDD理论学习系列（4） 领域模型&quot; &quot;DDD理论学习系列（5） 统一建模语言&quot; &quot;DDD理论学习系列（6） 实体&quot; &quot;DDD理论学习系列（7） 值对象&quot; &quot;DDD理论学习系        <a href="https://www.cnblogs.com/sheng-jie/p/6931646.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2017-06-02 08:39
+「圣杰」
+<span data-post-id="6931646" class="post-view-count">阅读(10702)</span> 
+<span data-post-id="6931646" class="post-comment-count">评论(4)</span> 
+<span data-post-id="6931646" class="post-digg-count">推荐(9)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=6931646" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2017/02/14.html">2017年2月14日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/6398656.html">
+    <span>
+            <span>[置顶]</span>
+        『设计模式』之小试牛刀
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：为了更好的学习设计模式，以及督促自己完成设计模式的学习，现提笔为记。 怎么的，每周至少也要学一个设计模式！！！ 恳请大家的监督和不吝赐教，共同学习和进步！ 内容主要参考自《设计模式之禅》以及相关网络博文！ 源码路径： &quot;源代码&quot; C GitHub 目录 1. &quot;想学设计模式，你得先会看类图，一张图读        <a href="https://www.cnblogs.com/sheng-jie/p/6398656.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2017-02-14 17:42
+「圣杰」
+<span data-post-id="6398656" class="post-view-count">阅读(2371)</span> 
+<span data-post-id="6398656" class="post-comment-count">评论(1)</span> 
+<span data-post-id="6398656" class="post-digg-count">推荐(6)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=6398656" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2021/02/20.html">2021年2月20日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-dapr.html">
+    <span>
+        Dapr 知多少 | 分布式应用运行时
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：Dapr 是一个可移植的、事件驱动的运行时，它使任何开发人员能够轻松构建出弹性的、无状态和有状态的应用程序，并可运行在云平台或边缘计算中，它同时也支持多种开发语言和开发框架。        <a href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-dapr.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-02-20 12:23
+「圣杰」
+<span data-post-id="14420239" class="post-view-count">阅读(9666)</span> 
+<span data-post-id="14420239" class="post-comment-count">评论(27)</span> 
+<span data-post-id="14420239" class="post-digg-count">推荐(52)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14420239" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2021/02/04.html">2021年2月4日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/14371900.html">
+    <span>
+        Goodbye 2020，Welcome 2021 | 沉淀 2021
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言 2021年，已开启二月的篇章，农历新年也张灯结彩而来，只不过要留守过年。在这辞旧迎新之际，踏入而立之年之时，正是算账的好时候，数一数今年的成长，讲一讲来年的期望，最重要的还是要理一理欠下的旧账。 点滴沉淀 除了蜻蜓点水般的学习了Istio、Dapr、Go语言外，也就是翻译了一些Orleans文        <a href="https://www.cnblogs.com/sheng-jie/p/14371900.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-02-04 19:16
+「圣杰」
+<span data-post-id="14371900" class="post-view-count">阅读(218)</span> 
+<span data-post-id="14371900" class="post-comment-count">评论(2)</span> 
+<span data-post-id="14371900" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14371900" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2021/01/10.html">2021年1月10日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-istio.html">
+    <span>
+        Istio 知多少 | 下一代微服务的守护者
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：本文通过对云计算、云原生、Service Mesh等概念的追本溯源，带你领略下一代微服务架构Istio的演进历程。        <a href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-istio.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-01-10 17:52
+「圣杰」
+<span data-post-id="14258406" class="post-view-count">阅读(1390)</span> 
+<span data-post-id="14258406" class="post-comment-count">评论(1)</span> 
+<span data-post-id="14258406" class="post-digg-count">推荐(3)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14258406" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/10/19.html">2020年10月19日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/use-envoy-proxy-as-apigateways-in-eshoponcontainers.html">
+    <span>
+        eShopOnContainers 知多少[12]：Envoy gateways
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：1. 引言 在最新的eShopOnContainers 3.0 中Ocelot 网关被Envoy Proxy 替换。下面就来简要带大家了解下Envoy，并尝试梳理下为什么要使用Envoy替代Ocelot。 2. Hello Envoy ENVOY IS AN OPEN SOURCE EDGE AND        <a href="https://www.cnblogs.com/sheng-jie/p/use-envoy-proxy-as-apigateways-in-eshoponcontainers.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-10-19 07:32
+「圣杰」
+<span data-post-id="13836884" class="post-view-count">阅读(2953)</span> 
+<span data-post-id="13836884" class="post-comment-count">评论(8)</span> 
+<span data-post-id="13836884" class="post-digg-count">推荐(21)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13836884" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/10/10.html">2020年10月10日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-diagnostic-in-dotnet.html">
+    <span>
+        诊断日志知多少 | DiagnosticSource 在.NET上的应用
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：1. 引言 最近为了解决ABP集成CAP时无法通过拦截器启用工作单元的问题，从小伙伴那里学了一招。借助DiagnossticSource，可以最小改动完成需求。关于DiagnosticSource晓东大佬18年在文章 在 .NET Core 中使用 Diagnostics (Diagnostic S        <a href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-diagnostic-in-dotnet.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-10-10 08:03
+「圣杰」
+<span data-post-id="13789243" class="post-view-count">阅读(2450)</span> 
+<span data-post-id="13789243" class="post-comment-count">评论(12)</span> 
+<span data-post-id="13789243" class="post-digg-count">推荐(27)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13789243" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/08/29.html">2020年8月29日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/Chinese-Orleans-Docs-Online.html">
+    <span>
+        Orleans 知多少 | Orleans 中文文档上线
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：Orleans 中文文档上线        <a href="https://www.cnblogs.com/sheng-jie/p/Chinese-Orleans-Docs-Online.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-08-29 22:51
+「圣杰」
+<span data-post-id="13583865" class="post-view-count">阅读(1297)</span> 
+<span data-post-id="13583865" class="post-comment-count">评论(5)</span> 
+<span data-post-id="13583865" class="post-digg-count">推荐(12)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13583865" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/08/20.html">2020年8月20日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/use-apollo-with-dotnet-on-k8s.html">
+    <span>
+        .NET Core + K8S + Apollo 玩转配置中心
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：本文接将主要来介绍如何基于Helm快速部署Apollo集群至K8S，并与.NET Core应用进行集成，同时介绍下如何平滑迁移配置到Apollo。        <a href="https://www.cnblogs.com/sheng-jie/p/use-apollo-with-dotnet-on-k8s.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-08-20 08:32
+「圣杰」
+<span data-post-id="13533006" class="post-view-count">阅读(3798)</span> 
+<span data-post-id="13533006" class="post-comment-count">评论(20)</span> 
+<span data-post-id="13533006" class="post-digg-count">推荐(26)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13533006" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/07/27.html">2020年7月27日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/use-loki-with-netcore-on-k8s.html">
+    <span>
+        .NET Core + K8S + Loki  玩转日志聚合
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：体验一把Loki，从此爱上她，忘了她(ELK/EFK)！        <a href="https://www.cnblogs.com/sheng-jie/p/use-loki-with-netcore-on-k8s.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-07-27 06:48
+「圣杰」
+<span data-post-id="13380190" class="post-view-count">阅读(2081)</span> 
+<span data-post-id="13380190" class="post-comment-count">评论(1)</span> 
+<span data-post-id="13380190" class="post-digg-count">推荐(13)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13380190" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/07/22.html">2020年7月22日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/build-free-email-service-with-azure-function-within-5-mins.html">
+    <span>
+        五分钟快速搭建Serverless免费邮件服务
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：薅羊毛啦，5分钟快速搭建免费Serverless邮件服务，每月可发25000封邮件！！！        <a href="https://www.cnblogs.com/sheng-jie/p/build-free-email-service-with-azure-function-within-5-mins.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-07-22 23:19
+「圣杰」
+<span data-post-id="13363794" class="post-view-count">阅读(1232)</span> 
+<span data-post-id="13363794" class="post-comment-count">评论(6)</span> 
+<span data-post-id="13363794" class="post-digg-count">推荐(5)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13363794" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/07/10.html">2020年7月10日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/13274580.html">
+    <span>
+        eShopOnContainers 知多少[11]：服务间通信之gRPC
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：#&#160;引言 最近翻看最新3.0&#160;eShopOncontainers源码，发现其在架构选型中补充了&#160;gRPC&#160;进行服务间通信。那就索性也写一篇，作为系列的补充。 #&#160;gRPC 老规矩，先来理一下gRPC的基本概念。gRPC是Google开源的RPC框架，比肩dubbo、thrift、brpc。其优势在于        <a href="https://www.cnblogs.com/sheng-jie/p/13274580.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-07-10 00:08
+「圣杰」
+<span data-post-id="13274580" class="post-view-count">阅读(2393)</span> 
+<span data-post-id="13274580" class="post-comment-count">评论(4)</span> 
+<span data-post-id="13274580" class="post-digg-count">推荐(8)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13274580" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/05/12.html">2020年5月12日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-the-io-models-demo.html">
+    <span>
+        IO 模型知多少 | 代码篇
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言 之前的一篇介绍IO 模型的文章 &quot;IO 模型知多少 | 理论篇&quot; 比较偏理论，很多同学反应不是很好理解。这一篇咱们换一个角度，从代码角度来分析一下。 socket 编程基础 开始之前，我们先来梳理一下，需要提前了解的几个概念： socket: 直译为“插座”，在计算机通信领域，socket 被        <a href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-the-io-models-demo.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-05-12 08:55
+「圣杰」
+<span data-post-id="12871416" class="post-view-count">阅读(2564)</span> 
+<span data-post-id="12871416" class="post-comment-count">评论(14)</span> 
+<span data-post-id="12871416" class="post-digg-count">推荐(25)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=12871416" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/04/14.html">2020年4月14日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-io-models.html">
+    <span>
+        IO 模型知多少 | 理论篇
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：同步异步I/O，阻塞非阻塞I/O是程序员老生常谈的话题了，也是自己一直以来懵懵懂懂的一个话题。比如：何为同步异步？何为阻塞与非阻塞？二者的区别在哪里？阻塞在何处？为什么会有多种IO模型，分别用来解决问题？常用的框架采用的是何种I/O模型？各种IO模型的优劣势在哪里，适用于何种应用场景？
+
+简而言之，对于I/O的认知，不能仅仅停留在字面上认识，了解内部玄机，才能深刻理解I/O，才能看清I/O相关问题的本质。        <a href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-io-models.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-04-14 08:06
+「圣杰」
+<span data-post-id="12695563" class="post-view-count">阅读(5344)</span> 
+<span data-post-id="12695563" class="post-comment-count">评论(16)</span> 
+<span data-post-id="12695563" class="post-digg-count">推荐(33)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=12695563" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/03/02.html">2020年3月2日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/Deploy-ASP-NET-CORE-WITH-REVERSE-PROXY.html">
+    <span>
+        ASP.NET Core 反向代理部署知多少
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：如何实现多域名单站点部署？        <a href="https://www.cnblogs.com/sheng-jie/p/Deploy-ASP-NET-CORE-WITH-REVERSE-PROXY.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-03-02 08:20
+「圣杰」
+<span data-post-id="12381777" class="post-view-count">阅读(4974)</span> 
+<span data-post-id="12381777" class="post-comment-count">评论(15)</span> 
+<span data-post-id="12381777" class="post-digg-count">推荐(37)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=12381777" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/02/23.html">2020年2月23日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/Deploy-an-ASP-NET-Core-app-to-k8s-with-helm.html">
+    <span>
+        ASP.NET Core 借助 Helm 部署应用至K8S
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：前言 玩K8S也有一段时间了，借助云服务提供商的K8S控制台，已经可以很方便的快速部署应用至K8S。通过简单的点击，可以一次性帮忙创建K8S 对象：Deployment、Service、Ingress、ConfigMap等。但是当服务的规模上来后，这种方式就有点捉襟见肘。尤其是需要同时更新多个关联服        <a href="https://www.cnblogs.com/sheng-jie/p/Deploy-an-ASP-NET-Core-app-to-k8s-with-helm.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-02-23 19:47
+「圣杰」
+<span data-post-id="12353451" class="post-view-count">阅读(1412)</span> 
+<span data-post-id="12353451" class="post-comment-count">评论(2)</span> 
+<span data-post-id="12353451" class="post-digg-count">推荐(8)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=12353451" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2020/02/10.html">2020年2月10日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/orlans-state-grain.html">
+    <span>
+        Orleans 知多少 | 4. 有状态的Grain
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言 Orleans 的优势之一就是：支持有状态服务的水平扩展。那这一节我们就来看看如何来了解下有状态的Grain。 第一个有状态的Grain 先来看下上节中定义的Grain： 上面的Grain中定义属性 用来保存登录状态，其是保存在内存中的，一旦服务奔溃或重启，维护的状态数据就会丢失。 很显然，这        <a href="https://www.cnblogs.com/sheng-jie/p/orlans-state-grain.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2020-02-10 19:59
+「圣杰」
+<span data-post-id="12292427" class="post-view-count">阅读(985)</span> 
+<span data-post-id="12292427" class="post-comment-count">评论(2)</span> 
+<span data-post-id="12292427" class="post-digg-count">推荐(4)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=12292427" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2019/12/22.html">2019年12月22日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/12080061.html">
+    <span>
+        Goodbye 2019，Welcome 2020 | 沉淀 2020
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言﻿ 时间如梭，娃都可以打酱油了。﻿ 转眼间第一个五年计划，已过了一半。﻿ 年终总结是个打脸的好地方，曾经夸下的海口，有的真的成了海口。﻿﻿ 所幸，一切都在按好的方向发展。但乐观背后容易忽略潜在的问题，所以，在2020来临之际，是时候对2019做个具体的回顾，并对来年做个具体的展望。﻿﻿ 谈成长﻿        <a href="https://www.cnblogs.com/sheng-jie/p/12080061.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2019-12-22 16:09
+「圣杰」
+<span data-post-id="12080061" class="post-view-count">阅读(1141)</span> 
+<span data-post-id="12080061" class="post-comment-count">评论(8)</span> 
+<span data-post-id="12080061" class="post-digg-count">推荐(11)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=12080061" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2019/10/28.html">2019年10月28日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/Hello-Orleans.html">
+    <span>
+        Orleans 知多少 | 3. Hello Orleans
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：1. 引言 是的， Orleans v3.0.0 已经发布了，并已经完全支持 .NET Core 3.0 。 所以，Orleans 系列是时候继续了，抱歉，让大家久等了。 万丈高楼平地起，这一节我们就先来了解下Orleans的基本使用。 2. 模板项目讲解 在上一篇文章中，我们了解到Orleans         <a href="https://www.cnblogs.com/sheng-jie/p/Hello-Orleans.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2019-10-28 09:18
+「圣杰」
+<span data-post-id="11750397" class="post-view-count">阅读(2433)</span> 
+<span data-post-id="11750397" class="post-comment-count">评论(21)</span> 
+<span data-post-id="11750397" class="post-digg-count">推荐(14)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=11750397" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2019/10/11.html">2019年10月11日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/11653196.html">
+    <span>
+        集群环境下，你不得不注意的ASP.NET Core Data Protection 机制
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言 最近线上环境遇到一个问题，就是ASP.NET Core Web应用在单个容器使用正常，扩展多个容器无法访问的问题。查看容器日志，发现以下异常： 通过排查，发现了是由于 &quot;ASP.NET Core Data Protection&quot; 机制引起的。 Data Protection 机制 对于Data        <a href="https://www.cnblogs.com/sheng-jie/p/11653196.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2019-10-11 11:37
+「圣杰」
+<span data-post-id="11653196" class="post-view-count">阅读(1438)</span> 
+<span data-post-id="11653196" class="post-comment-count">评论(0)</span> 
+<span data-post-id="11653196" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=11653196" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2019/09/04.html">2019年9月4日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/Using-ConfigMap-with-NETCore.html">
+    <span>
+        .NET Core 使用 K8S ConfigMap的正确姿势
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：背景 ASP.NET Core默认的配置文件定义在 和`appsettings.{Environment}.json`文件中。 这里面有一个问题就是，在使用容器部署时，每次修改配置文件都需要重新构建镜像。当然你也可能会说，我的配置文件很稳定不需要修改，但你又如何确保配置文件中一些机密配置的安全问题呢        <a href="https://www.cnblogs.com/sheng-jie/p/Using-ConfigMap-with-NETCore.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2019-09-04 09:16
+「圣杰」
+<span data-post-id="11456972" class="post-view-count">阅读(3237)</span> 
+<span data-post-id="11456972" class="post-comment-count">评论(10)</span> 
+<span data-post-id="11456972" class="post-digg-count">推荐(12)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=11456972" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/sheng-jie/archive/2019/08/29.html">2019年8月29日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/11427633.html">
+    <span>
+        ASP.NET Core知多少（13）：路由重写及重定向
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：背景 在做微信公众号的改版工作，之前的业务逻辑全塞在一个控制器中，现需要将其按厂家拆分，但要求入口不变。 拆分很简单，定义控制器基类，添加公用虚方法并实现，各个厂家按需重载。 但如何根据统一的入口参数路由到不同的控制器呢？ 最容易想到的方案无外乎两种： 1. 路由重定向 2. 路由重写 简易方案 但        <a href="https://www.cnblogs.com/sheng-jie/p/11427633.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2019-08-29 08:49
+「圣杰」
+<span data-post-id="11427633" class="post-view-count">阅读(2707)</span> 
+<span data-post-id="11427633" class="post-comment-count">评论(1)</span> 
+<span data-post-id="11427633" class="post-digg-count">推荐(3)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=11427633" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+
+<div class="topicListFooter">
+    <div id="nav_next_page">
+        
+    <a href="https://www.cnblogs.com/sheng-jie/default.html?page=2">
+        下一页
+    </a>
+
+    </div>    
+</div>
+
+
+
+
+
+
+<script>
+    updatePostStats(
+        $(".post-view-count").map(function () { return this.dataset.postId }).get(),
+        function(id, count) { $(".post-view-count[data-post-id=" + id + "]").text("阅读(" + count + ")") },
+        function(id, count) { $(".post-comment-count[data-post-id=" + id + "]").text("评论(" + count + ")") },
+        function(id, count) { $(".post-digg-count[data-post-id=" + id + "]").text("推荐(" + count + ")") });
+</script>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+	<div id="sideBar">
+		<div id="sideBarMain">
+			<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright &copy; 2021 「圣杰」
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    <div id="page_end_html">
+        <script src="https://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link href="https://files.cnblogs.com/files/sheng-jie/auto.catalogs.css" rel="stylesheet">
+<script type="text/javascript" src="https://files.cnblogs.com/files/sheng-jie/auto.catalogs.js"></script>
+<script>
+//Setting ico for cnblogs
+var linkObject = document.createElement('link');
+linkObject.rel = "shortcut icon";
+linkObject.href = "https://files.cnblogs.com/files/sheng-jie/brand.ico";
+document.getElementsByTagName("head")[0].appendChild(linkObject);
+
+window.tctipConfig = {
+        imagePrefix: "https://files.cnblogs.com/files/kdy11/",
+        cssPrefix:     "https://files.cnblogs.com/files/kdy11",
+        buttonImageId:  4,
+        buttonTip:  "dashang",
+        list:{
+            alipay: {qrimg: "https://files.cnblogs.com/files/sheng-jie/zfb.bmp"},
+            weixin:{qrimg: "https://files.cnblogs.com/files/sheng-jie/wechat.bmp"},
+        }
+};
+</script>
+    </div>
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjtqpOZt54zDEKx5WLGjpGWPa8BKTP9r8mL4prhi5lo7tNdIyiId7TMYPUUxwLE_U3pLWGohvWTeaxfyFYYboRKlh1E6-Zb5iYy_KK9yunxCUYVFeUlwptjtMs3e2bt3mNU" />
+</body>
+</html>

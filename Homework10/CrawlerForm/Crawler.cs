@@ -11,142 +11,174 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CrawlerForm {
-  class Crawler {
-    public event Action<Crawler> CrawlerStopped;
-    public event Action<Crawler,int,string,string> PageDownloaded;
-        //待下载队列
-    public ConcurrentQueue<string> pending = new ConcurrentQueue<string>();
-    //已下载网页
-    public ConcurrentDictionary<string, bool> urls = new ConcurrentDictionary<string, bool>();
-    //URL检测表达式，用于在HTML文本中查找URL
-    public static readonly string UrlDetectRegex = @"(href|HREF)[]*=[]*[""'](?<url>[^""'#>]+)[""']";
-    //URL解析表达式
-    public static readonly string urlParseRegex = @"^(?<site>(?<protocal>https?)://(?<host>[\w.-]+)(:\d+)?($|/))(\w+/)*(?<file>[^#?]*)";
-    //主机过滤规则
-    public string HostFilter { get; set; }
-    //文件过滤规则
-    public string FileFilter { get; set; }
-    //最大下载数量
-    public int MaxPage { get; set; }
-    //起始网址
-    public string StartURL { get; set; }
-    //网页编码
-    public Encoding HtmlEncoding { get; set; } 
-   
-    public Crawler() {
-      MaxPage = 100;
-      HtmlEncoding = Encoding.UTF8;
-    }
-
-    public void Start() 
+namespace CrawlerForm
+{
+    class Crawler
     {
-        urls.Clear();
-        pending = new ConcurrentQueue<string>();
-        pending.Enqueue(StartURL);
+        //已参考老师的代码并进行了删改
+        public event Action<Crawler> StopCrawler;
 
-        List<Task> tasks = new List<Task>();
-        int complatedCount = 0;
-        PageDownloaded += (crawler, index, url, info) => { complatedCount++; };
+        public event Action<Crawler, int, string, string> DownloadPage;
 
-        while (tasks.Count < MaxPage)
+        private ConcurrentQueue<string> urlQueue = new ConcurrentQueue<string>();
+
+        private ConcurrentDictionary<string, bool> urlDictionary = new ConcurrentDictionary<string, bool>();
+
+        private readonly string strRef = @"(href|HREF)\s*=\s*[""'](?<url>[^""'#>]+)[""']";
+
+        public static readonly string parseStrRef = @"^(?<site>(?<protocal>https?)://(?<host>[\w\d.-]+)(:\d+)?($|/))(\w+/)*(?<file>[^#?]*)";
+        public string hostUrl { get; set; }
+        public string fileUrl { get; set; }
+        public int MaxPage { get; set; }
+        public string StartURL { get; set; }
+        public Crawler()
         {
-            if (!pending.TryDequeue(out string url))
+            MaxPage = 100;
+        }
+
+        public void Start()
+        {
+            urlDictionary.Clear();
+
+            urlQueue = new ConcurrentQueue<string>();
+
+            urlQueue.Enqueue(StartURL);
+
+            List<Task> tasks = new List<Task>();
+
+            int completedCount = 0;//已完成的任务数
+
+            DownloadPage += (crawler, index, url, info) => { completedCount++; };
+
+            while (tasks.Count < MaxPage)
             {
-                if (complatedCount < tasks.Count)
+                if (!urlQueue.TryDequeue(out string url))
                 {
-                    continue;
+                    if (completedCount < tasks.Count)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        break;//所有任务都完成，队列无url
+                    }
                 }
-                else 
+
+                int index = tasks.Count;
+
+                Task task = Task.Run(() => DownloadAndParse(url, index));
+
+                tasks.Add(task);
+            }
+
+            Task.WaitAll(tasks.ToArray()); //等待剩余任务全部执行完毕
+
+            StopCrawler(this);
+        }
+
+        private void DownloadAndParse(string url, int index)
+        {
+            try
+            {
+                string html = DownLoad(url, index);
+
+                urlDictionary[url] = true;
+
+                Parse(html, url);//解析,并加入新的链接
+
+                DownloadPage(this, index, url, "success");
+            }
+            catch (Exception ex)
+            {
+                DownloadPage(this, index, url, "Error:" + ex.Message);
+            }
+        }
+
+        private string DownLoad(string url, int index)
+        {
+            WebClient webClient = new WebClient();
+
+            webClient.Encoding = Encoding.UTF8;
+
+            string html = webClient.DownloadString(url);
+
+            File.WriteAllText(index + ".html", html, Encoding.UTF8);
+
+            return html;
+        }
+
+        private void Parse(string html, string pageUrl)
+        {
+            var matches = new Regex(strRef).Matches(html);
+
+            foreach (Match match in matches)
+            {
+                string linkUrl = match.Groups["url"].Value;
+
+                if (linkUrl == null || linkUrl == "" || linkUrl.StartsWith("javascript:")) continue;
+
+                linkUrl = FixUrl(linkUrl, pageUrl);
+
+                Match linkUrlMatch = Regex.Match(linkUrl, parseStrRef);
+
+                string host = linkUrlMatch.Groups["host"].Value;
+
+                string file = linkUrlMatch.Groups["file"].Value;
+
+                if (file == "") file = "index.html";
+
+                if (Regex.IsMatch(host, hostUrl) && Regex.IsMatch(file, fileUrl) 
+                    && !urlDictionary.ContainsKey(linkUrl))
                 {
-                    break;
+                    urlQueue.Enqueue(linkUrl);
+
+                    urlDictionary.TryAdd(linkUrl, false);
                 }
             }
-            int index = tasks.Count;
-            Task task = Task.Run(() => DownloadAndParse(url, index));
-            tasks.Add(task);
         }
-        Task.WaitAll(tasks.ToArray());
-        CrawlerStopped(this);
 
-      while (urls.Count < MaxPage && pending.Count > 0) {
-        pending.TryDequeue(out string url);
-        try {
-          string html = DownLoad(url); // 下载
-          urls[url] = true;      //标识为已爬过
-          PageDownloaded(this,tasks.Count,url,"success");
-          Parse(html, url);//解析,并加入新的链接
-        }catch (Exception ex) {
-          PageDownloaded(this,tasks.Count,url,"  Error:" + ex.Message);
-        }
-      }
-      CrawlerStopped(this);
-    }
-
-        void DownloadAndParse(string url, int index)
+        static private string FixUrl(string url, string baseUrl)
         {
-            while (index < MaxPage)
+            if (url.Contains("://"))
             {
-                Parse(DownLoad(url), url);
+                return url;
             }
+
+            if (url.StartsWith("//"))
+            {
+                Match urlMatch = Regex.Match(baseUrl, parseStrRef);
+
+                string protocal = urlMatch.Groups["protocal"].Value;
+
+                return protocal + ":" + url;
+            }
+
+            if (url.StartsWith("/"))
+            {
+                Match urlMatch = Regex.Match(baseUrl, parseStrRef);
+
+                String site = urlMatch.Groups["site"].Value;
+
+                return site.EndsWith("/") ? site + url.Substring(1) : site + url;
+            }
+
+            if (url.StartsWith("../"))
+            {
+                url = url.Substring(3);
+
+                int idx = baseUrl.LastIndexOf('/');
+
+                return FixUrl(url, baseUrl.Substring(0, idx));
+            }
+
+            if (url.StartsWith("./"))
+            {
+                return FixUrl(url.Substring(2), baseUrl);
+            }
+
+            int end = baseUrl.LastIndexOf("/");
+
+            return baseUrl.Substring(0, end) + "/" + url;
         }
-
-    private string DownLoad(string url) {
-      WebClient webClient = new WebClient();
-      webClient.Encoding = Encoding.UTF8;
-      string html = webClient.DownloadString(url);
-      string fileName = urls.Count.ToString();
-      File.WriteAllText(fileName, html, Encoding.UTF8);
-      return html;
     }
-
-    private void Parse(string html, string pageUrl) {
-      var matches = new Regex(UrlDetectRegex).Matches(html);
-      foreach (Match match in matches) {
-        string linkUrl = match.Groups["url"].Value;
-        if (linkUrl == null || linkUrl == ""||linkUrl.StartsWith("javascript:")) continue;
-
-        linkUrl = FixUrl(linkUrl, pageUrl);//转绝对路径
-        //解析出host和file两个部分，进行过滤
-        Match linkUrlMatch = Regex.Match(linkUrl, urlParseRegex);
-        string host = linkUrlMatch.Groups["host"].Value;
-        string file= linkUrlMatch.Groups["file"].Value;
-        if (Regex.IsMatch(host, HostFilter)&&Regex.IsMatch(file, FileFilter) 
-          &&!urls.ContainsKey(linkUrl)) {
-          pending.Enqueue(linkUrl);
-        }
-      }
-    }
-
-    //将非完整路径转为完整路径
-    static private string FixUrl(string url, string pageUrl) {
-      if (url.Contains("://")) { //完整路径
-        return url;
-      }
-      if (url.StartsWith("//")) {
-        Match urlMatch = Regex.Match(pageUrl, urlParseRegex);
-        string protocal = urlMatch.Groups["protocal"].Value;
-        return protocal + ":" + url;
-      }
-      if (url.StartsWith("/")) {
-        Match urlMatch = Regex.Match(pageUrl, urlParseRegex);
-        String site = urlMatch.Groups["site"].Value; 
-        return site.EndsWith("/") ? site + url.Substring(1) : site + url;
-      }
-      
-      if (url.StartsWith("../")) {
-        url = url.Substring(3);
-        int idx = pageUrl.LastIndexOf('/');
-        return FixUrl(url, pageUrl.Substring(0, idx));
-      }
-
-      if (url.StartsWith("./")) {
-        return FixUrl(url.Substring(2), pageUrl);
-      }
-      //非上述开头的相对路径
-      int end = pageUrl.LastIndexOf("/");
-      return pageUrl.Substring(0, end) + "/" + url;
-    }
-
-  }
 }

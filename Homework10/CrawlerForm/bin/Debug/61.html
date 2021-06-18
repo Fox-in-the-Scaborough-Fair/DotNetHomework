@@ -1,0 +1,617 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-crossorigin" />
+    
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>唯有自己强大 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/xyf327/custom.css?v=oawLlJ6b/laEHHZetwadQ8BObEE=" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/moonlightink/bundle-moonlightink-mobile.min.css?v=axcwoS9UbqWFSKj9O2YcPP0sVreDAEIZDpcqOVKt8M4" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xyf327/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xyf327/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xyf327/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 681322;
+        var currentBlogApp = 'xyf327';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'MoonlightInk';
+        var visitorUserId = '';
+    </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    
+    
+    
+</head>
+<body class="no-navbar">
+    <a name="top"></a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc navbar-custom">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="page_begin_html">
+        
+
+    </div>
+    <!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/xyf327/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/xyf327/">唯有自己强大</a>
+</h1>
+<h2>一个人应该竭尽所能，然后才听天由命。
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/xyf327/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E5%94%AF%E6%9C%89%E8%87%AA%E5%B7%B1%E5%BC%BA%E5%A4%A7">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/xyf327/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			<div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+
+
+
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/xyf327/archive/2021/06/18.html">2021年6月18日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/xyf327/p/14901060.html">
+    <span>
+        Winform图片移动与缩放
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：摘要 在机器视觉项目中，经常用c#做Winform界面交付给客户使用，在界面中，可能输入的图片比较大，一般的显示器分辨率无法显示全，然后还需要放大看清楚图片里面的文字内容，所以需要用到图片的拖拽与缩放功能。 首先新建一个窗体，拖一个panel控件到窗体中，然后在拖一个pictureobx控件到pan        <a href="https://www.cnblogs.com/xyf327/p/14901060.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-06-18 20:05
+唯有自己强大
+<span data-post-id="14901060" class="post-view-count">阅读(0)</span> 
+<span data-post-id="14901060" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14901060" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14901060" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/xyf327/p/14900075.html">
+    <span>
+        复杂背景的缺陷提取
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：摘要 本篇用halcon和opencv分别实现对于复杂背景下的缺陷提取实战 如下图，背景很复杂，周围划痕都是正常区域。要提取中间小块的黑色区域（缺陷区域）。单纯用频域滤波和阈值提取，效果一般。都会把周围的划痕提取出来。 Halcon实现 思路： 通过中值滤波后，对图像进行动态阈值提取细化缺陷部分，结        <a href="https://www.cnblogs.com/xyf327/p/14900075.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-06-18 16:30
+唯有自己强大
+<span data-post-id="14900075" class="post-view-count">阅读(93)</span> 
+<span data-post-id="14900075" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14900075" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14900075" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/xyf327/archive/2021/06/16.html">2021年6月16日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/xyf327/p/14889294.html">
+    <span>
+        halcon——缺陷检测常用方法总结(特征训练）
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言 机器视觉中缺陷检测分为一下几种： blob分析+特征 模板匹配（定位）+差分：halcon——缺陷检测常用方法总结（模板匹配（定位）+差分） - 唯有自己强大 - 博客园 (cnblogs.com) 光度立体：halcon——缺陷检测常用方法总结（光度立体） - 唯有自己强大 - 博客园 (c        <a href="https://www.cnblogs.com/xyf327/p/14889294.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-06-16 14:35
+唯有自己强大
+<span data-post-id="14889294" class="post-view-count">阅读(49)</span> 
+<span data-post-id="14889294" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14889294" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14889294" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/xyf327/archive/2021/06/13.html">2021年6月13日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/xyf327/p/14880728.html">
+    <span>
+        halcon——常见阈值分割总结
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言 主要讲述几种halcon中经常用到的一些阈值分割算子。 1，全局阈值分割 threshold(Image : Region : MinGray, MaxGray : ) 全局阈值分割，适用于环境稳定，目标与背景存在明显的灰度差的场合。（即根据高低双阈值将图像分为前景和背景） 利用灰度直方图确定        <a href="https://www.cnblogs.com/xyf327/p/14880728.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-06-13 17:43
+唯有自己强大
+<span data-post-id="14880728" class="post-view-count">阅读(14)</span> 
+<span data-post-id="14880728" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14880728" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14880728" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/xyf327/p/14880348.html">
+    <span>
+        halcon——条码定位与识别（一维码）
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言 条码识别的应用大多数在物流行业中（需要识别的条码一般在快递包裹中），对于一维码的识别，halcon有自带条码识别算子create_bar_code_model和find_bar_code&#160;。而快递标签处有很多的文字，符号和边框，增大了定位的难度。，因此有时也有检测不到条码的情况。针对这一现象，        <a href="https://www.cnblogs.com/xyf327/p/14880348.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-06-13 15:22
+唯有自己强大
+<span data-post-id="14880348" class="post-view-count">阅读(11)</span> 
+<span data-post-id="14880348" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14880348" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14880348" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/xyf327/archive/2021/06/12.html">2021年6月12日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/xyf327/p/14878723.html">
+    <span>
+        halcon——缺陷检测常用方法总结（测量拟合）
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言 机器视觉中缺陷检测分为一下几种： blob分析+特征 模板匹配（定位）+差分：halcon——缺陷检测常用方法总结（模板匹配（定位）+差分） - 唯有自己强大 - 博客园 (cnblogs.com) 光度立体：halcon——缺陷检测常用方法总结（光度立体） - 唯有自己强大 - 博客园 (c        <a href="https://www.cnblogs.com/xyf327/p/14878723.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-06-12 18:11
+唯有自己强大
+<span data-post-id="14878723" class="post-view-count">阅读(89)</span> 
+<span data-post-id="14878723" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14878723" class="post-digg-count">推荐(2)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14878723" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/xyf327/archive/2021/06/11.html">2021年6月11日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/xyf327/p/14872873.html">
+    <span>
+        halcon——缺陷检测常用方法总结（模板匹配（定位）+差分）
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言 机器视觉中缺陷检测分为一下几种： blob分析+特征 模板匹配（定位）+差分 光度立体：halcon——缺陷检测常用方法总结（光度立体） - 唯有自己强大 - 博客园 (cnblogs.com) 特征训练 测量拟合 频域+空间域结合：halcon——缺陷检测常用方法总结（频域空间域结合） -         <a href="https://www.cnblogs.com/xyf327/p/14872873.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-06-11 17:41
+唯有自己强大
+<span data-post-id="14872873" class="post-view-count">阅读(121)</span> 
+<span data-post-id="14872873" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14872873" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14872873" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/xyf327/archive/2021/06/10.html">2021年6月10日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/xyf327/p/14871414.html">
+    <span>
+        halcon——缺陷检测常用方法总结（光度立体）
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言 机器视觉中缺陷检测分为一下几种： blob分析+特征 模板匹配（定位）+差分 光度立体 特征训练 测量拟合 频域+空间域结合：halcon——缺陷检测常用方法总结（频域空间域结合） - 唯有自己强大 - 博客园 (cnblogs.com) 深度学习 前一篇总结了频域与空间域的结合使用，本篇就光        <a href="https://www.cnblogs.com/xyf327/p/14871414.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-06-10 16:02
+唯有自己强大
+<span data-post-id="14871414" class="post-view-count">阅读(168)</span> 
+<span data-post-id="14871414" class="post-comment-count">评论(1)</span> 
+<span data-post-id="14871414" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14871414" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/xyf327/archive/2021/06/09.html">2021年6月9日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/xyf327/p/14868606.html">
+    <span>
+        halcon——缺陷检测常用方法总结（频域空间域结合）
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：摘要 缺陷检测是视觉需求中难度最大一类需求，主要是其稳定性和精度的保证。首先常见缺陷：凹凸、污点瑕疵、划痕、裂缝、探伤等。&#160;缺陷检测算法不同于尺寸、二维码、OCR等算法。后者应用场景比较单一，基本都是套用一些成熟的算子，所以门槛较低，比较容易做成标准化的工具。而缺陷检测极具行业特点，不同行业的缺陷算        <a href="https://www.cnblogs.com/xyf327/p/14868606.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-06-09 20:47
+唯有自己强大
+<span data-post-id="14868606" class="post-view-count">阅读(149)</span> 
+<span data-post-id="14868606" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14868606" class="post-digg-count">推荐(3)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14868606" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+		
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/xyf327/archive/2021/06/08.html">2021年6月8日</a>
+    </div>
+
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/xyf327/p/14863873.html">
+    <span>
+        机器视觉——（四，算法）
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：引言 前面对机器视觉的硬件做了一些系统的总结： 机器视觉——（一，光源） - 唯有自己强大 - 博客园 (cnblogs.com) 机器视觉——（二，相机） - 唯有自己强大 - 博客园 (cnblogs.com) 机器视觉——（三，镜头） - 唯有自己强大 - 博客园 (cnblogs.com)         <a href="https://www.cnblogs.com/xyf327/p/14863873.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+        <div class="clear"></div>
+        <div class="postDesc">posted @ 2021-06-08 17:55
+唯有自己强大
+<span data-post-id="14863873" class="post-view-count">阅读(50)</span> 
+<span data-post-id="14863873" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14863873" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14863873" rel="nofollow">
+    编辑
+</a>
+</div>
+        <div class="clear"></div>
+</div>
+
+
+
+<div class="topicListFooter">
+    <div id="nav_next_page">
+        
+    <a href="https://www.cnblogs.com/xyf327/default.html?page=2">
+        下一页
+    </a>
+
+    </div>    
+</div>
+
+
+
+
+
+
+<script>
+    updatePostStats(
+        $(".post-view-count").map(function () { return this.dataset.postId }).get(),
+        function(id, count) { $(".post-view-count[data-post-id=" + id + "]").text("阅读(" + count + ")") },
+        function(id, count) { $(".post-comment-count[data-post-id=" + id + "]").text("评论(" + count + ")") },
+        function(id, count) { $(".post-digg-count[data-post-id=" + id + "]").text("推荐(" + count + ")") });
+</script>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+	<div id="sideBar">
+		<div id="sideBarMain">
+			<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright &copy; 2021 唯有自己强大
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjsw79m1guSvYUr0lBsdmfxnNImQRuKIAOy8xx6d3AwrDKziNaYAizIXBjNuYWkQ8ROVpIGUe4OF3GHJFI6JKC9h1QtfYFahPyd0VpZEAibQWFGoQ9gD-JcMqVTIz3UrsLk" />
+</body>
+</html>

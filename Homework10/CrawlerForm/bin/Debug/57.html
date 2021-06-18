@@ -1,0 +1,1059 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-crossorigin" />
+    
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>lillcol - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    <link id="MainCss" rel="stylesheet" href="/skins/summergarden/bundle-summergarden.min.css?v=17CFqmUGzgSUdlr6Xa6oGW7X7XvIj1IyrQd95VKUaLY" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/lillcol/custom.css?v=NtBRJkJK6PFpkDxbnwTt8TkWAMc=" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/summergarden/bundle-summergarden-mobile.min.css?v=aZJNQzg9uMR3NZCOSIKtyAn7reaQyMefM8oj4oKSjNk" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/lillcol/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/lillcol/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/lillcol/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 467790;
+        var currentBlogApp = 'lillcol';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'summerGarden';
+        var visitorUserId = '';
+    </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    
+    
+    
+</head>
+<body class="no-navbar">
+    <a name="top"></a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc navbar-custom">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a href="https://www.cnblogs.com/lillcol/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/lillcol/">lillcol</a>
+</h1>
+<h2></h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+
+			<ul id="navList">
+				<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+				<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/lillcol/">
+首页</a>
+</li>
+				<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+				<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/lillcol">
+联系</a></li>
+				<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+				<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/lillcol/rss/">
+订阅</a>
+				
+<a id="blog_nav_rss_image" href="https://www.cnblogs.com/lillcol/rss/">
+    <img src="/skins/summergarden/images/xml.gif" alt="订阅" />
+</a></li>
+			</ul>
+
+
+
+		<div class="blogStats">
+			
+			<div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+
+
+
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/01/29.html">
+2021年1月29日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14346476.html">
+    <span>
+            <span>[置顶]</span>
+        大数据系列4：Yarn以及MapReduce 2
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：系列文章： 大数据系列：一文初识Hdfs 大数据系列2：Hdfs的读写操作 大数据谢列3：Hdfs的HA实现 通过前文，我们对Hdfs的已经有了一定的了解，本文将继续之前的内容，介绍Yarn与Yarn在MapReduce 2的应用 MapReduce1 作业流程 在介绍Yarn之前，我们先介绍一下M        <a href="https://www.cnblogs.com/lillcol/p/14346476.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-01-29 18:30
+lillcol
+<span data-post-id="14346476" class="post-view-count">阅读(162)</span> 
+<span data-post-id="14346476" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14346476" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14346476" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/01/27.html">
+2021年1月27日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14336425.html">
+    <span>
+            <span>[置顶]</span>
+        大数据系列3：Hdfs的HA实现
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：在之前的文章：大数据系列：一文初识Hdfs ， 大数据系列2：Hdfs的读写操作 中Hdfs的组成、读写有简单的介绍。 在里面介绍Secondary NameNode和Hdfs读写的流程。 并且在文章结尾也说了，Secondary NameNode并不是我常说的HA，（High Availabili        <a href="https://www.cnblogs.com/lillcol/p/14336425.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-01-27 18:44
+lillcol
+<span data-post-id="14336425" class="post-view-count">阅读(167)</span> 
+<span data-post-id="14336425" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14336425" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14336425" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/01/26.html">
+2021年1月26日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14331682.html">
+    <span>
+            <span>[置顶]</span>
+        大数据系列2：Hdfs的读写操作
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：在前文大数据系列1：一文初识Hdfs中，我们对Hdfs有了简单的认识。 在本文中，我们将会简单的介绍一下Hdfs文件的读写流程，为后续追踪读写流程的源码做准备。 Hdfs 架构 首先来个Hdfs的架构图，图中中包含了Hdfs 的组成与一些操作。 对于一个客户端而言，对于Hdfs的操作不外乎也就读写两        <a href="https://www.cnblogs.com/lillcol/p/14331682.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-01-26 17:48
+lillcol
+<span data-post-id="14331682" class="post-view-count">阅读(268)</span> 
+<span data-post-id="14331682" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14331682" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14331682" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/01/25.html">
+2021年1月25日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14324363.html">
+    <span>
+            <span>[置顶]</span>
+        大数据系列1：一文初识Hdfs
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：最近有位同事经常问一些Hadoop的东西，特别是Hdfs的一些细节，有些记得不清楚，所以趁机整理一波。 会按下面的大纲进行整理： 简单介绍Hdfs 简单介绍Hdfs读写流程 介绍Hdfs HA实现方式 介绍Yarn统一资源管理器 追一下Hdfs读写的源码 同时也有其他方面的整理，有兴趣可以看看： 算        <a href="https://www.cnblogs.com/lillcol/p/14324363.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-01-25 12:01
+lillcol
+<span data-post-id="14324363" class="post-view-count">阅读(293)</span> 
+<span data-post-id="14324363" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14324363" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14324363" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2020/12/31.html">
+2020年12月31日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14218940.html">
+    <span>
+            <span>[置顶]</span>
+        算法系列-动态规划(4)：买卖股票的最佳时机
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：此系列为动态规划相关文章。 系列历史文章： 算法系列-动态规划(1)：初识动态规划 算法系列-动态规划(2)：切割钢材问题 算法系列-动态规划(3)：找零钱、走方格问题 算法系列-动态规划(4)：买卖股票的最佳时机 新生韭菜罗拉 自从上次看到八哥收藏旧币，罗拉也想给自己捣鼓个副业，赚点零花钱。 于是        <a href="https://www.cnblogs.com/lillcol/p/14218940.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2020-12-31 23:01
+lillcol
+<span data-post-id="14218940" class="post-view-count">阅读(293)</span> 
+<span data-post-id="14218940" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14218940" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14218940" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2020/12/17.html">
+2020年12月17日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14150981.html">
+    <span>
+            <span>[置顶]</span>
+        算法系列-动态规划(3)：找零钱、走方格问题
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：最近在捣鼓算法，所以写一些关于算法的文章 此系列为动态规划相关文章。 系列历史文章： 算法系列-动态规划(1)：初识动态规划 算法系列-动态规划(2)：切割钢材问题 算法系列-动态规划(3)：找零钱、走方格问题 找零钱问题，凑数问题 最近老币越来越值钱，是投资的一个好方向。 这不，八哥从某鱼入手了几        <a href="https://www.cnblogs.com/lillcol/p/14150981.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2020-12-17 17:57
+lillcol
+<span data-post-id="14150981" class="post-view-count">阅读(432)</span> 
+<span data-post-id="14150981" class="post-comment-count">评论(1)</span> 
+<span data-post-id="14150981" class="post-digg-count">推荐(2)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14150981" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2020/12/12.html">
+2020年12月12日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14095022.html">
+    <span>
+            <span>[置顶]</span>
+        数据库仓库系列：(一)什么是数据仓库，为什么要数据仓库
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：最近全程参与了数仓的重建工作，颇有些心得。 于是萌生了写一篇关于数据仓库文章的想法。 编写此文章的过程中会查找更多的资料和结合自己工作经历，确保内容质量。 即是自己工作的记录和总结，也是更系统的捋一遍数仓。 文章会分为三个部分： 第一部分：介绍什么是数据仓库 第二部分：如何设计数据仓库 第三部分：从        <a href="https://www.cnblogs.com/lillcol/p/14095022.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2020-12-12 13:48
+lillcol
+<span data-post-id="14095022" class="post-view-count">阅读(957)</span> 
+<span data-post-id="14095022" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14095022" class="post-digg-count">推荐(5)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14095022" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2020/12/06.html">
+2020年12月6日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14094472.html">
+    <span>
+            <span>[置顶]</span>
+        算法系列-动态规划(2)：切割钢材问题
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：切割钢材问题 接上回说到，斐波那契数列是动态规划最简单应用，但动态规划却不是为了用来算那数列。 当时留了个尾巴，就是切割钢材的问题。 不同长度的钢材价格不一样，我现在有一根长度为n的钢材，要怎么切割才能利益最大化？ 其中钢材的价格如下 长度 0 1 2 3 4 5 6 7 8 9 10 价格 0 1        <a href="https://www.cnblogs.com/lillcol/p/14094472.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2020-12-06 21:35
+lillcol
+<span data-post-id="14094472" class="post-view-count">阅读(290)</span> 
+<span data-post-id="14094472" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14094472" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14094472" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2020/12/01.html">
+2020年12月1日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14069585.html">
+    <span>
+            <span>[置顶]</span>
+        算法系列-动态规划(1)：初识动态规划
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：昨天，罗拉去面试回来，垂头丧气。显然是面试不顺利，我赶忙过去安慰。 经过询问才知道，罗拉面试挂在了动态规划。 说到动态规划，八哥可就来精神了，于是就结合劳拉的面试题简单的和她介绍了动态规划。 事情是这样的，劳拉的面试官给了她一道题，题目如下： 有一个数列，规律如下：1、1、2、3、5、8、13...        <a href="https://www.cnblogs.com/lillcol/p/14069585.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2020-12-01 17:23
+lillcol
+<span data-post-id="14069585" class="post-view-count">阅读(470)</span> 
+<span data-post-id="14069585" class="post-comment-count">评论(4)</span> 
+<span data-post-id="14069585" class="post-digg-count">推荐(3)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14069585" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/06/18.html">
+2021年6月18日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14900217.html">
+    <span>
+        canal+mysql+kafka实时数据同步安装、配置
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：canal+mysql+kafka安装配置 概述 简介 canal译意为水道/管道/沟渠，主要用途是基于 MySQL 数据库增量日志解析，提供增量数据订阅和消费。 基于日志增量订阅和消费的业务包括 数据库镜像 数据库实时备份 索引构建和实时维护(拆分异构索引、倒排索引等) 业务 cache 刷新 带        <a href="https://www.cnblogs.com/lillcol/p/14900217.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-06-18 16:52
+lillcol
+<span data-post-id="14900217" class="post-view-count">阅读(73)</span> 
+<span data-post-id="14900217" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14900217" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14900217" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/06/07.html">
+2021年6月7日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14860037.html">
+    <span>
+        airflow2.0.2分布式安装文档
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：更多内容可关注兔八哥杂谈 需要安装的组件 组件 功能 Airflow Webserver 查询元数据以监控和执行DAGs的web界面。 Airflow Scheduler 它检查元数据数据库中的DAG和任务的状态，在必要时创建新任务，并将任务发送到队列。 Airflow Metadata Datab        <a href="https://www.cnblogs.com/lillcol/p/14860037.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-06-07 18:33
+lillcol
+<span data-post-id="14860037" class="post-view-count">阅读(181)</span> 
+<span data-post-id="14860037" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14860037" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14860037" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/06/01.html">
+2021年6月1日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14838348.html">
+    <span>
+        浅谈spark的数据本地性（data locality）
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：spark的数据本地性（data locality） Spark其中一个特性就是数据本地性，简单的说就是“移动数据不如移动计算”。 因为数据在网络传输中会有不小的I/O消耗，并且传输距离越长消耗越大。 所以，数据本地性可以理解为数据传输距离，而我们的目的就是避免数据在网络中传输或尽量减少传输的距离。        <a href="https://www.cnblogs.com/lillcol/p/14838348.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-06-01 18:15
+lillcol
+<span data-post-id="14838348" class="post-view-count">阅读(40)</span> 
+<span data-post-id="14838348" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14838348" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14838348" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+			<div class="postSeparator"></div>
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14837631.html">
+    <span>
+        数据质量管理方法
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：数据处理的过程 数据处理的过程一般如下： 数据质量管理(DATA Quality Managenment)是指对上述过程中每个阶段可能出现引发数据质量的问题进行识别、监控、预警等相关管理活动。 通过改善和提高组织的管理水平是的数据质量进一步提升。 数据质量管理是一个循环管理的过程，其最终目标是通过可        <a href="https://www.cnblogs.com/lillcol/p/14837631.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-06-01 16:03
+lillcol
+<span data-post-id="14837631" class="post-view-count">阅读(234)</span> 
+<span data-post-id="14837631" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14837631" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14837631" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/05/18.html">
+2021年5月18日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14780237.html">
+    <span>
+        Saprk checkpoint、cache、persist的区别
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：持久化类型 特点 cache 默认存储级别为: RDD.cache():persist(StorageLevel.MEMORY_ONLY)Dataset.cache():MEMORY_AND_DISK persist 可以自定义存储级别，默认:MEMORY_AND_DISK可选：DISK_ONLY,        <a href="https://www.cnblogs.com/lillcol/p/14780237.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-05-18 11:32
+lillcol
+<span data-post-id="14780237" class="post-view-count">阅读(19)</span> 
+<span data-post-id="14780237" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14780237" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14780237" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/05/12.html">
+2021年5月12日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14760377.html">
+    <span>
+        Hbase问题小结(一)
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：1. Hbase读写优化 写： 批量写、异步批量提交、多线程并发写、使用BulkLoad写入、表优化（压缩算法、预分区、合理的rowkey设计、合理关闭WAL或异步WAL） SKIP_WAL：只写缓存，不写HLog日志。这种方式因为只写内存，因此可以极大的提升写入性能，但是数据有丢失的风险。在实际应        <a href="https://www.cnblogs.com/lillcol/p/14760377.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-05-12 16:56
+lillcol
+<span data-post-id="14760377" class="post-view-count">阅读(190)</span> 
+<span data-post-id="14760377" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14760377" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14760377" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/01/29.html">
+2021年1月29日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14346476.html">
+    <span>
+        大数据系列4：Yarn以及MapReduce 2
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：系列文章： 大数据系列：一文初识Hdfs 大数据系列2：Hdfs的读写操作 大数据谢列3：Hdfs的HA实现 通过前文，我们对Hdfs的已经有了一定的了解，本文将继续之前的内容，介绍Yarn与Yarn在MapReduce 2的应用 MapReduce1 作业流程 在介绍Yarn之前，我们先介绍一下M        <a href="https://www.cnblogs.com/lillcol/p/14346476.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-01-29 18:30
+lillcol
+<span data-post-id="14346476" class="post-view-count">阅读(162)</span> 
+<span data-post-id="14346476" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14346476" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14346476" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/01/27.html">
+2021年1月27日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14336425.html">
+    <span>
+        大数据系列3：Hdfs的HA实现
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：在之前的文章：大数据系列：一文初识Hdfs ， 大数据系列2：Hdfs的读写操作 中Hdfs的组成、读写有简单的介绍。 在里面介绍Secondary NameNode和Hdfs读写的流程。 并且在文章结尾也说了，Secondary NameNode并不是我常说的HA，（High Availabili        <a href="https://www.cnblogs.com/lillcol/p/14336425.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-01-27 18:44
+lillcol
+<span data-post-id="14336425" class="post-view-count">阅读(167)</span> 
+<span data-post-id="14336425" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14336425" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14336425" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/01/26.html">
+2021年1月26日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14331682.html">
+    <span>
+        大数据系列2：Hdfs的读写操作
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：在前文大数据系列1：一文初识Hdfs中，我们对Hdfs有了简单的认识。 在本文中，我们将会简单的介绍一下Hdfs文件的读写流程，为后续追踪读写流程的源码做准备。 Hdfs 架构 首先来个Hdfs的架构图，图中中包含了Hdfs 的组成与一些操作。 对于一个客户端而言，对于Hdfs的操作不外乎也就读写两        <a href="https://www.cnblogs.com/lillcol/p/14331682.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-01-26 17:48
+lillcol
+<span data-post-id="14331682" class="post-view-count">阅读(268)</span> 
+<span data-post-id="14331682" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14331682" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14331682" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+		
+
+<div class="day">
+	<div class="dayTitle">
+		<a href="https://www.cnblogs.com/lillcol/archive/2021/01/25.html">
+2021年1月25日</a>				  
+	</div>
+
+	
+			<div class="postTitle">
+				
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/lillcol/p/14324363.html">
+    <span>
+        大数据系列1：一文初识Hdfs
+    </span>
+    
+
+
+
+</a>
+
+			</div>
+			<div class="postCon">
+
+    <div class="c_b_p_desc">
+摘要：最近有位同事经常问一些Hadoop的东西，特别是Hdfs的一些细节，有些记得不清楚，所以趁机整理一波。 会按下面的大纲进行整理： 简单介绍Hdfs 简单介绍Hdfs读写流程 介绍Hdfs HA实现方式 介绍Yarn统一资源管理器 追一下Hdfs读写的源码 同时也有其他方面的整理，有兴趣可以看看： 算        <a href="https://www.cnblogs.com/lillcol/p/14324363.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+</div>
+			<div class="clear"></div>
+			<div class="postDesc">posted @ 2021-01-25 12:01
+lillcol
+<span data-post-id="14324363" class="post-view-count">阅读(293)</span> 
+<span data-post-id="14324363" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14324363" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14324363" rel="nofollow">
+    编辑
+</a>
+</div>
+			<div class="clear"></div>
+
+</div>
+
+
+
+<div class="topicListFooter">
+    <div id="nav_next_page">
+        
+    <a href="https://www.cnblogs.com/lillcol/default.html?page=2">
+        下一页
+    </a>
+
+    </div>    
+</div>
+
+
+
+
+
+
+<script>
+    updatePostStats(
+        $(".post-view-count").map(function () { return this.dataset.postId }).get(),
+        function(id, count) { $(".post-view-count[data-post-id=" + id + "]").text("阅读(" + count + ")") },
+        function(id, count) { $(".post-comment-count[data-post-id=" + id + "]").text("评论(" + count + ")") },
+        function(id, count) { $(".post-digg-count[data-post-id=" + id + "]").text("推荐(" + count + ")") });
+</script>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+			<div id="calendar"><div id="calendar"><div id="blog-calendar" style="display:none"></div></div>                
+                    <script>loadBlogDefaultCalendar();</script></div>
+			
+			<DIV id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+			</DIV>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright &copy; 2021 lillcol
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjvjt-MYJaU74136HtDxR53gwRb6cviGNHq2GpfMZFiBuz_ulFT0rVjJ4hI5KSPr0_hyyQB2OAMlOI1zk9JaJEFczULUOmQd3bcauN29eaJzeeAKwK3xU865dYxLgc_R_Ek" />
+</body>
+</html>

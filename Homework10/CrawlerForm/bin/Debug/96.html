@@ -1,0 +1,439 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="never" />
+    <meta name="description" content="Dapr 是一个可移植的、事件驱动的运行时，它使任何开发人员能够轻松构建出弹性的、无状态和有状态的应用程序，并可运行在云平台或边缘计算中，它同时也支持多种开发语言和开发框架。" />
+    <meta property="og:description" content="Dapr 是一个可移植的、事件驱动的运行时，它使任何开发人员能够轻松构建出弹性的、无状态和有状态的应用程序，并可运行在云平台或边缘计算中，它同时也支持多种开发语言和开发框架。" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Dapr 知多少 | 分布式应用运行时 - 「圣杰」 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    <link id="MainCss" rel="stylesheet" href="/skins/simplememory/bundle-simplememory.min.css?v=uknaX_hejnSu-njQgx4Hj1R0JiPLwUhFPUlwWNmWyB4" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/sheng-jie/custom.css?v=dI3&#x2B;bzKcn&#x2B;Xd3q1cAN6CrqbwRww=" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/SimpleMemory/bundle-SimpleMemory-mobile.min.css" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/sheng-jie/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/sheng-jie/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/sheng-jie/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 326932;
+        var currentBlogApp = 'sheng-jie';
+        var cb_enable_mathjax = true;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'SimpleMemory';
+        var visitorUserId = '';
+    </script>
+        <script>
+            var currentPostDateAdded = '2021-02-20 12:23';
+        </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: {
+        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+        extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+        Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
+    <script src="https://mathjax.cnblogs.com/2_7_5/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;v=20200504"></script>
+    
+</head>
+<body class="no-navbar">
+    <a name="top"></a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc navbar-custom">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="page_begin_html">
+        <a href="https://github.com/sheng-jie"  target="_blank" class="github-corner" aria-label="View source on GitHub"><svg width="100" height="100" viewBox="0 0 250 250" style="fill:#FD6C6C; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b0ea31a9aa64a27f329823a0796c132e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<style>
+#home{
+width:85%
+}
+#back-top {
+     position: fixed;
+     bottom: 10px;
+     right: 5px;
+     z-index: 99;
+}
+#back-top span {
+     width: 50px;
+     height: 64px;
+     display: block;
+     background:url(http://images.cnblogs.com/cnblogs_com/seanshao/855033/o_rocket.png) no-repeat center center;
+}
+#back-top a{outline:none}
+</style>
+    </div>
+    <!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/sheng-jie/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/sheng-jie/">『___知多少』</a>
+</h1>
+<h2>一名立志成为架构师并为之努力奋斗的程序员！</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/sheng-jie/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E3%80%8C%E5%9C%A3%E6%9D%B0%E3%80%8D">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/sheng-jie/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			<div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class = "postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-dapr.html">
+    <span>Dapr 知多少 | 分布式应用运行时</span>
+    
+
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                    <div id="cnblogs_post_description" style="display: none">
+        Dapr 是一个可移植的、事件驱动的运行时，它使任何开发人员能够轻松构建出弹性的、无状态和有状态的应用程序，并可运行在云平台或边缘计算中，它同时也支持多种开发语言和开发框架。
+    </div>
+<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+<p><img src="https://upload-images.jianshu.io/upload_images/2799767-daf921ef4504be15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" loading="lazy"></p>
+<h1 id="intro">Intro</h1>
+<p>Dapr 官方团队已于最近（2021.2.17）正式发布<a href="https://blog.dapr.io/posts/2021/02/17/announcing-dapr-v1.0/" target="_blank">Dapr v1.0</a>，Dapr已正式生产可用，可以部署到自托管环境或 Kubernetes 集群。对于绝大多数开发者来说，想必对Dapr只是有所耳闻，而具体是什么（What），可以解决什么样的问题（Why&amp;How），有怎样的应用场景（Where），并不知悉。本文就尝试简要梳理下Dapr，并尝试回答以上问题。</p>
+<h1 id="whats-dapr">What's Dapr</h1>
+<blockquote>
+<p>Distributed Application Runtime. An event-driven, portable runtime for building microservices on cloud and edge.<br>
+分布式应用运行时。一个事件驱动、可移植的运行时用于在云上和边缘计算上构建微服务。</p>
+</blockquote>
+<p>以上是<a href="https://github.com/dapr" target="_blank">Dapr官方GitHub仓库</a>上对Dapr的简介。文字虽短，口气却很大，因为其除了涵盖了当前所有的技术热点：分布式、云、微服务，还自我标榜为：<strong>分布式应用运行时</strong>。分布式应用我们或多或少有些了解，运行时也听到不少，比如常见的语言运行时：Java 运行时，.NET 运行时，Go 运行时等等，那运行时又是什么东西？简要来说：运行时是程序运行依赖的执行环境。以.NET 程序运行时CLR为例，它为.NET应用程序提供了一个托管的代码执行环境负责应用程序在整个执行期间的内存管理、线程管理、安全管理、远程管理、即时编译等。</p>
+<p>那分布式应用运行时，就是提供分布式应用运行所依赖的的执行环境。那运行分布式应用需要哪些环境依赖呢？回答这个问题，我们要先思考开发分布式应用的挑战是什么？明确了挑战，那就找到了答案。</p>
+<p>从单机到分布式，是追求更快和更高的性能，但也带来了更多的不确定性。比如，不确定计算机何时异常，不确定磁盘何时损坏，不确定网络通信的延迟，也不确定消息是否被正常消费。这些不确定性构成了分布式应用的挑战，简而言之：</p>
+<ol>
+<li>异构的机器与网络：稳定性问题</li>
+<li>普遍的节点故障：可靠性问题</li>
+<li>不可靠的网络：一致性问题</li>
+</ol>
+<p>面对这些挑战，业界提出了诸多的分布式理论、协议，如CAP定理，BASE理论，一致性协议2PC/3PC/ZAB，来保证系统的正常运行。虽然问题貌似是有了解决方案，但是应用的复杂度升高了。应用除了需要实现业务需求，还要兼顾非业务需求，集成诸如服务发现、负载均衡、失效转移、动态扩容、数据分片、调用链路监控等分布式系统的核心功能，对应用有很强的<strong>侵入性</strong>，这就是以Spring Cloud为代表的微服务框架的常见做法。</p>
+<p>那如何解决侵入性的问题呢？这个问题随着容器编排技术的成熟有了新的解法。Kubernetes可以不侵入应用层，在容器层解决问题，比如K8S Service就具有服务发现、负载均衡的能力，HPA具有动态扩容的能力。随着K8S的快速发展，云原生的概念，也就越来越深入人心，那如何利用好K8S提供的基座能力，将更多的分布式能力下沉，让应用开发回归业务呢？<strong>其中Service Mesh提出的Sidecar模式，就很好的解决了微服务架构中网络通信的问题</strong>。Sidecar主要就是用来处理诸如服务发现、负载均衡、请求熔断等一系列非业务需求，应用在部署时动态插入Sidecar，服务间的通信通过Sidecar进行代理，以完成对服务间网络通信的接管。</p>
+<p>到这里，微服务开发在Service Mesh的帮助下，已经渐渐回归业务本身，让更多的开发者看到了一丝曙光。It's enough? 来看下Bilgin Ibryam在<a href="https://www.infoq.com/articles/multi-runtime-microservice-architecture/" target="_blank">Multi-Runtime Microservices Architecture</a>文章中提及的分布式应用的四大需求：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2799767-12a37d38029530f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分布式应用的四大需求" loading="lazy"></p>
+<p>从上图可以看出，除了网络（Networking）外，生命周期（Lifecycle）、状态（State）、捆绑（Binding）也是分布式应用要解决的问题之一。网络问题可以借由Service Mesh 比如Istio予以解决。那其他三个该如何解决呢？又要应用自行开发集成吗？显然不符合应用回归业务本身的诉求。这时，Dapr登场了，Dapr提出的分布式应用运行时就是实现了以上四个需求并将其下沉作为分布式应用的运行环境。</p>
+<p>简而言之：<strong>Dapr将分布式能力进行封装下沉作为运行时以简化分布式应用开发的技术复杂度。</strong></p>
+<h1 id="how-dapr-works">How Dapr Works</h1>
+<p>那Dapr如何简化分布式应用的开发呢？下面我们来看一看Dapr的主要特性。<br>
+<img src="https://upload-images.jianshu.io/upload_images/2799767-999e3583f2f9308f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Any language, any framework, anywhere" loading="lazy"><br>
+一图胜千言：Dapr通过以HTTP/gRPC API这种与语言无关的方式暴露封装的分布式能力供应用调用，从而支持使用任意语言或框架进行开发集成。目前官方已经提供了Go，Node，Python，.NET，Java， C++，PHP，Rust，Javascript的Sdk，简化Dapr的集成。</p>
+<p>其中Dapr的核心构建块（Building Block）就是用来提供各种不同的分布式能力，我们来分别看一看。<br>
+<img src="https://upload-images.jianshu.io/upload_images/2799767-dec9d699da1910fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Building Block" loading="lazy"></p>
+<p><strong>1. Service-to-service invocation（服务调用）</strong><br>
+提到跨服务方法调用，这个大家肯定会想，这简单啊，不就是服务暴露API就好了嘛。是，但不完全是。比如nodeapp暴露了一个API：<code>http://10.0.0.2:8000/neworder</code>，按照传统的方式，直接HTTP POST这个API访问就得了，但在Dapr中，其提供了服务间方法调用的接口规范，需要按照<br>
+<code>POST/GET/PUT/DELETE http://localhost:&lt;daprPort&gt;/v1.0/invoke/&lt;appId&gt;/method/&lt;method-name&gt; </code>的格式进行访问。那假设pythonapp需要访问nodeapp的方法，就需要POST一个请求到<code>http://localhost:3500/v1.0/invoke/nodeapp/method/neworder</code>。你可能会想为何多此一举呢？此举的意义何在呢？目的很简单，就是为了实现对服务间网络通信的控制以完成诸如服务发现、流量控制、重试熔断、安全访问等，而这相关的网络控制功能就是集成在Dapr的Sidecar中，以对应用透明的方式集成进来的。整体的服务调用流程如下图所示：<br>
+<img src="https://upload-images.jianshu.io/upload_images/2799767-4df6cd3ab8055bf0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="服务间调用" loading="lazy"></p>
+<p><em>PS：如果对Istio熟悉的同学需要注意，二者虽然都是通过Sidecar的模式进行网络控制，但二者是有有区别的。Dapr是以API的方式，而Istio是以代理的方式（不改变HTTP请求URI)。</em></p>
+<p><strong>2. State management（状态管理）</strong><br>
+在进行微服务开发时，绕不开的话题就是服务间的状态共享、并发一致性问题。对于状态共享，你可能会说，各个服务连接到同一个Redis实例就OK了。是，但不得不考虑潜在的更新冲突的问题。Dapr 以更友好的HTTP API的方式进行状态的存储和读取，同时支持通过ETags进行并发控制，并支持通过选项设置并发和一致性行为。</p>
+<ul>
+<li>存储：<code> POST http://localhost:&lt;daprPort&gt;/v1.0/state/&lt;storename&gt;</code></li>
+<li>读取：<code> GET http://localhost:&lt;daprPort&gt;/v1.0/state/&lt;storename&gt;/&lt;key&gt;</code></li>
+<li>删除：<code>DELETE http://localhost:&lt;daprPort&gt;/v1.0/state/&lt;storename&gt;/&lt;key&gt;</code></li>
+</ul>
+<p>以下是保存状态的举例：</p>
+<ul>
+<li><code>concurrency</code>用于指定并发选项：first-write-wins/last-write-wins（以第一次写入为准/以最后一次写入为准），默认以最后一次写入为准。</li>
+<li><code>consistency</code>用于指定一致性选项：strong/eventual（强一致性/最终一致性），默认为最终一致性。</li>
+</ul>
+<pre><code>curl -X POST http://localhost:3500/v1.0/state/starwars \
+  -H "Content-Type: application/json" \
+  -d '[
+        {
+          "key": "weapon",
+          "value": "DeathStar",
+          "etag": "xxxxx",
+          "options": {
+            "concurrency": "first-write",
+            "consistency": "strong"
+          }
+        }
+      ]'
+</code></pre>
+<p>目前支持使用Azure CosmosDB、 Azure SQL Server、 PostgreSQL,、AWS DynamoDB、Redis 作为状态存储介质。</p>
+<p><strong>3. Publish and subscribe（消息发布及订阅）</strong><br>
+发布订阅模式，老生常谈了，主要是用于微服务间基于消息进行相互通信。你可能也会说，这也要拿出来说，我搞个RabbitMQ/RocketMQ就是了。是的，但我还是要说，Dapr提供了一致性的消息发布、订阅API，而无需关注具体使用的是何种Message Broker，从而和底层基础设施解耦。</p>
+<ul>
+<li>发布：<code>POST http://localhost:&lt;daprPort&gt;/v1.0/publish/&lt;pubsubname&gt;/&lt;topic&gt;[?&lt;metadata&gt;]</code></li>
+<li>获取可订阅主题：<code>GET http://localhost:&lt;appPort&gt;/dapr/subscribe</code></li>
+<li>订阅：<code>POST http://localhost:&lt;appPort&gt;/&lt;path&gt;</code></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/2799767-082d07ff5e75d4b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="发布订阅" loading="lazy"></p>
+<p><strong>4. Resource bindings and triggers （资源绑定及事件触发）</strong><br>
+Dapr的Bindings与Azure Functions很类似，其是建立在事件驱动架构的基础之上的。通过建立触发器与资源的绑定，可以从任何外部源（例如数据库，队列，文件系统等）接收和发送事件，而无需借助消息队列，即可实现灵活的业务场景。Dapr的Bindings分为两种：</p>
+<ol>
+<li>Input Bindings（输入绑定）：当外部资源的事件发生时，借助输入绑定，你的应用即可通过特定的API：<code>POST http://localhost:&lt;appPort&gt;/&lt;name&gt;</code>收到外部资源的事件，用于处理特定逻辑。</li>
+<li>Output Bindings（输出绑定）：输出绑定允许你调用外部资源。比如，在订单处理场景中，在订单创建成功后，可以将订单信息通过Dapr的绑定API：<code>POST/PUT http://localhost:&lt;daprPort&gt;/v1.0/bindings/&lt;name&gt;</code>输出到Kafka特定队列上。</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/2799767-7890edd7396295b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="资源绑定及事件触发" loading="lazy"></p>
+<p><strong>5. Actors</strong><br>
+Dapr中的Actor模型，和Orleans的Virtual Actor一脉相传，之前写过一篇文章<a href="https://www.cnblogs.com/sheng-jie/p/11163264.html" target="_blank">Orleans 知多少 | .NET Core 分布式框架</a>介绍过。简单来讲：Actor模型 = 状态 + 行为 + 消息。一个应用/服务由多个Actor组成，每个Actor都是一个独立的运行单元，拥有隔离的运行空间，在隔离的空间内，其有独立的状态和行为，不被外界干预，Actor之间通过消息进行交互，而同一时刻，每个Actor只能被单个线程执行，这样既有效避免了数据共享和并发问题，又确保了应用的伸缩性。</p>
+<p>Actor模型大大简化了并发编程的复杂度，Dapr在Actor运行时中提供了许多功能，包括并发控制，状态管理，生命周期管理如Actor的激活/停用以及用于唤醒Actor的Timer(计时器)和Reminder(提醒)。这些功能同样也是通过<a href="https://docs.dapr.io/developing-applications/building-blocks/actors/howto-actors/" target="_blank">API</a>的方式予以提供。</p>
+<ul>
+<li>调用Actor 方法：<code>POST/GET/PUT/DELETE http://localhost:3500/v1.0/actors/&lt;actorType&gt;/&lt;actorId&gt;/method/&lt;method&gt;</code></li>
+<li>创建 Timer：<code>POST/PUT http://localhost:3500/v1.0/actors/&lt;actorType&gt;/&lt;actorId&gt;/timers/&lt;name&gt;</code></li>
+<li>创建 Reminder：<code>POST/PUT http://localhost:3500/v1.0/actors/&lt;actorType&gt;/&lt;actorId&gt;/reminders/&lt;name&gt;</code></li>
+</ul>
+<p><strong>6. Observability（遥测）</strong><br>
+Dapr记录指标，日志，链路以调试和监视Dapr和用户应用的运行状况。 Dapr支持分布式跟踪，其使用W3C跟踪上下文标准和开放式遥测技术，可以轻松地诊断在生产环境中服务间的网络调用，并发送到不同的监视工具，如Prometheus。</p>
+<p><strong>7. Secrets（安全）</strong><br>
+Dapr 提供了Secret管理，不过不同于K8S中的Secret，其支持与公有云和本地的Secret存储集成，以供应用检索使用。</p>
+<h1 id="what-can-we-do-with-dapr">What Can We Do With Dapr</h1>
+<p>了解了Dapr是什么，以及其提供的特性，那Dapr的应用场景就一目了然了。也就是<a href="https://dapr.io" target="_blank">官网首页</a>的Slogan：Simplify cloud-native application development--Focus on your application’s core logic and keep your code simple and portable。<br>
+<em>简化云原生应用的开发，确保应用专注于业务，并保证代码简单可移植。</em></p>
+<p>因此，在考虑云原生应用开发的技术选型时，尽情尝试吧，目前在国内阿里云也已采用。</p>
+<h1 id="last">Last</h1>
+<p>在云原生如火如荼发展之际，Dapr V1.0 的正式发布，为开发者指明了云原生时代微服务的开发方向。相信Dapr 在未来的微服务架构选型中必将占有一席之地！</p>
+<blockquote>
+<p>参考：<br>
+<a href="https://www.cnblogs.com/xybaby/p/7787034.html" target="_blank">什么是分布式系统，如何学习分布式系统</a><br>
+<a href="https://mp.weixin.qq.com/s/ywvy3O0wTA4SSNE86hw0Xg" target="_blank">Mecha：将Mesh进行到底</a></p>
+</blockquote>
+
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2021-02-20 12:23</span>&nbsp;
+<a href="https://www.cnblogs.com/sheng-jie/">「圣杰」</a>&nbsp;
+阅读(<span id="post_view_count">8992</span>)&nbsp;
+评论(<span id="post_comment_count">27</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14420239" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(14420239);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: '', targetType: 'blogPost', targetId: '14420239', targetLink: 'https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-dapr.html', title: 'Dapr 知多少 | 分布式应用运行时' })">举报</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="https://common.cnblogs.com/highlight/10.3.1/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 326932, cb_blogApp = 'sheng-jie', cb_blogUserGuid = '56782349-8e3d-e311-8d02-90b11c0b17d6';
+    var cb_entryId = 14420239, cb_entryCreatedDate = '2021-02-20 12:23', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+<a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id='div-gpt-ad-1592365906576-0' style='width: 300px; height: 250px;'></div>
+    </div>
+    <div id="under_post_card1"></div>
+    <div id="cnblogs_c2" class="under-post-card">
+        <div id='div-gpt-ad-1592366332455-0' style='width: 468px; height: 60px;'></div>
+    </div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+       deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+       loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+	<div id="sideBar">
+		<div id="sideBarMain">
+			<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright &copy; 2021 「圣杰」
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    <div id="page_end_html">
+        <script src="https://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link href="https://files.cnblogs.com/files/sheng-jie/auto.catalogs.css" rel="stylesheet">
+<script type="text/javascript" src="https://files.cnblogs.com/files/sheng-jie/auto.catalogs.js"></script>
+<script>
+//Setting ico for cnblogs
+var linkObject = document.createElement('link');
+linkObject.rel = "shortcut icon";
+linkObject.href = "https://files.cnblogs.com/files/sheng-jie/brand.ico";
+document.getElementsByTagName("head")[0].appendChild(linkObject);
+
+window.tctipConfig = {
+        imagePrefix: "https://files.cnblogs.com/files/kdy11/",
+        cssPrefix:     "https://files.cnblogs.com/files/kdy11",
+        buttonImageId:  4,
+        buttonTip:  "dashang",
+        list:{
+            alipay: {qrimg: "https://files.cnblogs.com/files/sheng-jie/zfb.bmp"},
+            weixin:{qrimg: "https://files.cnblogs.com/files/sheng-jie/wechat.bmp"},
+        }
+};
+</script>
+    </div>
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjuvIQ1-zxXhJ8O3NnrEaQvib9xV2biw3SUIMSB2G_ehYwgsGjNy0CFbqbcmKypkBJ9j-gVDQtANL9_NpsjCkhWzEAs67b4wXyNBrMRr7eWZY9A1tO8X4Zly6tu6JvOisRc" />
+</body>
+</html>

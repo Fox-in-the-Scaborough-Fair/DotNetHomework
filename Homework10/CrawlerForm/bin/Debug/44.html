@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-crossorigin" />
+    <meta name="description" content="传统上，开发人员在 JavaScript 类中为实例中可能需要的任何数据创建属性。对于在构造函数中随时可用的小块数据来说，这不是问题。但是，如果在实例中可用之前需要计算某些数据，您可能不想预先支付该费" />
+    <meta property="og:description" content="传统上，开发人员在 JavaScript 类中为实例中可能需要的任何数据创建属性。对于在构造函数中随时可用的小块数据来说，这不是问题。但是，如果在实例中可用之前需要计算某些数据，您可能不想预先支付该费" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>JavaScript 中的延迟加载属性模式 - 飞奔的龟龟 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    <link id="MainCss" rel="stylesheet" href="/skins/imetro_hd/bundle-imetro_hd.min.css?v=FftQhR2MvKTGGXxV0VXlcGGt4XBM0_1XGJmu6kYD9bg" />
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/imetro_hd/bundle-imetro_hd-mobile.min.css?v=t8lZrYXGRE8kAD_d-besbRXwkXSQmMprnkoJVYlZl-g" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/nianzhilian/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/nianzhilian/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/nianzhilian/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 239093;
+        var currentBlogApp = 'nianzhilian';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'iMetro_HD';
+        var visitorUserId = '';
+    </script>
+        <script>
+            var currentPostDateAdded = '2021-06-18 05:48';
+        </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    
+    
+    
+</head>
+<body class="has-navbar has-bannerbar">
+    <a name="top"></a>
+            <a target="_blank" href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:pc|pp:bokeyuan-huodong-21nianzhongdacu-neiyePCtonglanbanner|pu:21nianzhongdacu-neiyePCtonglanbanner|ci:21nzdc|kw:10224545" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-pc')">
+                <div class="bannerbar aliyun forpc" style="background-size: contain; filter: brightness(0.95); background-image: url(https://img2020.cnblogs.com/blog/35695/202106/35695-20210610183724605-1725070929.jpg)">
+                </div>
+            </a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/nianzhilian/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/nianzhilian/">nianzhilian</a>
+</h1>
+<h2></h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/nianzhilian/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E9%A3%9E%E5%A5%94%E7%9A%84%E9%BE%9F%E9%BE%9F">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/nianzhilian/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			<div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class = "postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/nianzhilian/p/14900255.html">
+    <span>JavaScript 中的延迟加载属性模式</span>
+    
+
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                <div id="cnblogs_post_body" class="blogpost-body blogpost-body-html">
+<p><span>传统上，开发人员在 JavaScript 类中为实例中可能需要的任何数据创建属性。</span><span>对于在构造函数中随时可用的小块数据来说，这不是问题。</span><span>但是，如果在实例中可用之前需要计算某些数据，您可能不想预先支付该费用。</span><span>例如，考虑这个类：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: rgba(0, 0, 0, 1)">class MyClass {
+    constructor() {
+        </span><span style="color: rgba(0, 0, 255, 1)">this</span>.data =<span style="color: rgba(0, 0, 0, 1)"> someExpensiveComputation();
+    }
+}</span></pre>
+</div>
+<p><span><span>在这里，</span></span><code class="highlighter-rouge">data</code><span><span>属性是作为执行一些昂贵计算的结果而创建的。</span><span>如果您不确定是否会使用该属性，则预先执行该计算可能效率不高。</span><span>幸运的是，有几种方法可以将这些操作推迟到以后。</span></span></p>
+<h2 id="the-on-demand-property-pattern"><span><span>按需属性模式</span></span></h2>
+<p><span><span>优化执行昂贵操作的最简单方法是等到需要数据后再进行计算。</span><span>例如，您可以使用带有 getter 的访问器属性来按需进行计算，如下所示：</span></span></p>
+<div class="cnblogs_Highlighter">
+<pre class="brush:javascript;gutter:true;">class MyClass {
+    get data() {
+        return someExpensiveComputation();
+    }
+}
+</pre>
+</div>
+<p>&nbsp;<span><span>在这种情况下，直到有人第一次读取该</span></span><code class="highlighter-rouge">data</code><span><span>属性</span><span>时，您的昂贵计算才会发生</span><span>，这是一种改进。</span><span>但是，每次</span></span><code class="highlighter-rouge">data</code><span><span>读取属性</span><span>时都会执行相同的昂贵计算</span><span>，这比之前的示例更糟糕，其中至少只执行了一次计算。</span><span>这不是一个好的解决方案，但您可以在此基础上创建一个更好的解决方案。</span></span></p>
+<h2 id="the-messy-lazy-loading-property-pattern"><span><span>凌乱的延迟加载属性模式</span></span></h2>
+<p><span><span>只有在访问属性时才执行计算是一个好的开始。</span><span>您真正需要的是在该点之后缓存信息并仅使用缓存版本。</span><span>但是您将这些信息缓存在哪里以便于访问？</span><span>最简单的方法是定义一个具有相同名称的属性并将其值设置为计算数据，如下所示：</span></span></p>
+<div class="cnblogs_Highlighter">
+<pre class="brush:javascript;gutter:true;">class MyClass {
+    get data() {
+        const actualData = someExpensiveComputation();
+
+        Object.defineProperty(this, "data", {
+            value: actualData,
+            writable: false,
+            configurable: false,
+            enumerable: false
+        });
+
+        return actualData;
+    }
+}
+</pre>
+</div>
+<p>&nbsp;<span><span>在这里，该</span></span><code class="highlighter-rouge">data</code><span><span>属性再次定义为类上的 getter，但这次它缓存了结果。</span><span>调用</span></span><code class="highlighter-rouge">Object.defineProperty()</code><span><span>创建一个名为的新属性</span></span><code class="highlighter-rouge">data</code><span><span>，该</span><span>属性</span><span>具有固定值</span></span><code class="highlighter-rouge">actualData</code><span><span>，并且设置为不可写、可配置和不可枚举（以匹配 getter）。</span><span>之后，返回值本身。</span><span>下次</span></span><code class="highlighter-rouge">data</code><span><span>访问</span><span>该</span><span>属性时，它将从新创建的属性中读取而不是调用 getter：</span></span></p>
+<div class="cnblogs_Highlighter">
+<pre class="brush:javascript;gutter:true;">const object = new MyClass();
+
+// calls the getter
+const data1 = object.data;
+
+// reads from the data property
+const data2 = object.data;
+</pre>
+</div>
+<p>&nbsp;</p>
+<p><span><span>实际上，所有计算仅在第一次</span></span><code class="highlighter-rouge">data</code><span><span>读取属性</span><span>时完成</span><span>。</span><span>对该</span></span><code class="highlighter-rouge">data</code><span><span>属性的</span><span>每次后续读取</span><span>都返回缓存的版本。</span></span></p>
+<p><span><span>这种模式的一个缺点是</span></span><code class="highlighter-rouge">data</code><span><span>属性开始是不可枚举的原型属性，最终是不可枚举的自己的属性：</span></span></p>
+<div class="cnblogs_Highlighter">
+<pre class="brush:javascript;gutter:true;">const object = new MyClass();
+console.log(object.hasOwnProperty("data"));     // false
+
+const data = object.data;
+console.log(object.hasOwnProperty("data"));     // true
+</pre>
+</div>
+<p>&nbsp;<span>虽然这种区别在很多情况下并不重要，但理解这种模式很重要，因为它在传递对象时可能会导致微妙的问题。</span><span>幸运的是，使用更新的模式很容易解决这个问题。</span></p>
+<h2 id="the-only-own-lazy-loading-property-pattern-for-classes"><span><span>类的唯一自己的延迟加载属性模式</span></span></h2>
+<p><span><span><span>如果您有一个用例，其中延迟加载的属性始终存在于实例中很重要，那么您可以使用</span></span><code class="highlighter-rouge">Object.defineProperty()</code><span><span>在类构造函数中创建属性。</span><span>它比前面的例子有点混乱，但它会确保该属性只存在于实例上。</span><span>下面是一个例子：</span></span></span></p>
+<div class="cnblogs_code">
+<pre><span style="color: rgba(0, 0, 0, 1)">class MyClass {
+    constructor() {
+
+        Object.defineProperty(</span><span style="color: rgba(0, 0, 255, 1)">this</span>, "data"<span style="color: rgba(0, 0, 0, 1)">, {
+            get() {
+                const actualData </span>=<span style="color: rgba(0, 0, 0, 1)"> someExpensiveComputation();
+
+                Object.defineProperty(</span><span style="color: rgba(0, 0, 255, 1)">this</span>, "data"<span style="color: rgba(0, 0, 0, 1)">, {
+                    value: actualData,
+                    writable: </span><span style="color: rgba(0, 0, 255, 1)">false</span><span style="color: rgba(0, 0, 0, 1)">,
+                    configurable: </span><span style="color: rgba(0, 0, 255, 1)">false</span><span style="color: rgba(0, 0, 0, 1)">
+                });
+
+                </span><span style="color: rgba(0, 0, 255, 1)">return</span><span style="color: rgba(0, 0, 0, 1)"> actualData;
+            },
+            configurable: </span><span style="color: rgba(0, 0, 255, 1)">true</span><span style="color: rgba(0, 0, 0, 1)">,
+            enumerable: </span><span style="color: rgba(0, 0, 255, 1)">true</span><span style="color: rgba(0, 0, 0, 1)">
+        });
+
+    }
+}</span></pre>
+</div>
+<p><span><span>在这里，构造函数</span></span><code class="highlighter-rouge">data</code><span><span>使用</span></span><code class="highlighter-rouge">Object.defineProperty()</code><span><span>.&nbsp;</span><span>该属性是在实例上创建的（通过使用</span></span><code class="highlighter-rouge">this</code><span><span>）并定义一个 getter 并指定该属性为可枚举和可配置的（典型的自己的属性）。</span><span>将</span></span><code class="highlighter-rouge">data</code><span><span>属性</span><span>设置</span><span>为可配置</span><span>特别重要，</span><span>以便您可以</span></span><code class="highlighter-rouge">Object.defineProperty()</code><span><span>再次</span><span>调用</span><span>它。</span></span></p>
+<p><span><span>然后 getter 函数进行计算并再次调用</span></span><code class="highlighter-rouge">Object.defineProperty()</code><span><span>。</span><span>该</span></span><code class="highlighter-rouge">data</code><span><span>属性现在被重新定义为具有特定值的数据属性，并且不可写和不可配置以保护最终数据。</span><span>然后，计算数据从 getter 返回。</span><span>下次</span></span><code class="highlighter-rouge">data</code><span><span>读取属性时，它将从存储的值中读取。</span><span>作为奖励，该</span></span><code class="highlighter-rouge">data</code><span><span>财产现在仅作为自己的财产存在，并且在第一次阅读之前和之后的行为都相同：</span></span></p>
+<div class="cnblogs_Highlighter">
+<pre class="brush:javascript;gutter:true;">const object = new MyClass();
+console.log(object.hasOwnProperty("data"));     // true
+
+const data = object.data;
+console.log(object.hasOwnProperty("data"));     // true
+</pre>
+</div>
+<p>&nbsp;<span>对于类，这很可能是您要使用的模式；</span><span>另一方面，对象文字可以使用更简单的方法。</span></p>
+<h2 id="the-lazy-loading-property-pattern-for-object-literals"><span><span>对象字面量的延迟加载属性模式</span></span></h2>
+<p><span><span>如果您使用对象字面量而不是类，则过程要简单得多，因为在对象字面量上定义的 getter 被定义为可枚举的自身属性（而不是原型属性），就像数据属性一样。</span><span>这意味着您可以对类使用凌乱的延迟加载属性模式而对于对象来说不会凌乱：</span></span></p>
+<div class="cnblogs_Highlighter">
+<pre class="brush:javascript;gutter:true;">const object = {
+    get data() {
+        const actualData = someExpensiveComputation();
+
+        Object.defineProperty(this, "data", {
+            value: actualData,
+            writable: false,
+            configurable: false,
+            enumerable: false
+        });
+
+        return actualData;
+    }
+};
+
+console.log(object.hasOwnProperty("data"));     // true
+
+const data = object.data;
+console.log(object.hasOwnProperty("data"));     // true
+</pre>
+</div>
+<p>&nbsp;</p>
+<h2 id="conclusion"><span><span>结论</span></span></h2>
+<p><span><span>在 JavaScript 中重新定义对象属性的能力提供了一个独特的机会来缓存可能计算成本很高的信息。</span><span>通过从重新定义为数据属性的访问器属性开始，您可以将计算推迟到第一次读取属性时，然后缓存结果以供以后使用。</span><span>这种方法既适用于类，也适用于对象字面量，并且在对象字面量中更简单一些，因为您不必担心您的 getter 会在原型上结束。</span></span></p>
+<p><span><span>提高性能的最佳方法之一是避免重复执行相同的工作，因此任何时候您可以缓存结果以供以后使用，都可以加快程序的运行速度。</span><span>延迟加载属性模式等技术允许任何属性成为缓存层以提高性能。</span></span></p>
+<p>&nbsp;</p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2021-06-18 17:48</span>&nbsp;
+<a href="https://www.cnblogs.com/nianzhilian/">飞奔的龟龟</a>&nbsp;
+阅读(<span id="post_view_count">4</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14900255" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(14900255);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: '', targetType: 'blogPost', targetId: '14900255', targetLink: 'https://www.cnblogs.com/nianzhilian/p/14900255.html', title: 'JavaScript 中的延迟加载属性模式' })">举报</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="https://common.cnblogs.com/highlight/10.3.1/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 239093, cb_blogApp = 'nianzhilian', cb_blogUserGuid = '7a109f2c-c93c-e511-b908-9dcfd8948a71';
+    var cb_entryId = 14900255, cb_entryCreatedDate = '2021-06-18 17:48', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+<a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id='div-gpt-ad-1592365906576-0' style='width: 300px; height: 250px;'></div>
+    </div>
+    <div id="under_post_card1"></div>
+    <div id="cnblogs_c2" class="under-post-card">
+        <div id='div-gpt-ad-1592366332455-0' style='width: 468px; height: 60px;'></div>
+    </div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+       deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+       loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+	<div id="sideBar">
+		<div id="sideBarMain">
+			<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright &copy; 2021 飞奔的龟龟
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjtdidBBuZIgXHtxlSjdk0KYcuatkV7rQpVUPDxhhGUje65bbgKdSgAQusg94UdDI8l1E_CXsB7NqYesK-84Cfsxrd0qlNvPd4z278hTwlCU45PFutSCw5tQrhZRpU9Paks" />
+</body>
+</html>

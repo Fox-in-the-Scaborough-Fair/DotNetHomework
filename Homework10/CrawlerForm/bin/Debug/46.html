@@ -1,0 +1,547 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-crossorigin" />
+    <meta name="description" content="如果不了解Oauth2 是什么、工作流程的可以看我上一篇文章： SpringCloud-OAuth2（一）：基础篇 这篇讲的内容是：Oauth2在SpringBoot/SpringCloud中的实战。" />
+    <meta property="og:description" content="如果不了解Oauth2 是什么、工作流程的可以看我上一篇文章： SpringCloud-OAuth2（一）：基础篇 这篇讲的内容是：Oauth2在SpringBoot/SpringCloud中的实战。" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>SpringCloud-OAuth2（二）：实战篇 - 竹根七 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/zgq7/custom.css?v=zJzYdJuOf9/pMZLQve8e/5W8MxI=" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/SimpleMemory/bundle-SimpleMemory-mobile.min.css" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/zgq7/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/zgq7/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/zgq7/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 475457;
+        var currentBlogApp = 'zgq7';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'SimpleMemory';
+        var visitorUserId = '';
+    </script>
+        <script>
+            var currentPostDateAdded = '2021-06-18 05:33';
+        </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    
+    
+    
+</head>
+<body class="no-navbar">
+    <a name="top"></a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc navbar-custom">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="page_begin_html">
+        <!-- fork me on github -->
+<a href="https://github.com/zgq7">  
+<img style="position: fixed; top: 0; right: 0; border: 0; z-index:9999;" 
+  	 src="https://images.cnblogs.com/cnblogs_com/zgq7/1571706/t_200918090753white.png" 
+  	 alt="Fork me on GitHub">
+</a>
+
+
+    </div>
+    <!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/zgq7/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/zgq7/">竹根七</a>
+</h1>
+<h2>学而思之，学以致用</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/zgq7/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E7%AB%B9%E6%A0%B9%E4%B8%83">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/zgq7/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			<div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class = "postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/zgq7/p/14890577.html">
+    <span>SpringCloud-OAuth2（二）：实战篇</span>
+    
+
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                <div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+<p>如果不了解Oauth2 是什么、工作流程的可以看我上一篇文章：<br>
+<a href="https://www.cnblogs.com/zgq7/p/14797067.html" title="SpringCloud-OAuth2（一）：基础篇" target="_blank">SpringCloud-OAuth2（一）：基础篇</a></p>
+<p>这篇讲的内容是：Oauth2在SpringBoot/SpringCloud中的实战。</p>
+<p><strong>SpringBoot版本：2.2.5.Release<br>
+SpringCloud版本：Hoxton.SR9<br>
+JDK版本：1.8</strong></p>
+<h1 id="1：pom配置">1：POM配置</h1>
+<pre><code class="language-xml">    &lt;dependencies&gt;
+        &lt;!-- https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2 --&gt;
+        &lt;dependency&gt;
+            &lt;artifactId&gt;spring-cloud-starter-oauth2&lt;/artifactId&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;/dependency&gt;
+        &lt;!--使用redis存放token--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;!--密码加密解密依赖包--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jasypt&lt;/groupId&gt;
+            &lt;artifactId&gt;jasypt&lt;/artifactId&gt;
+            &lt;version&gt;1.9.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+</code></pre>
+<h1 id="2：关键配置">2：关键配置</h1>
+<h2 id="21：认证服务配置-webauthorizationconfig">2.1：认证服务配置-WebAuthorizationConfig</h2>
+<pre><code class="language-java">@Configuration
+@EnableAuthorizationServer
+public class WebAuthorizationConfig extends AuthorizationServerConfigurerAdapter {
+
+    private final AuthenticationManager authenticationManager;
+    private final UserDetailsService userDetailsService;
+    private final PasswordEncoder passwordEncoder;
+    private final TokenStore tokenStore;
+    private final AuthorizationCodeServices authorizationCodeServices;
+    private final AuthTokenExceptionHandler authTokenExceptionHandler;
+
+    public WebAuthorizationConfig(AuthenticationManager authenticationManager,
+                                  UserDetailsService userDetailsService,
+                                  PasswordEncoder passwordEncoder,
+                                  TokenStore tokenStore,
+                                  AuthorizationCodeServices authorizationCodeServices,
+                                  AuthTokenExceptionHandler authTokenExceptionHandler) {
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.passwordEncoder = passwordEncoder;
+        this.tokenStore = tokenStore;
+        this.authorizationCodeServices = authorizationCodeServices;
+        this.authTokenExceptionHandler = authTokenExceptionHandler;
+    }
+
+    @Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        String secret = PasswordHelper.encryptPassword(Oauth2ClientUserEnums.ADMIN.getClientSecret());
+
+        clients.inMemory()
+                .withClient(Oauth2ClientUserEnums.ADMIN.getClientId())
+                .secret(secret)
+                .scopes("all", "test")
+                .resourceIds("admin")
+                // autoApprove 可跳过授权页直接返回code
+                .autoApprove("all")
+                .redirectUris("http://www.baidu.com")
+                //客户端认证所支持的授权类型 1:客户端凭证 2:账号密码 3:授权码 4:token刷新 5:简易模式
+                .authorizedGrantTypes(CLIENT_CREDENTIALS, PASSWORD, REFRESH_TOKEN, AUTHORIZATION_CODE, IMPLICIT)
+                //用户角色
+                .authorities("admin")
+                //允许自动授权
+                .autoApprove(false)
+                //token 过期时间
+                .accessTokenValiditySeconds((int) TimeUnit.HOURS.toSeconds(12))
+                //refresh_token 过期时间
+                .refreshTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(30))
+        ;
+    }
+
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security
+                .passwordEncoder(passwordEncoder)                //设置密码编辑器
+                .allowFormAuthenticationForClients()
+                .tokenKeyAccess("permitAll()")                   //开启 /oauth/token_key 的访问权限控制
+                .checkTokenAccess("permitAll()")                 //开启 /oauth/check_token 验证端口认证权限访问
+        ;
+    }
+
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        // 配置授权服务器端点的属性
+        endpoints.authenticationManager(authenticationManager)    //认证管理器
+                .tokenStore(tokenStore)
+                .authorizationCodeServices(authorizationCodeServices)
+                .userDetailsService(userDetailsService)
+                .exceptionTranslator(authTokenExceptionHandler);
+    }
+}
+</code></pre>
+<p><strong>注解：@EnableAuthorizationServer表明当前服务是认证服务。</strong></p>
+<hr>
+<p><strong>介绍一下几个基础组件</strong></p>
+<hr>
+<p>①：authenticationManager<br>
+认证管理器，对客户端凭证、用户进行认证的地方。</p>
+<hr>
+<p>②：tokenStore<br>
+存放token的地方，默认是存放在Inmemory（内存）中的。</p>
+<hr>
+<p>③：authorizationCodeServices<br>
+code生成服务，使用默认的即可。</p>
+<hr>
+<p>④：userDetailsService<br>
+用户详情服务，可重写实现，用户信息从数据库中加载。</p>
+<hr>
+<p>⑤：authTokenExceptionHandler<br>
+自定义的 token 鉴别失败异常处理器。</p>
+<hr>
+<p>⑥：authClientExceptionHandler<br>
+自定义的 客户端凭证 鉴别失败异常处理器。</p>
+<h2 id="22：资源服务配置-webresourceconfig">2.2：资源服务配置-WebResourceConfig</h2>
+<pre><code>@Configuration
+@EnableResourceServer
+public class WebResourceConfig extends ResourceServerConfigurerAdapter {
+
+    private final AuthClientExceptionHandler authClientExceptionHandler;
+
+    public WebResourceConfig(AuthClientExceptionHandler authClientExceptionHandler) {
+        this.authClientExceptionHandler = authClientExceptionHandler;
+    }
+
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) {
+        resources.resourceId("admin").stateless(true).authenticationEntryPoint(authClientExceptionHandler);
+    }
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        // 资源链路
+        http
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                .and().formLogin().permitAll()
+                // 登录放通
+                .and()
+                .authorizeRequests()
+                .antMatchers("/oauth/**", "/favicon.ico")
+                //.authenticated()
+                .permitAll()
+                // 其他请求都需认证
+                .and()
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated()
+                // 跨域
+                .and()
+                .cors()
+                // 关闭跨站请求防护
+                .and()
+                .csrf()
+                .disable();
+    }
+
+}
+</code></pre>
+<p><strong>注解：@EnableResourceServer表明当前服务是认证服务。</strong></p>
+<blockquote>
+<p>笔记：<br>
+为什么要放开 /favicon.ico 的访问权限？因为在进行授权码模式的时候，一直无法跳转到我定义的redirect_uri 地址中去。<br>
+使用 logging.level.org.springframework.security=debug 发现会访问 /favicon.ico ，然后报错，再然后就是调到登录页去了。<br>
+因此 /favicon.ico 放开之后，认证正常，成功调到redirect_uri 地址并返回了code。（这是OAuth2的小坑吗？）</p>
+</blockquote>
+<h2 id="23：安全配置-websecurityconfig">2.3：安全配置-WebSecurityConfig</h2>
+<pre><code>@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final PasswordEncoder passwordEncoder;
+
+    public WebSecurityConfig(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(userDetailsService())
+                .passwordEncoder(passwordEncoder);                  //为认证管理器配置passwordEncoder，无论客户端凭证密码还是用户密码都通过passwordEncoder进行密码匹配
+    }
+
+    @Bean
+    @Override
+    protected UserDetailsService userDetailsService() {
+        return new VipUserDetailService();
+    }
+
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+}
+</code></pre>
+<p>详细配置可以翻阅我的GitHub：<a href="https://github.com/zgq7/wfw-parent/tree/master/wfw-auth-parent/wfw-auth-center" title="GitHub地址" target="_blank">GitHub地址</a></p>
+<h1 id="3：认证授权演示">3：认证授权演示</h1>
+<h2 id="31：授权码模式">3.1：授权码模式</h2>
+<p>注意！！！一定要配置redirect_uri，并且一定要允许表单登录！！！<br>
+以下是步骤：</p>
+<hr>
+<p>①：浏览器输入以下链接地址，会重定向到登录页<br>
+<a href="http://localhost:8123/oauth/authorize?client_id=admin&amp;client_secret=admin&amp;response_type=code&amp;redirect_uri=http://www.baidu.com&amp;scope=test" target="_blank">http://localhost:8123/oauth/authorize?client_id=admin&amp;client_secret=admin&amp;response_type=code&amp;redirect_uri=http://www.baidu.com&amp;scope=test</a></p>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616172648431-1508273347.png" alt="drawing" width="800">
+<hr>
+<p>②：输入配置的用户名密码，回调到授权页</p>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616172843313-1813728921.png" alt="drawing" width="800">
+<p>如果我们配置的scope是autoApprove的，即可跳过这步，直接到第③步，拿到code。</p>
+<hr>
+<p>③：选择 Approve，点击Authorize 即可调到redirect_uri地址<br>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616172955289-1921693672.png" alt="drawing" width="800"></p>
+<hr>
+<p>④：拿code 换 token</p>
+<p>我的请求地址：127.0.0.1:8123/oauth/token?grant_type=authorization_code&amp;code=h35Fh1&amp;redirect_uri=http://www.baidu.com<br>
+需要配置Authorization，请求时会将客户端凭证以base64格式放在请求头中。</p>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616173738425-293307887.png" alt="drawing" width="800">
+<h2 id="32：用户密码模式">3.2：用户密码模式</h2>
+<p>我的请求地址：127.0.0.1:8123/oauth/token?grant_type=password&amp;username=found&amp;password=123456<br>
+需要配置Authorization，请求时会将客户端凭证以base64格式放在请求头中。</p>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616174320574-1274751738.png" alt="drawing" width="800">
+<h2 id="33：客户端凭证模式">3.3：客户端凭证模式</h2>
+<p>我的请求地址：127.0.0.1:8123/oauth/token?grant_type=client_credentials<br>
+需要配置Authorization，请求时会将客户端凭证以base64格式放在请求头中。</p>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616174704219-933994744.png" alt="drawing" width="800">
+<h2 id="34：隐式授权模式">3.4：隐式授权模式</h2>
+<p>浏览器输入以下地址即可拿到token：<br>
+<a href="http://localhost:8123/oauth/authorize?client_id=admin&amp;client_secret=admin&amp;response_type=token&amp;redirect_uri=http://www.baidu.com" target="_blank">http://localhost:8123/oauth/authorize?client_id=admin&amp;client_secret=admin&amp;response_type=token&amp;redirect_uri=http://www.baidu.com</a></p>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616175916467-2014907735.png" alt="drawing" width="800">
+<h2 id="35：token-刷新">3.5：token 刷新</h2>
+<p>我的请求地址：127.0.0.1:8123/oauth/token?grant_type=refresh_token&amp;refresh_token=dde5f388-4ad7-4781-a1b7-aaafb3c34b10<br>
+refresh_token是服务器颁发给客户端的，作用就是在一定时间内，让用户不用重新登录。<br>
+需要配置Authorization，请求时会将客户端凭证以base64格式放在请求头中。</p>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616180405009-589336645.png" alt="drawing" width="800">
+<h1 id="4：聊聊第三方登录">4：聊聊第三方登录</h1>
+<p>个人认为做第三方登录是当前比较流行的做法。</p>
+<h2 id="41：流程">4.1：流程</h2>
+<p>①：比如我们现在登录ProcessOn，就可以选择第三方登录。</p>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616181023715-2062094707.png" alt="drawing" width="600">
+<hr>
+<p>②：点击QQ登录后会调到这个页面↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616181413822-1846525971.png" alt="drawing" width="600">
+<hr>
+<p>③：上面这个client_id 应该就是ProcessOn 官方申请的第三方客户端凭证了。<br>
+选择账号密码登录，输入账号密码之后就可以拿到token，（我手速快截了个图）</p>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616181804398-1606656376.png" alt="drawing" width="600">
+<hr>
+<p>④：可以看到返回了access_token、过期时间。<br>
+随后processOn既发起请求进行登录操作，登录成功进入用户首页，失败则重定向到登录页。<br>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616183310593-2111148261.png" alt="drawing" width="600"><br>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210616183344381-1225157618.png" alt="drawing" width="600"></p>
+<h2 id="42：uml图">4.2：uml图</h2>
+<img src="https://img2020.cnblogs.com/blog/1537140/202106/1537140-20210618172635204-360985292.png" alt="drawing" width="800">
+<p>认真辨别了一下，QQ第三方登录采用不是授权码模式，而是Implicat Grant Type。（差点看走眼）</p>
+<p><strong>总结 ：<br>
+学习总要从身边找例子，这样才能更好的理解。</strong></p>
+
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2021-06-18 17:33</span>&nbsp;
+<a href="https://www.cnblogs.com/zgq7/">竹根七</a>&nbsp;
+阅读(<span id="post_view_count">36</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14890577" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(14890577);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: '', targetType: 'blogPost', targetId: '14890577', targetLink: 'https://www.cnblogs.com/zgq7/p/14890577.html', title: 'SpringCloud-OAuth2（二）：实战篇' })">举报</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="https://common.cnblogs.com/highlight/10.3.1/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 475457, cb_blogApp = 'zgq7', cb_blogUserGuid = '5ec7e1ac-0d9d-435b-b47f-08d649f34bac';
+    var cb_entryId = 14890577, cb_entryCreatedDate = '2021-06-18 17:33', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+<a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id='div-gpt-ad-1592365906576-0' style='width: 300px; height: 250px;'></div>
+    </div>
+    <div id="under_post_card1"></div>
+    <div id="cnblogs_c2" class="under-post-card">
+        <div id='div-gpt-ad-1592366332455-0' style='width: 468px; height: 60px;'></div>
+    </div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+       deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+       loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+	<div id="sideBar">
+		<div id="sideBarMain">
+			<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright &copy; 2021 竹根七
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjvv5_kkLk0jYuRaP7eyGRkk6kgSpeZFbBTiGr0WBh5v-1YkEQERPrVSe6mP81XseHDrxSCVHD7ARLv8K99-2_d48Oagx8Ha7y2hv9ORQwtYvO0_kNpeNBWvOIrJFE8YRlg" />
+</body>
+</html>

@@ -1,0 +1,520 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="never" />
+    <meta name="description" content="一、背景说明 Flink的API做了4层的封装，上两层TableAPI、SQL语法相对简单便于编写，面对小需求可以快速上手解决，本文参考官网及部分线上教程编写source端、sink端代码，分别读取s" />
+    <meta property="og:description" content="一、背景说明 Flink的API做了4层的封装，上两层TableAPI、SQL语法相对简单便于编写，面对小需求可以快速上手解决，本文参考官网及部分线上教程编写source端、sink端代码，分别读取s" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>FlinkSQL写入Kafka/ES/MySQL示例-JAVA - Rango_lhl - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=6tvK5XC6GPbg3p_sy7wzz_2291HoYACr4440iKBzQIw" />
+    <link id="MainCss" rel="stylesheet" href="/skins/lessismoreright/bundle-lessismoreright.min.css?v=4W7JFeW6yawmSvuAPXAMgmONTEeyjPHEBIN7uU-h2oo" />
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/lessismoreright/bundle-lessismoreright-mobile.min.css?v=cSBXSFXCBG9KdnF2sdUs-Rwu75GHG2_Gs50OCy_ecGg" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/rango-lhl/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/rango-lhl/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/rango-lhl/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 458213;
+        var currentBlogApp = 'rango-lhl';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'LessIsMoreRight';
+        var visitorUserId = '';
+    </script>
+        <script>
+            var currentPostDateAdded = '2021-06-18 04:53';
+        </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=l5MLSTLemATH1_zJmhkn0AWeaJtyzREb_jcbx3aWNaQ"></script>
+    
+    
+    
+</head>
+<body class="has-navbar has-bannerbar">
+    <a name="top"></a>
+            <a target="_blank" href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:pc|pp:bokeyuan-huodong-21nianzhongdacu-neiyePCtonglanbanner|pu:21nianzhongdacu-neiyePCtonglanbanner|ci:21nzdc|kw:10224545" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-pc')">
+                <div class="bannerbar aliyun forpc" style="background-size: contain; filter: brightness(0.95); background-image: url(https://img2020.cnblogs.com/blog/35695/202106/35695-20210610183724605-1725070929.jpg)">
+                </div>
+            </a>
+            <div id="bannerbar" class="bannerbar-mobile formobile">
+            <a href="https://cloud.baidu.com/campaign/2021mid/index.html?track=cp:bokeyuan|pf:mb|pp:bokeyuan-huodong-21nianzhongdacu-neiyeyidongduantonglanbanner|pu:21nianzhongdacu-neiyeyidongduantonglanbanner|ci:21nzdc|kw:10224547" onclick="ga('send', 'event', 'Link', 'click', 'baidu-cpa-blog-bannerbar-mobile')">
+                <img src="https://img2020.cnblogs.com/blog/35695/202106/35695-20210610184806729-1738888164.jpg" alt="" />
+            </a>
+            </div>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <div id="home">
+    <div id="header">
+        <div id="blogTitle">
+            <div class="title"><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/rango-lhl/">Rango</a>
+</div>
+<div class="subtitle">专注大数据</div>
+
+        </div>
+        <div id="navigator">
+            
+<ul id="navList">
+    <li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+    <li id="nav_myhome">
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/rango-lhl/">
+首页</a>
+</li>
+    <li id="nav_newpost">
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+    <li id="nav_contact">
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/Rango_lhl">
+联系</a></li>
+    <li id="nav_rss">
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/rango-lhl/rss/">
+订阅</a></li>
+    <li id="nav_admin">
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+            <div class="blogStats">
+                <div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="mainContent">
+            <div class="forFlow">
+                <div id="post_detail">
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/rango-lhl/p/14900235.html">
+    <span>FlinkSQL写入Kafka/ES/MySQL示例-JAVA</span>
+    
+
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                <div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+<h2 id="一、背景说明">一、背景说明</h2>
+ <img src="https://img-blog.csdnimg.cn/20210618164219229.png" width="60%">
+<p>Flink的API做了4层的封装，上两层TableAPI、SQL语法相对简单便于编写，面对小需求可以快速上手解决，本文参考官网及部分线上教程编写source端、sink端代码，分别读取socket、kafka及文本作为source，并将流数据输出写入Kafka、ES及MySQL，方便后续查看使用。</p>
+ <img src="https://img-blog.csdnimg.cn/20210618164250842.jpg" width="60%">
+<h2 id="二、代码部分">二、代码部分</h2>
+<p>说明：这里使用connect及DDL两种写法，connect满足Flink1.10及以前版本使用，目前官方文档均是以DDL写法作为介绍，建议1.10以后的版本使用DDL写法操作，通用性更强。</p>
+<h4 id="1读取（source）端写法">1.读取（Source）端写法</h4>
+<p>1.1 基础环境建立，方便演示并行度为1且不设置CK</p>
+<pre><code class="language-java">//建立Stream环境，设置并行度为1
+StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment().setParallelism(1);
+//建立Table环境
+StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+</code></pre>
+<p>1.2 读取Socket端口数据，并使用TableAPI及SQL两种方式查询</p>
+<pre><code class="language-java">//读取服务器9999端口数据，并转换为对应JavaBean
+SingleOutputStreamOperator&lt;WaterSensor&gt; mapDS = env.socketTextStream("hadoop102", 9999)
+		.map(value -&gt; {
+                        String[] split = value.split(",");
+			return new WaterSensor(split[0]
+					, Long.parseLong(split[1])
+					, Integer.parseInt(split[2]));});
+//创建表：将流转换成动态表。
+Table table = tableEnv.fromDataStream(mapDS);
+//对动态表进行查询,TableAPI方式
+Table selectResult = table.where($("id").isEqual("ws_001")).select($("id"), $("ts"), $("vc"));
+//对动态表镜像查询，SQL方式-未注册表
+Table selectResult = tableEnv.sqlQuery("select * from " + table);
+</code></pre>
+<p>1.3 读取文本（FileSystem）数据，并使用TableAPI进行查询</p>
+<pre><code class="language-java">//Flink1.10写法使用connect方式，读取txt文件并建立临时表
+tableEnv.connect(new FileSystem().path("input/sensor.txt"))
+		.withFormat(new Csv().fieldDelimiter(',').lineDelimiter("\n"))
+		.withSchema(new Schema().field("id", DataTypes.STRING())
+					.field("ts", DataTypes.BIGINT())
+				        .field("vc",DataTypes.INT()))
+		.createTemporaryTable("sensor");
+
+//转换成表对象，对表进行查询。SQL写法参考Socket段写法
+Table table = tableEnv.from("sensor");
+Table selectResult = table.groupBy($("id")).aggregate($("id").count().as("id_count"))select($("id"), $("id_count"));
+</code></pre>
+<p>1.4 消费Kafka数据，并使用TableAPI进行查询，分别用conncet及DDL写法</p>
+<pre><code class="language-java">//Flink1.10写法使用connect方式，消费kafka对应主题并建立临时表
+tableEnv.connect(new Kafka().version("universal")
+                            .topic("sensor")
+			    .startFromLatest()
+			    .property(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"hadoop102:9092")
+			    .property(ConsumerConfig.GROUP_ID_CONFIG,"BD"))//消费者组
+        .withSchema(new Schema().field("id", DataTypes.STRING())
+		                .field("ts", DataTypes.BIGINT())
+		                .field("vc",DataTypes.INT()))
+		                .withFormat(new Csv())
+		                .createTemporaryTable("sensor");
+
+//Flink1.10以后使用DDL写法
+tableEnv.executeSql("CREATE TABLE sensor (" +
+		"  `id` STRING," +
+		"  `ts` BIGINT," +
+		"  `vc` INT" +
+		") WITH (" +
+		"  'connector' = 'kafka'," +
+		"  'topic' = 'sensor'," +
+		"  'properties.bootstrap.servers' = 'hadoop102:9092'," +
+		"  'properties.group.id' = 'BD'," +
+		"  'scan.startup.mode' = 'latest-offset'," +
+		"  'format' = 'csv'" +
+		")");
+
+//转换成表对象，对表进行查询。SQL写法参考Socket段写法
+Table table = tableEnv.from("sensor");
+Table selectResult = table.groupBy($("id")).aggregate($("id").count().as("id_count"))
+		          .select($("id"), $("id_count"));
+</code></pre>
+<h4 id="2写入（sink）端部分写法">2.写入（Sink）端部分写法</h4>
+<p>2.1 写入文本文件</p>
+<pre><code class="language-java">//创建表：创建输出表，connect写法
+tableEnv.connect(new FileSystem().path("out/sensor.txt"))
+		.withFormat(new Csv())
+		.withSchema(new Schema().field("id", DataTypes.STRING())
+				.field("ts", DataTypes.BIGINT())
+				.field("vc",DataTypes.INT()))
+		.createTemporaryTable("sensor");
+
+//将数据写入到输出表中即实现sink写入，selectResult则是上面source侧查询出来的结果表
+selectResult.executeInsert("sensor");
+</code></pre>
+<p>2.2 写入Kafka</p>
+<pre><code class="language-java">//connect写法
+tableEnv.connect(new Kafka().version("universal")
+		.topic("sensor")
+		.sinkPartitionerRoundRobin() //轮询写入
+		.property(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"hadoop102:9092"))
+		.withSchema(new Schema().field("id", DataTypes.STRING())
+				        .field("ts", DataTypes.BIGINT())
+				        .field("vc",DataTypes.INT()))
+		.withFormat(new Json())
+		.createTemporaryTable("sensor");
+
+//DDL写法
+tableEnv.executeSql("CREATE TABLE sensor (" +
+		"  `id` STRING," +
+		"  `ts` BIGINT," +
+		"  `vc` INT" +
+		") WITH (" +
+		"  'connector' = 'kafka'," +
+		"  'topic' = 'sensor'," +
+		"  'properties.bootstrap.servers' = 'hadoop102:9092'," +
+		"  'format' = 'json'" +
+		")");
+
+//将数据写入到输出表中即实现sink写入，selectResult则是上面source侧查询出来的结果表
+selectResult.executeInsert("sensor");
+</code></pre>
+<p>2.3 写入MySQL（JDBC方式，这里手动导入了mysql-connector-java-5.1.9.jar）</p>
+<pre><code class="language-java">//DDL
+tableEnv.executeSql("CREATE TABLE sink_sensor (" +
+		"  id STRING," +
+		"  ts BIGINT," +
+		"  vc INT," +
+		"  PRIMARY KEY (id) NOT ENFORCED" +
+		") WITH (" +
+		"  'connector' = 'jdbc'," +
+		"  'url' = 'jdbc:mysql://hadoop102:3306/test?useSSL=false'," +
+		"  'table-name' = 'sink_test'," +
+		"  'username' = 'root'," +
+		"  'password' = '123456'" +
+		")");
+
+//将数据写入到输出表中即实现sink写入，selectResult则是上面source侧查询出来的结果表
+selectResult.executeInsert("sensor");
+</code></pre>
+<p>2.4 写入ES</p>
+<pre><code class="language-java">//connect写法
+tableEnv.connect(new Elasticsearch()
+		.index("sensor")
+		.documentType("_doc")
+		.version("7")
+		.host("localhost",9200,"http")
+                //设置为1，每行数据都写入是方便客户端输出展示，生产勿使用
+		.bulkFlushMaxActions(1)) 
+		.withSchema(new Schema()
+				.field("id", DataTypes.STRING())
+				.field("ts", DataTypes.BIGINT())
+				.field("vc",DataTypes.INT()))
+		.withFormat(new Json())
+		.inAppendMode()
+		.createTemporaryTable("sensor");
+//DDL写法
+tableEnv.executeSql("CREATE TABLE sensor (" +
+					"  id STRING," +
+					"  ts BIGINT," +
+					"  vc INT," +
+					"  PRIMARY KEY (id) NOT ENFORCED" +
+					") WITH (" +
+					"  'connector' = 'elasticsearch-7'," +
+					"  'hosts' = 'http://localhost:9200'," +
+					"  'index' = 'users'," +
+					"  'sink.bulk-flush.max-actions' = '1')";)
+
+//将数据写入到输出表中即实现sink写入，selectResult则是上面source侧查询出来的结果表
+selectResult.executeInsert("sensor");
+</code></pre>
+<h2 id="三、补充说明">三、补充说明</h2>
+<p>依赖部分pom.xml</p>
+<pre><code class="language-xml"> &lt;properties&gt;
+        &lt;java.version&gt;1.8&lt;/java.version&gt;
+        &lt;maven.compiler.source&gt;${java.version}&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;${java.version}&lt;/maven.compiler.target&gt;
+        &lt;flink.version&gt;1.12.0&lt;/flink.version&gt;
+        &lt;scala.version&gt;2.12&lt;/scala.version&gt;
+        &lt;hadoop.version&gt;3.1.3&lt;/hadoop.version&gt;
+        &lt;maven.compiler.source&gt;8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;8&lt;/maven.compiler.target&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+            &lt;artifactId&gt;flink-java&lt;/artifactId&gt;
+            &lt;version&gt;${flink.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+            &lt;artifactId&gt;flink-clients_${scala.version}&lt;/artifactId&gt;
+            &lt;version&gt;${flink.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.elasticsearch&lt;/groupId&gt;
+            &lt;artifactId&gt;elasticsearch&lt;/artifactId&gt;
+            &lt;version&gt;7.8.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- elasticsearch 的客户端 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;
+            &lt;artifactId&gt;elasticsearch-rest-high-level-client&lt;/artifactId&gt;
+            &lt;version&gt;7.8.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- elasticsearch 依赖 2.x 的 log4j --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+            &lt;artifactId&gt;log4j-api&lt;/artifactId&gt;
+            &lt;version&gt;2.8.2&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+            &lt;artifactId&gt;log4j-core&lt;/artifactId&gt;
+            &lt;version&gt;2.8.2&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+            &lt;version&gt;2.9.9&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+            &lt;artifactId&gt;flink-connector-elasticsearch7_${scala.version}&lt;/artifactId&gt;
+            &lt;version&gt;${flink.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+            &lt;version&gt;1.18.16&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+            &lt;artifactId&gt;flink-table-api-java-bridge_${scala.version}&lt;/artifactId&gt;
+            &lt;version&gt;${flink.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+            &lt;artifactId&gt;flink-table-planner-blink_${scala.version}&lt;/artifactId&gt;
+            &lt;version&gt;${flink.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+            &lt;artifactId&gt;flink-csv&lt;/artifactId&gt;
+            &lt;version&gt;${flink.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+            &lt;artifactId&gt;flink-connector-kafka_${scala.version}&lt;/artifactId&gt;
+            &lt;version&gt;${flink.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+            &lt;artifactId&gt;flink-json&lt;/artifactId&gt;
+            &lt;version&gt;${flink.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></pre>
+<hr>
+<p>学习交流，有任何问题还请随时评论指出交流。</p>
+
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2021-06-18 16:53</span>&nbsp;
+<a href="https://www.cnblogs.com/rango-lhl/">Rango_lhl</a>&nbsp;
+阅读(<span id="post_view_count">1</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14900235" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(14900235);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: '', targetType: 'blogPost', targetId: '14900235', targetLink: 'https://www.cnblogs.com/rango-lhl/p/14900235.html', title: 'FlinkSQL写入Kafka/ES/MySQL示例-JAVA' })">举报</a></div>
+        </div>
+        <script src="https://common.cnblogs.com/highlight/10.3.1/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 458213, cb_blogApp = 'rango-lhl', cb_blogUserGuid = '9c544a6c-c884-43a8-881b-08d613826156';
+    var cb_entryId = 14900235, cb_entryCreatedDate = '2021-06-18 16:53', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+        <a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id='div-gpt-ad-1592365906576-0' style='width: 300px; height: 250px;'></div>
+    </div>
+    <div id="under_post_card1"></div>
+    <div id="cnblogs_c2" class="under-post-card">
+        <div id='div-gpt-ad-1592366332455-0' style='width: 468px; height: 60px;'></div>
+    </div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+       deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+       loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+    </div>
+</div>
+            </div>
+        </div>
+
+        <div id="sideBar">
+            <div id="sideBarMain">
+                <div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+                <div id="calendar"><div id="blog-calendar" style="display:none"></div></div>                
+                <script>loadBlogDefaultCalendar();</script>
+                <div id="leftcontentcontainer">
+                    <!-- begin:SingleColumn -->
+                    <div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+                    <!-- end:  SingleColumn -->
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--done-->
+Copyright &copy; 2021 Rango_lhl
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+    </div>
+</div>
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjs0mN6UwOZOZQ7sodzZCPRNnRYLRyxDWm3pIWG0DSjpKzfKdDSLuaaDIxAoDQ9mv7E_y7_8kaQEd_LvLgYGbKMlX90xsXg2HgY6v2MrQv8qbeLLSi3ARMQ5U3VWpJ9D8Mg" />
+</body>
+</html>
